@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">shutter_mvp</string>
+
     <string name="title_activity_login">LoginActivity</string>
+
+    <string name="sign_in">Sign In</string>
+    <string name="sign_in_text">Sign in and get access to your shutters from your phone.</string>
+    <string name="email_address">Email address</string>
+    <string name="password">Password</string>
+    <string name="prompt_email_address">Enter you email address</string>
+    <string name="prompt_password">Enter a password</string>
+    <string name="action_login">Login</string>
+    <string name="dont_have_an_account">I don’t have an account yet</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_up_text">Sign up and start controlling your shutters from your phone.</string>
+
 </resources>
