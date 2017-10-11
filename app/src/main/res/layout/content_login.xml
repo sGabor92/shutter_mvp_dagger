@@ -132,7 +132,7 @@
                     android:layout_centerHorizontal="true"
                     android:background="@drawable/button_rounded_blue"
                     android:elevation="10dp"
-                    android:onClick="Login"
+                    android:onClick="login"
                     android:text="@string/sign_in"
                     android:textColor="@color/colorWhite"
                     android:textSize="16sp" />
@@ -153,10 +153,11 @@
                         android:textSize="14sp" />
 
                     <TextView
+                        android:id="@+id/signUp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:onClick="SignUp"
+                        android:onClick="signUp"
                         android:text="@string/sign_up"
                         android:textColor="@color/colorMainBlue"
                         android:textSize="14sp"

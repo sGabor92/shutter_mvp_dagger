@@ -25,7 +25,7 @@ public class TokenStorage {
         }
         return hasit;
     }
-    
+
     public String getToken() {
         return token;
     }
