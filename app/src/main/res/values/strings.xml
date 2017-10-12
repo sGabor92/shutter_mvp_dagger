@@ -14,4 +14,14 @@
     <string name="sign_up">Sign Up</string>
     <string name="sign_up_text">Sign up and start controlling your shutters from your phone.</string>
 
+    <string name="password_too_short">Password is too short!</string>
+    <string name="invalid_email_address">Invalid email address!</string>
+    <string name="invalid_password">Invalid password!</string>
+    <string name="error_during_login">Error during login!</string>
+    <string name="network_error">Network error!</string>
+    <string name="internal_server_error">Internal server error!</string>
+    <string name="different_passwords">The passwords are not the same!</string>
+    <string name="email_address_taken">Email address already taken!</string>
+    <string name="required_field">Required field!</string>
+
 </resources>
