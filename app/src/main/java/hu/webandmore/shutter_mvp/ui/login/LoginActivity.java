@@ -18,6 +18,7 @@ import butterknife.OnClick;
 import butterknife.OnEditorAction;
 import hu.webandmore.shutter_mvp.MainActivity;
 import hu.webandmore.shutter_mvp.R;
+import hu.webandmore.shutter_mvp.ui.register.RegisterActivity;
 import hu.webandmore.shutter_mvp.utils.TokenStorage;
 
 public class LoginActivity extends AppCompatActivity implements LoginScreen {
@@ -77,6 +78,8 @@ public class LoginActivity extends AppCompatActivity implements LoginScreen {
     @OnClick(R.id.signUp)
     public void signUp(View view) {
         Log.i(TAG, "Click on SignUp text!");
+        Intent registerIntent = new Intent(this, RegisterActivity.class);
+        startActivity(registerIntent);
     }
 
     @OnEditorAction(R.id.password)

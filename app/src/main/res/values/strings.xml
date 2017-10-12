@@ -24,4 +24,7 @@
     <string name="email_address_taken">Email address already taken!</string>
     <string name="required_field">Required field!</string>
 
+    <string name="password_again">Password again</string>
+    <string name="prompt_password_again">Enter the same password again</string>
+
 </resources>
