@@ -9,193 +9,184 @@
     <ProgressBar
         android:id="@+id/register_progress"
         style="?android:attr/progressBarStyleLargeInverse"
-        android:indeterminateDrawable="@drawable/custom_progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_centerInParent="true"
+        android:layout_gravity="center"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="20dp"
-        android:indeterminate="true"
         android:elevation="10dp"
-        android:visibility="gone"
-        />
+        android:indeterminate="true"
+        android:indeterminateDrawable="@drawable/custom_progress_bar"
+        android:visibility="gone" />
 
-    <ScrollView
-        android:id="@+id/register_form"
+    <LinearLayout
+        android:id="@+id/registerLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/registerLayout"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="@string/sign_up"
+            android:textColor="@color/colorBlack"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/sign_up_text"
+            android:textColor="@color/colorGreyText"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="@string/email_address"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/colorGreyText"
+            app:errorEnabled="false">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:text="@string/sign_up"
+                android:layout_marginTop="20dp"
+                android:hint="@string/prompt_email_address"
+                android:inputType="textEmailAddress"
                 android:textColor="@color/colorBlack"
-                android:textSize="36sp"
-                android:textStyle="bold" />
+                android:textColorHint="@color/colorGreyText"
+                android:textSize="16sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <requestFocus />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/password"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/colorGreyText"
+            app:errorEnabled="false"
+            app:passwordToggleContentDescription="@string/prompt_password"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/colorBlack">
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/sign_up_text"
-                android:textColor="@color/colorGreyText"
+                android:layout_marginTop="20dp"
+                android:hint="@string/prompt_password"
+                android:imeActionLabel="@string/action_login"
+                android:imeOptions="actionGo"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:textColor="@color/colorBlack"
                 android:textSize="14sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:text="@string/email_address"
-                android:textColor="@color/colorBlack"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+        </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/password_again"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/colorGreyText"
+            app:errorEnabled="false"
+            app:passwordToggleContentDescription="@string/prompt_password"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/colorBlack">
+
+            <EditText
+                android:id="@+id/password_again"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="@color/colorGreyText"
-                app:errorEnabled="false">
-
-                <EditText
-                    android:id="@+id/email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:hint="@string/prompt_email_address"
-                    android:inputType="textEmailAddress"
-                    android:textColor="@color/colorBlack"
-                    android:textColorHint="@color/colorGreyText"
-                    android:textSize="16sp" />
-
-                <requestFocus />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="@string/password"
+                android:hint="@string/prompt_password_again"
+                android:imeActionLabel="@string/action_login"
+                android:imeOptions="actionGo"
+                android:inputType="textPassword"
+                android:maxLines="1"
                 android:textColor="@color/colorBlack"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textSize="14sp" />
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="@color/colorGreyText"
-                app:errorEnabled="false"
-                app:passwordToggleContentDescription="@string/prompt_password"
-                app:passwordToggleEnabled="true"
-                app:passwordToggleTint="@color/colorBlack">
+        </android.support.design.widget.TextInputLayout>
 
-                <EditText
-                    android:id="@+id/password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:hint="@string/prompt_password"
-                    android:imeActionLabel="@string/action_login"
-                    android:imeOptions="actionGo"
-                    android:inputType="textPassword"
-                    android:maxLines="1"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="14sp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="20dp">
 
-            </android.support.design.widget.TextInputLayout>
+            <Button
+                android:id="@+id/register"
+                android:layout_width="230dp"
+                android:layout_height="55dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/button_rounded_blue"
+                android:elevation="10dp"
+                android:text="@string/sign_up"
+                android:textColor="@color/colorWhite"
+                android:textSize="16sp" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/password_again"
-                android:textColor="@color/colorBlack"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:layout_below="@+id/login"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="80dp"
+                android:orientation="horizontal">
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="@color/colorGreyText"
-                app:errorEnabled="false"
-                app:passwordToggleContentDescription="@string/prompt_password"
-                app:passwordToggleEnabled="true"
-                app:passwordToggleTint="@color/colorBlack">
-
-                <EditText
-                    android:id="@+id/password_again"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:hint="@string/prompt_password_again"
-                    android:imeActionLabel="@string/action_login"
-                    android:imeOptions="actionGo"
-                    android:inputType="textPassword"
-                    android:maxLines="1"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="14sp" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="70dp">
-
-                <Button
-                    android:id="@+id/login"
-                    android:layout_width="230dp"
-                    android:layout_height="55dp"
-                    android:layout_centerHorizontal="true"
-                    android:background="@drawable/button_rounded_blue"
-                    android:elevation="10dp"
-                    android:onClick="Register"
-                    android:text="@string/sign_up"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="16sp" />
-
-                <LinearLayout
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/login"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
-                    android:orientation="horizontal">
+                    android:text="@string/dont_have_an_account"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/dont_have_an_account"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/signIn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/sign_in"
+                    android:textColor="@color/colorMainBlue"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="30dp"
-                        android:layout_marginLeft="5dp"
-                        android:onClick="SignIn"
-                        android:text="@string/sign_in"
-                        android:textColor="@color/colorMainBlue"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+            </LinearLayout>
 
-                </LinearLayout>
+        </RelativeLayout>
 
-            </RelativeLayout>
-
-        </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
 
 </RelativeLayout>
