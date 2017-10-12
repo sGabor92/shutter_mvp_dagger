@@ -43,7 +43,6 @@ public class LoginPresenter extends Presenter<LoginScreen> {
     }
 
     public boolean hasLogin(LoginScreen screen){
-        Log.i(TAG, "Calling hasLogin");
         String userName = PrefUtils.getFromPrefs(
                 context.getApplicationContext(),
                 PrefUtils.PREFS_LOGIN_USERNAME_KEY,
