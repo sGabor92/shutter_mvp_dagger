@@ -1,7 +1,6 @@
 package hu.webandmore.shutter_mvp.ui.login;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -13,19 +12,13 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import java.io.IOException;
-import java.net.UnknownHostException;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnEditorAction;
+import hu.webandmore.shutter_mvp.MainActivity;
 import hu.webandmore.shutter_mvp.R;
-import hu.webandmore.shutter_mvp.api.model.User;
 import hu.webandmore.shutter_mvp.utils.TokenStorage;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity implements LoginScreen {
 
@@ -54,9 +47,9 @@ public class LoginActivity extends AppCompatActivity implements LoginScreen {
         ButterKnife.bind(this);
 
         loginPresenter = new LoginPresenter(this);
+        mToken = new TokenStorage(this);
 
         checkLogin();
-
     }
 
     @Override
@@ -78,7 +71,6 @@ public class LoginActivity extends AppCompatActivity implements LoginScreen {
 
     @OnClick(R.id.login)
     public void login(View view) {
-        Log.i(TAG, "Click on login btn!");
         attemptLogin();
     }
 
@@ -98,8 +90,7 @@ public class LoginActivity extends AppCompatActivity implements LoginScreen {
 
     @Override
     public void checkLogin() {
-        if(loginPresenter.hasLogin(this)){
-            Log.i(TAG, "Has Login!");
+        if (loginPresenter.hasLogin(this)) {
             attemptLogin();
         } else {
             Log.i(TAG, "No Login");
@@ -157,10 +148,7 @@ public class LoginActivity extends AppCompatActivity implements LoginScreen {
         if (cancel) {
             focusView.requestFocus();
         } else {
-            Log.i(TAG, "Need to call Login task!");
-            /*Utils.showProgress(this, true, mMainView, mProgressView);
-            UserLoginTask task = new UserLoginTask(email, password);
-            task.execute();*/
+            loginPresenter.loginUser(email, password);
         }
     }
 
@@ -171,7 +159,14 @@ public class LoginActivity extends AppCompatActivity implements LoginScreen {
 
     @Override
     public void showError(String errorMsg) {
+        Toast.makeText(this, errorMsg, Toast.LENGTH_SHORT).show();
+    }
 
+    @Override
+    public void userLoggedIn(String token) {
+        loginPresenter.loginFinished(this, token, mToken);
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
 }

@@ -10,5 +10,6 @@ public interface LoginScreen {
     void attemptLogin();
     void switchToRegister();
     void showError(String errorMsg);
+    void userLoggedIn(String token);
 
 }
