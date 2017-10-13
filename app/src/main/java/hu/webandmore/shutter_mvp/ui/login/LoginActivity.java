@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
@@ -23,7 +22,7 @@ import hu.webandmore.shutter_mvp.utils.TokenStorage;
 
 public class LoginActivity extends AppCompatActivity implements LoginScreen {
 
-    private static String TAG = "LoginActivity";
+    //private static String TAG = "LoginActivity";
 
     @BindView(R.id.email)
     EditText mEmailView;
@@ -50,6 +49,7 @@ public class LoginActivity extends AppCompatActivity implements LoginScreen {
         loginPresenter = new LoginPresenter(this);
         mToken = new TokenStorage(this);
 
+        showProgressBar();
         checkLogin();
     }
 
@@ -77,9 +77,9 @@ public class LoginActivity extends AppCompatActivity implements LoginScreen {
 
     @OnClick(R.id.signUp)
     public void signUp(View view) {
-        Log.i(TAG, "Click on SignUp text!");
         Intent registerIntent = new Intent(this, RegisterActivity.class);
         startActivity(registerIntent);
+        finish();
     }
 
     @OnEditorAction(R.id.password)
@@ -96,8 +96,7 @@ public class LoginActivity extends AppCompatActivity implements LoginScreen {
         if (loginPresenter.hasLogin(this)) {
             attemptLogin();
         } else {
-            Log.i(TAG, "No Login");
-            //Utils.showProgress(this, false, mMainView, mProgressView);
+            hideProgressBar();
         }
     }
 
@@ -123,6 +122,8 @@ public class LoginActivity extends AppCompatActivity implements LoginScreen {
 
     @Override
     public void attemptLogin() {
+        showProgressBar();
+
         mPasswordView.setError(null);
         mEmailView.setError(null);
 
@@ -156,11 +157,6 @@ public class LoginActivity extends AppCompatActivity implements LoginScreen {
     }
 
     @Override
-    public void switchToRegister() {
-
-    }
-
-    @Override
     public void showError(String errorMsg) {
         Toast.makeText(this, errorMsg, Toast.LENGTH_SHORT).show();
     }
@@ -170,6 +166,18 @@ public class LoginActivity extends AppCompatActivity implements LoginScreen {
         loginPresenter.loginFinished(this, token, mToken);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void showProgressBar() {
+        mProgressView.setVisibility(View.VISIBLE);
+        mMainView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void hideProgressBar() {
+        mProgressView.setVisibility(View.GONE);
+        mMainView.setVisibility(View.VISIBLE);
     }
 
 }

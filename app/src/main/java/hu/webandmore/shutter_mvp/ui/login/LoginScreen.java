@@ -1,6 +1,6 @@
 package hu.webandmore.shutter_mvp.ui.login;
 
-public interface LoginScreen {
+interface LoginScreen {
 
     void checkLogin();
     void setEmail(String email);
@@ -8,8 +8,9 @@ public interface LoginScreen {
     String getPassword();
     void setPassword(String password);
     void attemptLogin();
-    void switchToRegister();
     void showError(String errorMsg);
     void userLoggedIn(String token);
+    void showProgressBar();
+    void hideProgressBar();
 
 }

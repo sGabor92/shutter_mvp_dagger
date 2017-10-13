@@ -68,7 +68,6 @@ public class LoginInteractor {
                 loginEvent.setThrowable(t);
                 EventBus.getDefault().post(loginEvent);
             }
-
         });
     }
 

@@ -19,7 +19,7 @@ public class TokenStorage {
     }
 
     public boolean hasToken(Context ctx) {
-        boolean hasit = token != "";
+        boolean hasit = !token.equals("");
         if (hasit) {
             ServiceGenerator.setApiKey(ctx, token);
         }
