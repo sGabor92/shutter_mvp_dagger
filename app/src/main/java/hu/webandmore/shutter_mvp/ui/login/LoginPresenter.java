@@ -65,7 +65,7 @@ public class LoginPresenter extends Presenter<LoginScreen> {
     }
 
     public boolean isPasswordValid(String password){
-        return password.length() > 4;
+        return password.length() > 5;
     }
 
     public void loginUser(final String email, final String password){

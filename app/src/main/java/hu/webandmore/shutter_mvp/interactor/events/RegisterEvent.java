@@ -1,21 +1,18 @@
 package hu.webandmore.shutter_mvp.interactor.events;
 
-import hu.webandmore.shutter_mvp.api.model.User;
-
-public class LoginEvent {
+public class RegisterEvent {
 
     private int code;
-    private User user;
     private Throwable throwable;
     private String errorMessage;
 
-    public LoginEvent() {
+    public RegisterEvent(){
+
     }
 
-    public LoginEvent(int code, User user, Throwable throwable) {
+    public RegisterEvent(int code, Throwable t){
         this.code = code;
-        this.user = user;
-        this.throwable = throwable;
+        this.throwable = t;
     }
 
     public int getCode() {
@@ -24,14 +21,6 @@ public class LoginEvent {
 
     public void setCode(int code) {
         this.code = code;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public Throwable getThrowable() {
@@ -49,4 +38,5 @@ public class LoginEvent {
     public void setErrorMessage(String errorMessage){
         this.errorMessage = errorMessage;
     }
+
 }

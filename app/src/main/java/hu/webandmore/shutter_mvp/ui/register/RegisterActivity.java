@@ -93,17 +93,17 @@ public class RegisterActivity extends AppCompatActivity implements RegisterScree
 
     @Override
     public String getEmail() {
-        return null;
+        return mEmailView.getText().toString();
     }
 
     @Override
     public String getPassword() {
-        return null;
+        return mPasswordView.getText().toString();
     }
 
     @Override
     public String getPasswordAgain() {
-        return null;
+        return mPasswordAgainView.getText().toString();
     }
 
     @Override
