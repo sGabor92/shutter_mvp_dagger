@@ -14,7 +14,7 @@ import hu.webandmore.shutter_mvp.interactor.events.RegisterEvent;
 import hu.webandmore.shutter_mvp.ui.Presenter;
 import hu.webandmore.shutter_mvp.utils.PrefUtils;
 
-class RegisterPresenter extends Presenter<RegisterScreen>{
+public class RegisterPresenter extends Presenter<RegisterScreen>{
 
     //private static String TAG = "RegisterPresenter";
 
@@ -22,7 +22,7 @@ class RegisterPresenter extends Presenter<RegisterScreen>{
     private RegisterInteractor registerInteractor;
     private Context context;
 
-    RegisterPresenter(Context context) {
+    public RegisterPresenter(Context context) {
         this.context = context;
         networkExecutor = Executors.newFixedThreadPool(1);
         registerInteractor = new RegisterInteractor(context);

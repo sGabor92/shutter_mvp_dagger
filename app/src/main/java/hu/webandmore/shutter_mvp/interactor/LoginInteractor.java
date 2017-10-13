@@ -11,6 +11,7 @@ import hu.webandmore.shutter_mvp.R;
 import hu.webandmore.shutter_mvp.api.ServiceGenerator;
 import hu.webandmore.shutter_mvp.api.model.User;
 import hu.webandmore.shutter_mvp.api.services.AuthService;
+import hu.webandmore.shutter_mvp.app.ShutterApplication;
 import hu.webandmore.shutter_mvp.interactor.events.LoginEvent;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,6 +23,7 @@ public class LoginInteractor {
     private Context context;
 
     public LoginInteractor(Context context) {
+        ShutterApplication.injector.inject(this);
         this.context = context;
         this.loginService = ServiceGenerator.createService(ServiceGenerator.ApiType.GLOBAl,
                 context, AuthService.class);

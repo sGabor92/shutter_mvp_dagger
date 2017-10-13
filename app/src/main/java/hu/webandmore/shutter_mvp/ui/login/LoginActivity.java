@@ -11,12 +11,15 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnEditorAction;
 import hu.webandmore.shutter_mvp.MainActivity;
 import hu.webandmore.shutter_mvp.R;
+import hu.webandmore.shutter_mvp.app.ShutterApplication;
 import hu.webandmore.shutter_mvp.ui.register.RegisterActivity;
 import hu.webandmore.shutter_mvp.utils.TokenStorage;
 
@@ -37,12 +40,18 @@ public class LoginActivity extends AppCompatActivity implements LoginScreen {
     LinearLayout mMainView;
 
     private TokenStorage mToken = null;
-    private LoginPresenter loginPresenter;
+
+    @Inject
+    LoginPresenter loginPresenter;
+
+    //private LoginPresenter loginPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        ShutterApplication.injector.inject(this);
 
         ButterKnife.bind(this);
 

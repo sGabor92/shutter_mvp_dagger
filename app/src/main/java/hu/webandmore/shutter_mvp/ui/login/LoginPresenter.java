@@ -15,7 +15,7 @@ import hu.webandmore.shutter_mvp.ui.Presenter;
 import hu.webandmore.shutter_mvp.utils.PrefUtils;
 import hu.webandmore.shutter_mvp.utils.TokenStorage;
 
-class LoginPresenter extends Presenter<LoginScreen> {
+public class LoginPresenter extends Presenter<LoginScreen> {
 
     //private static String TAG = "LoginPresenter";
 
@@ -23,7 +23,7 @@ class LoginPresenter extends Presenter<LoginScreen> {
     private LoginInteractor loginInteractor;
     private Context context;
 
-    LoginPresenter(Context context) {
+    public LoginPresenter(Context context) {
         this.context = context;
         networkExecutor = Executors.newFixedThreadPool(1);
         loginInteractor = new LoginInteractor(context);
