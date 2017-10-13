@@ -82,6 +82,7 @@ class LoginPresenter extends Presenter<LoginScreen> {
             event.getThrowable().printStackTrace();
             if (screen != null) {
                 screen.showError(event.getThrowable().getMessage());
+                screen.hideProgressBar();
             }
         } else {
             if (screen != null) {
@@ -89,6 +90,7 @@ class LoginPresenter extends Presenter<LoginScreen> {
                     screen.userLoggedIn(event.getUser().getApi_token());
                 } else {
                     screen.showError(event.getErrorMessage());
+                    screen.hideProgressBar();
                 }
             }
         }

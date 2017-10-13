@@ -49,6 +49,7 @@ public class LoginActivity extends AppCompatActivity implements LoginScreen {
         loginPresenter = new LoginPresenter(this);
         mToken = new TokenStorage(this);
 
+        showProgressBar();
         checkLogin();
     }
 
@@ -94,6 +95,7 @@ public class LoginActivity extends AppCompatActivity implements LoginScreen {
         if (loginPresenter.hasLogin(this)) {
             attemptLogin();
         }
+        hideProgressBar();
     }
 
     @Override
@@ -118,6 +120,8 @@ public class LoginActivity extends AppCompatActivity implements LoginScreen {
 
     @Override
     public void attemptLogin() {
+        showProgressBar();
+
         mPasswordView.setError(null);
         mEmailView.setError(null);
 
@@ -158,8 +162,21 @@ public class LoginActivity extends AppCompatActivity implements LoginScreen {
     @Override
     public void userLoggedIn(String token) {
         loginPresenter.loginFinished(this, token, mToken);
+        hideProgressBar();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void showProgressBar() {
+        mProgressView.setVisibility(View.VISIBLE);
+        mMainView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void hideProgressBar() {
+        mProgressView.setVisibility(View.GONE);
+        mMainView.setVisibility(View.VISIBLE);
     }
 
 }

@@ -67,6 +67,7 @@ class RegisterPresenter extends Presenter<RegisterScreen>{
             event.getThrowable().printStackTrace();
             if (screen != null) {
                 screen.showError(event.getThrowable().getMessage());
+                screen.hideProgressBar();
             }
         } else {
             if (screen != null) {
@@ -74,6 +75,7 @@ class RegisterPresenter extends Presenter<RegisterScreen>{
                     screen.userRegistered();
                 } else {
                     screen.showError(event.getErrorMessage());
+                    screen.hideProgressBar();
                 }
             }
         }

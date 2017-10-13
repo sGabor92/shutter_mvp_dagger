@@ -8,4 +8,6 @@ interface RegisterScreen {
     void attemptRegister();
     void showError(String errorMsg);
     void userRegistered();
+    void showProgressBar();
+    void hideProgressBar();
 }

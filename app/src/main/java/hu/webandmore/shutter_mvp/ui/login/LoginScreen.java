@@ -10,5 +10,7 @@ interface LoginScreen {
     void attemptLogin();
     void showError(String errorMsg);
     void userLoggedIn(String token);
+    void showProgressBar();
+    void hideProgressBar();
 
 }

@@ -36,7 +36,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterScree
     ProgressBar mProgressView;
 
     @BindView(R.id.registerLayout)
-    LinearLayout mMainView;
+    LinearLayout mRegisterView;
 
     private RegisterPresenter registerPresenter;
 
@@ -105,6 +105,8 @@ public class RegisterActivity extends AppCompatActivity implements RegisterScree
 
     @Override
     public void attemptRegister() {
+        showProgressBar();
+
         mPasswordView.setError(null);
         mEmailView.setError(null);
         mPasswordAgainView.setError(null);
@@ -155,5 +157,17 @@ public class RegisterActivity extends AppCompatActivity implements RegisterScree
         Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void showProgressBar() {
+        mProgressView.setVisibility(View.VISIBLE);
+        mRegisterView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void hideProgressBar() {
+        mProgressView.setVisibility(View.GONE);
+        mRegisterView.setVisibility(View.VISIBLE);
     }
 }
