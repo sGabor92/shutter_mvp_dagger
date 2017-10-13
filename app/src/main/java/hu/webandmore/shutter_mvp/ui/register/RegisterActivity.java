@@ -77,6 +77,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterScree
     public void signIn() {
         Intent loginIntent = new Intent(this, LoginActivity.class);
         startActivity(loginIntent);
+        finish();
     }
 
     @OnEditorAction(R.id.password_again)

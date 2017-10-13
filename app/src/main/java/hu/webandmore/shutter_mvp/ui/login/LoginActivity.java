@@ -79,6 +79,7 @@ public class LoginActivity extends AppCompatActivity implements LoginScreen {
     public void signUp(View view) {
         Intent registerIntent = new Intent(this, RegisterActivity.class);
         startActivity(registerIntent);
+        finish();
     }
 
     @OnEditorAction(R.id.password)
@@ -94,8 +95,9 @@ public class LoginActivity extends AppCompatActivity implements LoginScreen {
     public void checkLogin() {
         if (loginPresenter.hasLogin(this)) {
             attemptLogin();
+        } else {
+            hideProgressBar();
         }
-        hideProgressBar();
     }
 
     @Override
@@ -162,7 +164,6 @@ public class LoginActivity extends AppCompatActivity implements LoginScreen {
     @Override
     public void userLoggedIn(String token) {
         loginPresenter.loginFinished(this, token, mToken);
-        hideProgressBar();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
