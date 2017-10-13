@@ -159,6 +159,7 @@ public class LoginActivity extends AppCompatActivity implements LoginScreen {
         }
 
         if (cancel) {
+            hideProgressBar();
             focusView.requestFocus();
         } else {
             loginPresenter.loginUser(email, password);

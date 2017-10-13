@@ -9,6 +9,9 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+import javax.inject.Inject;
+
+import hu.webandmore.shutter_mvp.app.ShutterApplication;
 import hu.webandmore.shutter_mvp.interactor.LoginInteractor;
 import hu.webandmore.shutter_mvp.interactor.events.LoginEvent;
 import hu.webandmore.shutter_mvp.ui.Presenter;
@@ -20,13 +23,15 @@ public class LoginPresenter extends Presenter<LoginScreen> {
     //private static String TAG = "LoginPresenter";
 
     private Executor networkExecutor;
-    private LoginInteractor loginInteractor;
     private Context context;
+
+    @Inject
+    LoginInteractor loginInteractor;
 
     public LoginPresenter(Context context) {
         this.context = context;
         networkExecutor = Executors.newFixedThreadPool(1);
-        loginInteractor = new LoginInteractor(context);
+        ShutterApplication.injector.inject(this);
     }
 
     @Override

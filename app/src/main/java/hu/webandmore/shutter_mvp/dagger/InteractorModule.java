@@ -12,7 +12,7 @@ public class InteractorModule {
 
     private Context context;
 
-    InteractorModule(Context context){
+    public InteractorModule(Context context){
         this.context = context;
     }
 

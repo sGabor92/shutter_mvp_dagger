@@ -140,6 +140,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterScree
         }
 
         if (cancel) {
+            hideProgressBar();
             focusView.requestFocus();
         } else {
             registerPresenter.registerUser(email, password, passwordAgain);
