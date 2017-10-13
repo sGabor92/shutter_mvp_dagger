@@ -8,7 +8,6 @@ public interface LoginScreen {
     String getPassword();
     void setPassword(String password);
     void attemptLogin();
-    void switchToRegister();
     void showError(String errorMsg);
     void userLoggedIn(String token);
 
