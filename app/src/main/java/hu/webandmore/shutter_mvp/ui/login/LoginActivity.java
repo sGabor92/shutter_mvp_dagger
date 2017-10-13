@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
@@ -23,7 +22,7 @@ import hu.webandmore.shutter_mvp.utils.TokenStorage;
 
 public class LoginActivity extends AppCompatActivity implements LoginScreen {
 
-    private static String TAG = "LoginActivity";
+    //private static String TAG = "LoginActivity";
 
     @BindView(R.id.email)
     EditText mEmailView;
@@ -77,7 +76,6 @@ public class LoginActivity extends AppCompatActivity implements LoginScreen {
 
     @OnClick(R.id.signUp)
     public void signUp(View view) {
-        Log.i(TAG, "Click on SignUp text!");
         Intent registerIntent = new Intent(this, RegisterActivity.class);
         startActivity(registerIntent);
     }
@@ -95,9 +93,6 @@ public class LoginActivity extends AppCompatActivity implements LoginScreen {
     public void checkLogin() {
         if (loginPresenter.hasLogin(this)) {
             attemptLogin();
-        } else {
-            Log.i(TAG, "No Login");
-            //Utils.showProgress(this, false, mMainView, mProgressView);
         }
     }
 

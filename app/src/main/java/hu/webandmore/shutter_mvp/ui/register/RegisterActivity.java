@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
@@ -22,7 +21,7 @@ import hu.webandmore.shutter_mvp.ui.login.LoginActivity;
 
 public class RegisterActivity extends AppCompatActivity implements RegisterScreen {
 
-    private static String TAG = "RegisterActivity";
+    //private static String TAG = "RegisterActivity";
 
     @BindView(R.id.email)
     EditText mEmailView;
@@ -71,13 +70,11 @@ public class RegisterActivity extends AppCompatActivity implements RegisterScree
 
     @OnClick(R.id.register)
     public void register() {
-        Log.i(TAG, "Click on register button");
         attemptRegister();
     }
 
     @OnClick(R.id.signIn)
     public void signIn() {
-        Log.i(TAG, "Click on SignUp text!");
         Intent loginIntent = new Intent(this, LoginActivity.class);
         startActivity(loginIntent);
     }

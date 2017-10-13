@@ -1,7 +1,6 @@
 package hu.webandmore.shutter_mvp.ui.login;
 
 import android.content.Context;
-import android.util.Log;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -16,15 +15,15 @@ import hu.webandmore.shutter_mvp.ui.Presenter;
 import hu.webandmore.shutter_mvp.utils.PrefUtils;
 import hu.webandmore.shutter_mvp.utils.TokenStorage;
 
-public class LoginPresenter extends Presenter<LoginScreen> {
+class LoginPresenter extends Presenter<LoginScreen> {
 
-    private static String TAG = "LoginPresenter";
+    //private static String TAG = "LoginPresenter";
 
     private Executor networkExecutor;
     private LoginInteractor loginInteractor;
     private Context context;
 
-    public LoginPresenter(Context context) {
+    LoginPresenter(Context context) {
         this.context = context;
         networkExecutor = Executors.newFixedThreadPool(1);
         loginInteractor = new LoginInteractor(context);
@@ -42,7 +41,7 @@ public class LoginPresenter extends Presenter<LoginScreen> {
         super.detachScreen();
     }
 
-    public boolean hasLogin(LoginScreen screen){
+    boolean hasLogin(LoginScreen screen){
         String userName = PrefUtils.getFromPrefs(
                 context.getApplicationContext(),
                 PrefUtils.PREFS_LOGIN_USERNAME_KEY,
@@ -60,15 +59,15 @@ public class LoginPresenter extends Presenter<LoginScreen> {
         }
     }
 
-    public boolean isEmailValid(String email){
+    boolean isEmailValid(String email){
         return email.contains("@");
     }
 
-    public boolean isPasswordValid(String password){
+    boolean isPasswordValid(String password){
         return password.length() > 5;
     }
 
-    public void loginUser(final String email, final String password){
+    void loginUser(final String email, final String password){
         networkExecutor.execute(new Runnable() {
             @Override
             public void run() {
@@ -95,7 +94,7 @@ public class LoginPresenter extends Presenter<LoginScreen> {
         }
     }
 
-    public void loginFinished(LoginScreen screen, final String token, TokenStorage mToken) {
+    void loginFinished(LoginScreen screen, final String token, TokenStorage mToken) {
         PrefUtils.saveToPrefs(
                 context.getApplicationContext(),
                 PrefUtils.PREFS_LOGIN_USERNAME_KEY,

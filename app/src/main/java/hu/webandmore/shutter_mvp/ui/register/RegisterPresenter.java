@@ -16,7 +16,7 @@ import hu.webandmore.shutter_mvp.utils.PrefUtils;
 
 class RegisterPresenter extends Presenter<RegisterScreen>{
 
-    private static String TAG = "RegisterPresenter";
+    //private static String TAG = "RegisterPresenter";
 
     private Executor networkExecutor;
     private RegisterInteractor registerInteractor;
