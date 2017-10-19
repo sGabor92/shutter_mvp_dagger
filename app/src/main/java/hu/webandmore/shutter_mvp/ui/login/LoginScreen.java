@@ -9,7 +9,7 @@ interface LoginScreen {
     void setPassword(String password);
     void attemptLogin();
     void showError(String errorMsg);
-    void userLoggedIn(String token);
+    void userLoggedIn(String token, boolean userHasDevice);
     void showProgressBar();
     void hideProgressBar();
 

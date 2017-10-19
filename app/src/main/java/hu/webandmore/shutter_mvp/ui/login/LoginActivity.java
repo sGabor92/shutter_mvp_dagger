@@ -173,9 +173,14 @@ public class LoginActivity extends AppCompatActivity implements LoginScreen {
     }
 
     @Override
-    public void userLoggedIn(String token) {
+    public void userLoggedIn(String token, boolean userHasDevice) {
         loginPresenter.loginFinished(this, token, mToken);
-        Intent intent = new Intent(this, SearchingDeviceActivity.class);
+        Intent intent;
+        if (userHasDevice) {
+            intent = new Intent(this, MainActivity.class);
+        } else {
+            intent = new Intent(this, SearchingDeviceActivity.class);
+        }
         startActivity(intent);
         finish();
     }
