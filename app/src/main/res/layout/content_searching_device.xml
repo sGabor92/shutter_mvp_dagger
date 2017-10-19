@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="40dp"
+    android:layout_marginRight="40dp"
+    tools:context="hu.webandmore.shutter_mvp.ui.nsd.SearchingDeviceActivity">
+
+    <ProgressBar
+        android:id="@+id/searching_progress"
+        style="?android:attr/progressBarStyleLargeInverse"
+        android:indeterminateDrawable="@drawable/custom_progress_bar"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="140dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="8dp"
+        android:indeterminate="true"
+        />
+
+    <RelativeLayout
+        android:id="@+id/deviceNotFoundLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/device_not_found"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/colorBlack"
+            android:textStyle="bold"
+            android:textSize="32sp"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/retrySearchingBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/retry"
+            android:textColor="@color/colorWhite"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/button_rounded_blue" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="70dp"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:id="@+id/searchingText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/searching_for_devices"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/colorBlack"
+            android:textStyle="bold"
+            android:textSize="32sp"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:lineSpacingExtra="5sp"
+            android:text="@string/searching_devices_text"
+            android:textAlignment="center"
+            android:layout_below="@+id/searchingText"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

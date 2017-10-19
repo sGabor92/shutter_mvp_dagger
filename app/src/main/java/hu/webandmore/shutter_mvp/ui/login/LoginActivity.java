@@ -20,6 +20,7 @@ import butterknife.OnEditorAction;
 import hu.webandmore.shutter_mvp.MainActivity;
 import hu.webandmore.shutter_mvp.R;
 import hu.webandmore.shutter_mvp.app.ShutterApplication;
+import hu.webandmore.shutter_mvp.ui.nsd.SearchingDeviceActivity;
 import hu.webandmore.shutter_mvp.ui.register.RegisterActivity;
 import hu.webandmore.shutter_mvp.utils.TokenStorage;
 
@@ -174,8 +175,9 @@ public class LoginActivity extends AppCompatActivity implements LoginScreen {
     @Override
     public void userLoggedIn(String token) {
         loginPresenter.loginFinished(this, token, mToken);
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, SearchingDeviceActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override

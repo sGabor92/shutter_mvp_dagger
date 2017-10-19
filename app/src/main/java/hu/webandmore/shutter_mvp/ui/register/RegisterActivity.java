@@ -21,6 +21,7 @@ import hu.webandmore.shutter_mvp.MainActivity;
 import hu.webandmore.shutter_mvp.R;
 import hu.webandmore.shutter_mvp.app.ShutterApplication;
 import hu.webandmore.shutter_mvp.ui.login.LoginActivity;
+import hu.webandmore.shutter_mvp.ui.nsd.SearchingDeviceActivity;
 
 public class RegisterActivity extends AppCompatActivity implements RegisterScreen {
 
@@ -160,7 +161,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterScree
     @Override
     public void userRegistered() {
         registerPresenter.registerFinished(this);
-        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+        Intent intent = new Intent(RegisterActivity.this, SearchingDeviceActivity.class);
         startActivity(intent);
         finish();
     }
