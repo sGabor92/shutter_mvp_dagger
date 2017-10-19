@@ -42,4 +42,9 @@ dependencies {
     //Butterknife
     compile 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+    //Dependency Injection - Dagger 2
+    compile "com.google.dagger:dagger:2.2"
+    provided 'javax.annotation:jsr250-api:1.0'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.2'
 }

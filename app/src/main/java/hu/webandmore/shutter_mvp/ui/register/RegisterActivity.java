@@ -11,13 +11,17 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnEditorAction;
 import hu.webandmore.shutter_mvp.MainActivity;
 import hu.webandmore.shutter_mvp.R;
+import hu.webandmore.shutter_mvp.app.ShutterApplication;
 import hu.webandmore.shutter_mvp.ui.login.LoginActivity;
+import hu.webandmore.shutter_mvp.ui.nsd.SearchingDeviceActivity;
 
 public class RegisterActivity extends AppCompatActivity implements RegisterScreen {
 
@@ -38,16 +42,17 @@ public class RegisterActivity extends AppCompatActivity implements RegisterScree
     @BindView(R.id.registerLayout)
     LinearLayout mRegisterView;
 
-    private RegisterPresenter registerPresenter;
+    @Inject
+    RegisterPresenter registerPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        ButterKnife.bind(this);
+        ShutterApplication.injector.inject(this);
 
-        registerPresenter = new RegisterPresenter(this);
+        ButterKnife.bind(this);
 
     }
 
@@ -140,6 +145,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterScree
         }
 
         if (cancel) {
+            hideProgressBar();
             focusView.requestFocus();
         } else {
             registerPresenter.registerUser(email, password, passwordAgain);
@@ -155,7 +161,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterScree
     @Override
     public void userRegistered() {
         registerPresenter.registerFinished(this);
-        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+        Intent intent = new Intent(RegisterActivity.this, SearchingDeviceActivity.class);
         startActivity(intent);
         finish();
     }

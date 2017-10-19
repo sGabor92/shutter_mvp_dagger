@@ -27,4 +27,10 @@
     <string name="password_again">Password again</string>
     <string name="prompt_password_again">Enter the same password again</string>
 
+    <string name="device_not_found">Device not found...</string>
+    <string name="retry">Retry</string>
+    <string name="searching_for_devices">Searching for devices…</string>
+    <string name="searching_devices_text">Please make sure that both this device and the controller hub are on the same\n Wi-Fi network.</string>
+
+
 </resources>

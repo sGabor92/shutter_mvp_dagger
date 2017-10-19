@@ -9,23 +9,28 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+import javax.inject.Inject;
+
+import hu.webandmore.shutter_mvp.app.ShutterApplication;
 import hu.webandmore.shutter_mvp.interactor.RegisterInteractor;
 import hu.webandmore.shutter_mvp.interactor.events.RegisterEvent;
 import hu.webandmore.shutter_mvp.ui.Presenter;
 import hu.webandmore.shutter_mvp.utils.PrefUtils;
 
-class RegisterPresenter extends Presenter<RegisterScreen>{
+public class RegisterPresenter extends Presenter<RegisterScreen>{
 
     //private static String TAG = "RegisterPresenter";
 
     private Executor networkExecutor;
-    private RegisterInteractor registerInteractor;
     private Context context;
 
-    RegisterPresenter(Context context) {
+    @Inject
+    RegisterInteractor registerInteractor;
+
+    public RegisterPresenter(Context context) {
         this.context = context;
         networkExecutor = Executors.newFixedThreadPool(1);
-        registerInteractor = new RegisterInteractor(context);
+        ShutterApplication.injector.inject(this);
     }
 
     @Override
