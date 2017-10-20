@@ -13,7 +13,6 @@ public class ProgramShutterActivity extends AppCompatActivity implements Program
 
     private static String TAG = "ProgramShutter";
 
-
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
     @BindView(R.id.container)
