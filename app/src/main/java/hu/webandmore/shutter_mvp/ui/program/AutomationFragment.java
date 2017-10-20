@@ -8,12 +8,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import hu.webandmore.shutter_mvp.R;
 
 public class AutomationFragment extends Fragment {
 
     private static String TAG = "AutomationFragment";
-    Button addNewAutomation;
+
+    @BindView(R.id.addNewAutomation)
+    Button addNewAutomationBtn;
 
     public AutomationFragment() {
 
@@ -23,13 +28,9 @@ public class AutomationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_shutter_automation, container, false);
-        addNewAutomation = (Button) view.findViewById(R.id.addNewAutomation);
-        addNewAutomation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i(TAG, "Clicked on add new!");
-            }
-        });
+
+        ButterKnife.bind(this, view);
+
         return view;
     }
 
@@ -37,6 +38,11 @@ public class AutomationFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
+    }
+
+    @OnClick(R.id.addNewAutomation)
+    public void addNewAutomation() {
+        Log.i(TAG, "Clicked on add new automation!");
     }
 
 }

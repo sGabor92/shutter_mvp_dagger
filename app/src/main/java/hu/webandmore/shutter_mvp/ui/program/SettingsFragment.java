@@ -1,6 +1,5 @@
 package hu.webandmore.shutter_mvp.ui.program;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
