@@ -32,5 +32,16 @@
     <string name="searching_for_devices">Searching for devices…</string>
     <string name="searching_devices_text">Please make sure that both this device and the controller hub are on the same\n Wi-Fi network.</string>
 
+    <string name="automation">Automation</string>
+    <string name="add_new">Add new</string>
+
+    <string name="ready_to_use">Ready to use</string>
+    <string name="shutter_center">Shutter center</string>
+    <string name="ungroupped">Ungroupped</string>
+    <string name="edit_rooms">Edit Rooms</string>
+
+    <string name="settings">Settings</string>
+    <string name="logout">Logout</string>
+    <string name="manage_channels">Manage channels</string>
 
 </resources>

@@ -21,6 +21,7 @@ import hu.webandmore.shutter_mvp.MainActivity;
 import hu.webandmore.shutter_mvp.R;
 import hu.webandmore.shutter_mvp.app.ShutterApplication;
 import hu.webandmore.shutter_mvp.ui.nsd.SearchingDeviceActivity;
+import hu.webandmore.shutter_mvp.ui.program.ProgramShutterActivity;
 import hu.webandmore.shutter_mvp.ui.register.RegisterActivity;
 import hu.webandmore.shutter_mvp.utils.TokenStorage;
 
@@ -179,7 +180,8 @@ public class LoginActivity extends AppCompatActivity implements LoginScreen {
         if (userHasDevice) {
             intent = new Intent(this, MainActivity.class);
         } else {
-            intent = new Intent(this, SearchingDeviceActivity.class);
+            //intent = new Intent(this, SearchingDeviceActivity.class);
+            intent = new Intent(this, ProgramShutterActivity.class);
         }
         startActivity(intent);
         finish();
