@@ -13,6 +13,7 @@ public class GetShuttersEvent {
     private String errorMessage;
 
     public GetShuttersEvent() {
+        this.shutters = new ArrayList<>();
     }
 
     public GetShuttersEvent(int code, ArrayList<Channel> shutters, Throwable t) {

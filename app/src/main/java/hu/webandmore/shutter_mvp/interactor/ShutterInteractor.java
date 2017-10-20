@@ -22,7 +22,7 @@ public class ShutterInteractor {
     private ShutterService shutterService;
     private Context context;
 
-    ShutterInteractor(Context context) {
+    public ShutterInteractor(Context context) {
         this.context = context;
         this.shutterService = ServiceGenerator.createService(ServiceGenerator.ApiType.LOCAL,
                 context, ShutterService.class);
