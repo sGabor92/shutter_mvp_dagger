@@ -22,6 +22,9 @@ public class SettingsFragment extends Fragment {
     @BindView(R.id.logoutUser)
     Button logoutBtn;
 
+    @BindView(R.id.addNewChannel)
+    Button addNewChannelBtn;
+
     public SettingsFragment() {
 
     }
@@ -46,6 +49,11 @@ public class SettingsFragment extends Fragment {
     public void logoutUser() {
         Log.i(TAG, "Logout user");
         Utils.userLogout(getContext());
+    }
+
+    @OnClick(R.id.addNewChannel)
+    public void addNewChannel() {
+        Log.i(TAG, "Clicked on add new channel!");
     }
 
 }
