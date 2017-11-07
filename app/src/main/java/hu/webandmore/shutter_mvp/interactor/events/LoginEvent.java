@@ -9,14 +9,7 @@ public class LoginEvent {
     private Throwable throwable;
     private String errorMessage;
 
-    public LoginEvent() {
-    }
-
-    public LoginEvent(int code, User user, Throwable throwable) {
-        this.code = code;
-        this.user = user;
-        this.throwable = throwable;
-    }
+    public LoginEvent() {}
 
     public int getCode() {
         return code;

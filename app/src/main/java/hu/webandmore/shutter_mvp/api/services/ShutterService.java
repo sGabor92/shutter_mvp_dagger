@@ -1,7 +1,6 @@
 package hu.webandmore.shutter_mvp.api.services;
 
 import hu.webandmore.shutter_mvp.api.model.Channel;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -42,6 +41,6 @@ public interface ShutterService {
     Call<Void> copyDown(@Query("channel") int channel);
 
     @DELETE("channel/{id}")
-    Call<ResponseBody> deleteChannel(@Path("id") int bookId);
+    Call<Void> deleteChannel(@Path("id") int channelId);
 
 }

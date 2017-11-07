@@ -80,7 +80,7 @@ public class ManageChannelsActivity extends AppCompatActivity implements ManageC
     }
 
     @OnClick(R.id.copy_channel)
-    public void login(View view) {
+    public void createNewChannel(View view) {
         Log.i(TAG, "Clicked on add new channel!");
     }
 
@@ -115,13 +115,12 @@ public class ManageChannelsActivity extends AppCompatActivity implements ManageC
     @Override
     public void removeShutter(int position) {
         Log.i(TAG, "Delete shutter: " + position);
-        /*DeleteChannelTask deleteChannelTask = new DeleteChannelTask(channelAdapter.getCurrentId(position));
-                            deleteChannelTask.execute();
-                            channelAdapter.removeItem(position);*/
+        shutterAdapter.removeItem(position);
     }
 
     @Override
     public void restoreShutter(int position) {
+        Log.i(TAG, "Restore shutter: " + position);
         Channel removedChannel = shutterAdapter.getItem(position);
         shutterAdapter.removeItem(position);
         shutterAdapter.restoreItem(position, removedChannel);
@@ -133,6 +132,11 @@ public class ManageChannelsActivity extends AppCompatActivity implements ManageC
             return savedShutters;
         }
         return null;
+    }
+
+    @Override
+    public int getSelectedShutterId(int position) {
+        return shutterAdapter.getCurrentId(position);
     }
 
 }

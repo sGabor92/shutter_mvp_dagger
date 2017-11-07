@@ -16,12 +16,6 @@ public class GetShuttersEvent {
         this.shutters = new ArrayList<>();
     }
 
-    public GetShuttersEvent(int code, ArrayList<Channel> shutters, Throwable t) {
-        this.code = code;
-        this.shutters = shutters;
-        this.throwable = t;
-    }
-
     public int getCode() {
         return code;
     }

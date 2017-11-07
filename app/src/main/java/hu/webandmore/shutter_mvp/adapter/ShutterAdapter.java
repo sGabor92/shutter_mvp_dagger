@@ -118,10 +118,6 @@ public class ShutterAdapter extends RecyclerView.Adapter<ShutterAdapter.ViewHold
         return channels.get(position).getId();
     }
 
-    public void update() {
-        notifyDataSetChanged();
-    }
-
     private void disableChannels() {
         for (Channel channel : channels) {
             channel.setActive(false);

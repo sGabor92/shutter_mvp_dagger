@@ -6,14 +6,7 @@ public class ShutterMovementEvent {
     private Throwable throwable;
     private String errorMessage;
 
-    public ShutterMovementEvent() {
-
-    }
-
-    public ShutterMovementEvent(int code, Throwable t) {
-        this.code = code;
-        this.throwable = t;
-    }
+    public ShutterMovementEvent() {}
 
     public int getCode() {
         return code;

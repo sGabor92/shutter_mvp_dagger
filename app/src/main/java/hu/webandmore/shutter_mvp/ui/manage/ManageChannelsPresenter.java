@@ -22,6 +22,7 @@ import java.util.concurrent.Executors;
 
 import hu.webandmore.shutter_mvp.R;
 import hu.webandmore.shutter_mvp.interactor.ShutterInteractor;
+import hu.webandmore.shutter_mvp.interactor.events.DeleteShutterEvent;
 import hu.webandmore.shutter_mvp.interactor.events.GetShuttersEvent;
 import hu.webandmore.shutter_mvp.interactor.events.ShutterMovementEvent;
 import hu.webandmore.shutter_mvp.ui.Presenter;
@@ -36,7 +37,7 @@ class ManageChannelsPresenter extends Presenter<ManageChannelsScreen> {
 
     private ShutterInteractor shutterInteractor;
 
-    public ManageChannelsPresenter(Context context) {
+    ManageChannelsPresenter(Context context) {
         this.context = context;
         networkExecutor = Executors.newFixedThreadPool(1);
         shutterInteractor = new ShutterInteractor(context);
@@ -59,6 +60,16 @@ class ManageChannelsPresenter extends Presenter<ManageChannelsScreen> {
             @Override
             public void run() {
                 shutterInteractor.getShutters();
+            }
+        });
+    }
+
+    private void deleteShutter(final int itemPosition) {
+        networkExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                int shutterId = screen.getSelectedShutterId(itemPosition);
+                shutterInteractor.deleteShutter(shutterId, itemPosition);
             }
         });
     }
@@ -101,6 +112,23 @@ class ManageChannelsPresenter extends Presenter<ManageChannelsScreen> {
         }
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventMainThread(final DeleteShutterEvent event) {
+        if (event.getThrowable() != null) {
+            event.getThrowable().printStackTrace();
+            if (screen != null) {
+                screen.showError(event.getThrowable().getMessage());
+            }
+        } else {
+            if (screen != null) {
+                if (event.getCode() != 200) {
+                    screen.showError(event.getErrorMessage());
+                    screen.removeShutter(event.getItemPosition());
+                }
+            }
+        }
+    }
+
     void initSwipe() {
         ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
 
@@ -118,7 +146,7 @@ class ManageChannelsPresenter extends Presenter<ManageChannelsScreen> {
                     alert.setTitle(R.string.delete_channel_title);
                     alert.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
-                            screen.removeShutter(position);
+                            deleteShutter(position);
                         }
                     });
 
