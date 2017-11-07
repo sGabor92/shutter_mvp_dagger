@@ -1,5 +1,6 @@
 package hu.webandmore.shutter_mvp.ui.program;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -12,6 +13,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import hu.webandmore.shutter_mvp.R;
+import hu.webandmore.shutter_mvp.ui.manage.ManageChannelsActivity;
 import hu.webandmore.shutter_mvp.utils.Utils;
 
 public class SettingsFragment extends Fragment {
@@ -52,7 +54,8 @@ public class SettingsFragment extends Fragment {
 
     @OnClick(R.id.addNewChannel)
     public void addNewChannel() {
-        Log.i(TAG, "Clicked on add new channel!");
+        Intent intent = new Intent(getContext(), ManageChannelsActivity.class);
+        startActivity(intent);
     }
 
 }

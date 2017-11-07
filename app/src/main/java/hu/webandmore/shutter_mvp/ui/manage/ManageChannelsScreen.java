@@ -1,0 +1,13 @@
+package hu.webandmore.shutter_mvp.ui.manage;
+
+import java.util.ArrayList;
+
+import hu.webandmore.shutter_mvp.api.model.Channel;
+
+public interface ManageChannelsScreen {
+    void showProgressBar();
+    void hideProgressBar();
+    void showError(String errorMsg);
+    void showShutters(ArrayList<Channel> shutters);
+    void activateShutters();
+}

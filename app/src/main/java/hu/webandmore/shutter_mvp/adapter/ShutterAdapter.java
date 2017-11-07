@@ -1,6 +1,7 @@
 package hu.webandmore.shutter_mvp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,6 +75,14 @@ public class ShutterAdapter extends RecyclerView.Adapter<ShutterAdapter.ViewHold
                 shutterMovementInteractor.moveShutter(holder.channel.getId(), Enums.ShutterMovement.DOWN);
             }
         });
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
 
     }
 

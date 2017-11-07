@@ -2,6 +2,7 @@
     <string name="app_name">shutter_mvp</string>
 
     <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_manage_channels">Manage Channels</string>
 
     <string name="sign_in">Sign In</string>
     <string name="sign_in_text">Sign in and get access to your shutters from your phone.</string>
@@ -43,5 +44,10 @@
     <string name="settings">Settings</string>
     <string name="logout">Logout</string>
     <string name="manage_channels">Manage channels</string>
+
+    <string name="add_new_channel">Add New Channel</string>
+    <string name="saved_shutters">Saved shutters</string>
+    <string name="saved_shutters_text">Tap on the ‘Add New’ button to set up\nnew shutters</string>
+
 
 </resources>
