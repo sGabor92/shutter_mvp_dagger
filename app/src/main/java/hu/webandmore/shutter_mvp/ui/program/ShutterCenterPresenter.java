@@ -64,8 +64,8 @@ public class ShutterCenterPresenter extends Presenter<ShutterCenterScreen>{
                     screen.showShutters(event.getShutters());
                 } else {
                     screen.showError(event.getErrorMessage());
-                    screen.hideProgressBar();
                 }
+                screen.hideProgressBar();
             }
         }
     }
@@ -82,10 +82,8 @@ public class ShutterCenterPresenter extends Presenter<ShutterCenterScreen>{
             if (screen != null) {
                 if (event.getCode() != 200) {
                     screen.showError(event.getErrorMessage());
-                    screen.activateShutters();
-                } else {
-                    screen.activateShutters();
                 }
+                screen.activateShutters();
             }
         }
     }

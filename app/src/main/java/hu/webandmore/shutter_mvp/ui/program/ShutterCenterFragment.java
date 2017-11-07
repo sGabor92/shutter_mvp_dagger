@@ -4,12 +4,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -21,7 +21,7 @@ import hu.webandmore.shutter_mvp.api.model.Channel;
 
 public class ShutterCenterFragment extends Fragment implements ShutterCenterScreen {
 
-    private static String TAG = "ShutterCenterFragment";
+    //private static String TAG = "ShutterCenterFragment";
 
     @BindView(R.id.ungroupped_shutters_list)
     RecyclerView recyclerView;
@@ -53,6 +53,8 @@ public class ShutterCenterFragment extends Fragment implements ShutterCenterScre
         llmShutters.setOrientation(LinearLayoutManager.VERTICAL);
         channels = new ArrayList<>();
 
+        showProgressBar();
+
         return view;
     }
 
@@ -71,17 +73,19 @@ public class ShutterCenterFragment extends Fragment implements ShutterCenterScre
 
     @Override
     public void showError(String errorMessage) {
-
+        Toast.makeText(getContext(), errorMessage, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showProgressBar() {
-
+        mainLayout.setVisibility(View.GONE);
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressBar() {
-
+        progressBar.setVisibility(View.GONE);
+        mainLayout.setVisibility(View.VISIBLE);
     }
 
     @Override
