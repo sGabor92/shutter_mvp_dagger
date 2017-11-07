@@ -14,21 +14,21 @@ import java.util.ArrayList;
 import hu.webandmore.shutter_mvp.R;
 import hu.webandmore.shutter_mvp.api.model.Channel;
 import hu.webandmore.shutter_mvp.app.Enums;
-import hu.webandmore.shutter_mvp.interactor.ShutterMovementInteractor;
+import hu.webandmore.shutter_mvp.interactor.ShutterInteractor;
 
 public class ShutterAdapter extends RecyclerView.Adapter<ShutterAdapter.ViewHolder> {
 
     private static String TAG = "ShutterAdapter";
 
     private final Context context;
-    private ShutterMovementInteractor shutterMovementInteractor;
+    private ShutterInteractor shutterMovementInteractor;
 
     private ArrayList<Channel> channels = new ArrayList<>();
 
     public ShutterAdapter(Context c, ArrayList<Channel> channels) {
         this.context = c;
         this.channels = channels;
-        shutterMovementInteractor = new ShutterMovementInteractor(context);
+        shutterMovementInteractor = new ShutterInteractor(context);
     }
 
     @Override

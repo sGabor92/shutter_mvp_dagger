@@ -115,6 +115,9 @@ public class ManageChannelsActivity extends AppCompatActivity implements ManageC
     @Override
     public void removeShutter(int position) {
         Log.i(TAG, "Delete shutter: " + position);
+        /*DeleteChannelTask deleteChannelTask = new DeleteChannelTask(channelAdapter.getCurrentId(position));
+                            deleteChannelTask.execute();
+                            channelAdapter.removeItem(position);*/
     }
 
     @Override
