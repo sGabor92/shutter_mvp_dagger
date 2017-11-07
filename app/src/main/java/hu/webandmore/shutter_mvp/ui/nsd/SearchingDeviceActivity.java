@@ -147,5 +147,6 @@ public class SearchingDeviceActivity extends AppCompatActivity
         Log.i(TAG, "NSD SERVICE NOT FOUND");
         searchingText.setVisibility(View.GONE);
         deviceNotFoundLayout.setVisibility(View.VISIBLE);
+        
     }
 }
