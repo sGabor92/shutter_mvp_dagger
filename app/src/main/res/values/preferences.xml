@@ -2,4 +2,6 @@
 <resources>
     <string name="preference_file_key">hu.webandmore.redonyinnyo-android.leStorage</string>
     <string name="preference_token_key">auth_token</string>
+    <string name="preference_uid_key">user_id</string>
+    <string name="preferences_ip_key">device_ip</string>
 </resources>

@@ -1,12 +1,15 @@
 package hu.webandmore.shutter_mvp.interactor.events;
 
-public class RegisterEvent {
+public class DeleteShutterEvent {
 
     private int code;
     private Throwable throwable;
     private String errorMessage;
+    private int itemPosition;
 
-    public RegisterEvent(){}
+    public DeleteShutterEvent() {
+
+    }
 
     public int getCode() {
         return code;
@@ -24,12 +27,19 @@ public class RegisterEvent {
         this.throwable = throwable;
     }
 
-    public String getErrorMessage(){
+    public String getErrorMessage() {
         return errorMessage;
     }
 
-    public void setErrorMessage(String errorMessage){
+    public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
     }
 
+    public int getItemPosition() {
+        return itemPosition;
+    }
+
+    public void setItemPosition(int itemPosition) {
+        this.itemPosition = itemPosition;
+    }
 }

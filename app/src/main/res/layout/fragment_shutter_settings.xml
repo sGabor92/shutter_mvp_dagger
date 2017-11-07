@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="hu.webandmore.shutter_mvp.ui.program.ProgramShutterActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/addNewChannel"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="40dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/manage_channels"
+            android:textColor="@color/colorWhite"
+            android:textSize="14sp"
+            android:textAllCaps="false"
+            android:textAlignment="center"
+            android:background="@drawable/button_rounded_blue"
+            />
+
+        <Button
+            android:id="@+id/logoutUser"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/addNewChannel"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/logout"
+            android:textColor="@color/colorWhite"
+            android:textSize="14sp"
+            android:textAllCaps="false"
+            android:drawableLeft="@drawable/ic_exit_app_white"
+            android:drawablePadding="10dp"
+            android:textAlignment="center"
+            android:background="@drawable/button_rounded_grey"
+            />
+
+    </RelativeLayout>
+
+</LinearLayout>

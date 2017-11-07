@@ -1,15 +1,20 @@
 package hu.webandmore.shutter_mvp.interactor.events;
 
-import hu.webandmore.shutter_mvp.api.model.User;
+import java.util.ArrayList;
+import java.util.Collections;
 
-public class LoginEvent {
+import hu.webandmore.shutter_mvp.api.model.Channel;
+
+public class GetShuttersEvent {
 
     private int code;
-    private User user;
+    private ArrayList<Channel> shutters;
     private Throwable throwable;
     private String errorMessage;
 
-    public LoginEvent() {}
+    public GetShuttersEvent() {
+        this.shutters = new ArrayList<>();
+    }
 
     public int getCode() {
         return code;
@@ -19,12 +24,12 @@ public class LoginEvent {
         this.code = code;
     }
 
-    public User getUser() {
-        return user;
+    public ArrayList<Channel> getShutters() {
+        return shutters;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setShutters(Channel[] channels) {
+        Collections.addAll(this.shutters, channels);
     }
 
     public Throwable getThrowable() {
@@ -35,11 +40,11 @@ public class LoginEvent {
         this.throwable = throwable;
     }
 
-    public String getErrorMessage(){
+    public String getErrorMessage() {
         return errorMessage;
     }
 
-    public void setErrorMessage(String errorMessage){
+    public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
     }
 }

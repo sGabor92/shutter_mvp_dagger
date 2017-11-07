@@ -18,7 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ServiceGenerator {
 
     private static String ADDRESS = "redonyinnyo-api.test.webandmore.hu";
-    private static String DEV_ADDRESS = "192.168.1.9:8000";
+    public static String DEV_ADDRESS = "192.168.1.11:8000";
 
     private static final String API_KEY = "api-key-storage";
 

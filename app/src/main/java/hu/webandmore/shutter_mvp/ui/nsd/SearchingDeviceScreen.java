@@ -1,7 +1,7 @@
 package hu.webandmore.shutter_mvp.ui.nsd;
 
-public interface SearchingDeviceScreen {
-
+interface SearchingDeviceScreen {
     void searchDevice();
-
+    void showSearchingProgress();
+    void hideSearchingProgress();
 }

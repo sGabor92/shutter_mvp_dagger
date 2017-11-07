@@ -46,7 +46,7 @@ public class LoginPresenter extends Presenter<LoginScreen> {
         super.detachScreen();
     }
 
-    boolean hasLogin(LoginScreen screen){
+    boolean hasLogin(LoginScreen screen) {
         String userName = PrefUtils.getFromPrefs(
                 context.getApplicationContext(),
                 PrefUtils.PREFS_LOGIN_USERNAME_KEY,
@@ -64,15 +64,15 @@ public class LoginPresenter extends Presenter<LoginScreen> {
         }
     }
 
-    boolean isEmailValid(String email){
+    boolean isEmailValid(String email) {
         return email.contains("@");
     }
 
-    boolean isPasswordValid(String password){
+    boolean isPasswordValid(String password) {
         return password.length() > 5;
     }
 
-    void loginUser(final String email, final String password){
+    void loginUser(final String email, final String password) {
         networkExecutor.execute(new Runnable() {
             @Override
             public void run() {
@@ -91,8 +91,12 @@ public class LoginPresenter extends Presenter<LoginScreen> {
             }
         } else {
             if (screen != null) {
-                if(event.getCode() == 200) {
-                    screen.userLoggedIn(event.getUser().getApi_token());
+                if (event.getCode() == 200) {
+                    boolean userHasDevice = false;
+                    if (event.getUser().getDevice() != null)
+                        userHasDevice = true;
+
+                    screen.userLoggedIn(event.getUser().getApi_token(), userHasDevice);
                 } else {
                     screen.showError(event.getErrorMessage());
                     screen.hideProgressBar();
