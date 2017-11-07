@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hu.webandmore.shutter_mvp.R;
+import hu.webandmore.shutter_mvp.adapter.ShutterAdapter;
 import hu.webandmore.shutter_mvp.api.model.Channel;
 
 public class ShutterCenterFragment extends Fragment implements ShutterCenterScreen {
@@ -30,6 +31,7 @@ public class ShutterCenterFragment extends Fragment implements ShutterCenterScre
     ProgressBar progressBar;
 
     ArrayList<Channel> channels;
+    ShutterAdapter shutterAdapter;
     private LinearLayoutManager llmShutters;
 
     ShutterCenterPresenter shutterCenterPresenter;
@@ -89,6 +91,9 @@ public class ShutterCenterFragment extends Fragment implements ShutterCenterScre
 
     @Override
     public void showShutters(ArrayList<Channel> shutters) {
-        Log.i(TAG, "List size: " + String.valueOf(shutters.size()));
+        shutterAdapter = new ShutterAdapter(getContext(), shutters);
+        recyclerView.setLayoutManager(llmShutters);
+        recyclerView.setAdapter(shutterAdapter);
+
     }
 }
