@@ -75,11 +75,6 @@ public class ShutterCenterFragment extends Fragment implements ShutterCenterScre
     }
 
     @Override
-    public void getShutters() {
-
-    }
-
-    @Override
     public void showProgressBar() {
 
     }
@@ -95,5 +90,10 @@ public class ShutterCenterFragment extends Fragment implements ShutterCenterScre
         recyclerView.setLayoutManager(llmShutters);
         recyclerView.setAdapter(shutterAdapter);
 
+    }
+
+    @Override
+    public void activateShutters() {
+        shutterAdapter.activateChannels();
     }
 }

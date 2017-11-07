@@ -12,16 +12,20 @@ import java.util.ArrayList;
 
 import hu.webandmore.shutter_mvp.R;
 import hu.webandmore.shutter_mvp.api.model.Channel;
+import hu.webandmore.shutter_mvp.app.Enums;
+import hu.webandmore.shutter_mvp.interactor.ShutterMovementInteractor;
 
 public class ShutterAdapter extends RecyclerView.Adapter<ShutterAdapter.ViewHolder> {
 
     private final Context context;
+    private ShutterMovementInteractor shutterMovementInteractor;
 
     private ArrayList<Channel> channels = new ArrayList<>();
 
     public ShutterAdapter(Context c, ArrayList<Channel> channels) {
         this.context = c;
         this.channels = channels;
+        shutterMovementInteractor = new ShutterMovementInteractor(context);
     }
 
     @Override
@@ -34,6 +38,42 @@ public class ShutterAdapter extends RecyclerView.Adapter<ShutterAdapter.ViewHold
     public void onBindViewHolder(final ShutterAdapter.ViewHolder holder, int position) {
         holder.channel = channels.get(position);
         holder.channelName.setText(holder.channel.getName());
+
+        if(!holder.channel.isActive()) {
+            holder.itemView.setEnabled(false);
+            holder.upBtn.setEnabled(false);
+            holder.stopBtn.setEnabled(false);
+            holder.downBtn.setEnabled(false);
+        } else {
+            holder.itemView.setEnabled(true);
+            holder.upBtn.setEnabled(true);
+            holder.stopBtn.setEnabled(true);
+            holder.downBtn.setEnabled(true);
+        }
+
+        holder.upBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                disableChannels();
+                shutterMovementInteractor.moveShutter(holder.channel.getId(), Enums.ShutterMovement.UP);
+            }
+        });
+
+        holder.stopBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                disableChannels();
+                shutterMovementInteractor.moveShutter(holder.channel.getId(), Enums.ShutterMovement.STOP);
+            }
+        });
+
+        holder.downBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                disableChannels();
+                shutterMovementInteractor.moveShutter(holder.channel.getId(), Enums.ShutterMovement.DOWN);
+            }
+        });
 
     }
 
@@ -71,6 +111,21 @@ public class ShutterAdapter extends RecyclerView.Adapter<ShutterAdapter.ViewHold
     public void update() {
         notifyDataSetChanged();
     }
+
+    private void disableChannels() {
+        for (Channel channel : channels) {
+            channel.setActive(false);
+        }
+        notifyDataSetChanged();
+    }
+
+    public void activateChannels() {
+        for(Channel channel: channels){
+            channel.setActive(true);
+        }
+        notifyDataSetChanged();
+    }
+
 
     class ViewHolder extends RecyclerView.ViewHolder {
         TextView channelName;
