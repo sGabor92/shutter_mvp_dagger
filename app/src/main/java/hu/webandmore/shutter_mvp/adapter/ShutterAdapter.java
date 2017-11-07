@@ -1,8 +1,8 @@
 package hu.webandmore.shutter_mvp.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +17,8 @@ import hu.webandmore.shutter_mvp.app.Enums;
 import hu.webandmore.shutter_mvp.interactor.ShutterMovementInteractor;
 
 public class ShutterAdapter extends RecyclerView.Adapter<ShutterAdapter.ViewHolder> {
+
+    private static String TAG = "ShutterAdapter";
 
     private final Context context;
     private ShutterMovementInteractor shutterMovementInteractor;
@@ -79,10 +81,9 @@ public class ShutterAdapter extends RecyclerView.Adapter<ShutterAdapter.ViewHold
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Log.i(TAG, "Clicked on item: " + holder.channel.getName());
             }
         });
-
 
     }
 
@@ -134,7 +135,6 @@ public class ShutterAdapter extends RecyclerView.Adapter<ShutterAdapter.ViewHold
         }
         notifyDataSetChanged();
     }
-
 
     class ViewHolder extends RecyclerView.ViewHolder {
         TextView channelName;

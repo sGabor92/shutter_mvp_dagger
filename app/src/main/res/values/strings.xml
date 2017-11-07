@@ -49,5 +49,9 @@
     <string name="saved_shutters">Saved shutters</string>
     <string name="saved_shutters_text">Tap on the ‘Add New’ button to set up\nnew shutters</string>
 
+    <string name="delete">Delete</string>
+    <string name="delete_channel_title">Are you sure you want to delete this channel?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
 </resources>

@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -105,10 +104,32 @@ public class ManageChannelsActivity extends AppCompatActivity implements ManageC
         shutterAdapter = new ShutterAdapter(this, shutters);
         savedShutters.setLayoutManager(llmShutters);
         savedShutters.setAdapter(shutterAdapter);
+        manageChannelsPresenter.initSwipe();
     }
 
     @Override
     public void activateShutters() {
         shutterAdapter.activateChannels();
     }
+
+    @Override
+    public void removeShutter(int position) {
+        Log.i(TAG, "Delete shutter: " + position);
+    }
+
+    @Override
+    public void restoreShutter(int position) {
+        Channel removedChannel = shutterAdapter.getItem(position);
+        shutterAdapter.removeItem(position);
+        shutterAdapter.restoreItem(position, removedChannel);
+    }
+
+    @Override
+    public RecyclerView getSavedShutters() {
+        if(savedShutters != null) {
+            return savedShutters;
+        }
+        return null;
+    }
+
 }
