@@ -8,6 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -25,6 +27,12 @@ public class ManageChannelsActivity extends AppCompatActivity implements ManageC
 
     @BindView(R.id.saved_shutters_list)
     RecyclerView savedShutters;
+
+    @BindView(R.id.manage_progress)
+    ProgressBar mProgressView;
+
+    @BindView(R.id.mainLayout)
+    LinearLayout mMainView;
 
     ArrayList<Channel> channels;
     ShutterAdapter shutterAdapter;
@@ -47,6 +55,8 @@ public class ManageChannelsActivity extends AppCompatActivity implements ManageC
         llmShutters = new LinearLayoutManager(this);
         llmShutters.setOrientation(LinearLayoutManager.VERTICAL);
         channels = new ArrayList<>();
+
+        showProgressBar();
 
     }
 
@@ -88,12 +98,14 @@ public class ManageChannelsActivity extends AppCompatActivity implements ManageC
 
     @Override
     public void showProgressBar() {
-
+        mProgressView.setVisibility(View.VISIBLE);
+        mMainView.setVisibility(View.GONE);
     }
 
     @Override
     public void hideProgressBar() {
-
+        mProgressView.setVisibility(View.GONE);
+        mMainView.setVisibility(View.VISIBLE);
     }
 
     @Override

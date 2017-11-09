@@ -67,9 +67,9 @@
     <string name="try_out_the_stop_button">Try out the STOP button</string>
     <string name="press_the_down_button_now">Press the DOWN button now!</string>
     <string name="try_out_the_down_button">Try out the DOWN button</string>
-    <string name="start_up_button_copy">Start up button copy</string>
-    <string name="start_stop_button_copy">Start stop button copy</string>
-    <string name="start_down_button_copy">Start down button copy</string>
+    <string name="start_up_button_copy">Up button copy</string>
+    <string name="start_stop_button_copy">Stop button copy</string>
+    <string name="start_down_button_copy">Down button copy</string>
 
     <string name="restart">Restart</string>
     <string name="save">Save</string>
