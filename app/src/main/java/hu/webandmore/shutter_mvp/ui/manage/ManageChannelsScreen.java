@@ -16,4 +16,5 @@ public interface ManageChannelsScreen {
     void restoreShutter(int position);
     RecyclerView getSavedShutters();
     int getSelectedShutterId(int position);
+    void switchToCreatedChannel(int id);
 }

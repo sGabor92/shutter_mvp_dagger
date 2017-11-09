@@ -12,6 +12,7 @@ import hu.webandmore.shutter_mvp.api.ServiceGenerator;
 import hu.webandmore.shutter_mvp.api.model.Channel;
 import hu.webandmore.shutter_mvp.api.services.ShutterService;
 import hu.webandmore.shutter_mvp.app.Enums;
+import hu.webandmore.shutter_mvp.interactor.events.CreateShutterEvent;
 import hu.webandmore.shutter_mvp.interactor.events.DeleteShutterEvent;
 import hu.webandmore.shutter_mvp.interactor.events.GetShuttersEvent;
 import hu.webandmore.shutter_mvp.interactor.events.ShutterMovementEvent;
@@ -70,7 +71,7 @@ public class ShutterInteractor {
         });
     }
 
-    public void moveShutter(int shutterId, Enums.ShutterMovement shutterMovement){
+    public void moveShutter(int shutterId, Enums.ShutterMovement shutterMovement) {
         Call<Void> call;
         if (shutterMovement == Enums.ShutterMovement.UP) {
             call = shutterService.shutterUp(shutterId);
@@ -151,6 +152,45 @@ public class ShutterInteractor {
                 deleteShutterEvent.setErrorMessage(errorMessage);
                 deleteShutterEvent.setThrowable(t);
                 EventBus.getDefault().post(deleteShutterEvent);
+            }
+        });
+    }
+
+    public void createShutter() {
+        Call<Channel> call = shutterService.createChannel();
+
+        final CreateShutterEvent createShutterEvent = new CreateShutterEvent();
+        call.enqueue(new Callback<Channel>() {
+
+            @Override
+            public void onResponse(Call<Channel> call, Response<Channel> result) {
+                if (result.isSuccessful()) {
+                    createShutterEvent.setCode(result.code());
+                    createShutterEvent.setShutter(result.body());
+                    EventBus.getDefault().post(createShutterEvent);
+                } else {
+                    createShutterEvent.setCode(result.code());
+                    try {
+                        createShutterEvent.setErrorMessage(result.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    EventBus.getDefault().post(createShutterEvent);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Channel> call, Throwable t) {
+
+                String errorMessage = context.getString(R.string.error_during_login);
+                if (t instanceof UnknownHostException) {
+                    errorMessage = context.getString(R.string.network_error);
+                } else if (t instanceof IOException) {
+                    errorMessage = context.getString(R.string.internal_server_error);
+                }
+                createShutterEvent.setErrorMessage(errorMessage);
+                createShutterEvent.setThrowable(t);
+                EventBus.getDefault().post(createShutterEvent);
             }
         });
     }

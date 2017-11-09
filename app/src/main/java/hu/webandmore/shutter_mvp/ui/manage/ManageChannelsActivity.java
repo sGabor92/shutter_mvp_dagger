@@ -92,8 +92,7 @@ public class ManageChannelsActivity extends AppCompatActivity implements ManageC
 
     @OnClick(R.id.copy_channel)
     public void createNewChannel(View view) {
-        Intent intent = new Intent(this, NewShutterActivity.class);
-        startActivity(intent);
+        manageChannelsPresenter.createShutter();
     }
 
     @Override
@@ -151,6 +150,13 @@ public class ManageChannelsActivity extends AppCompatActivity implements ManageC
     @Override
     public int getSelectedShutterId(int position) {
         return shutterAdapter.getCurrentId(position);
+    }
+
+    @Override
+    public void switchToCreatedChannel(int id) {
+        Intent intent = new Intent(this, NewShutterActivity.class);
+        intent.putExtra("channelID", id);
+        startActivity(intent);
     }
 
 }

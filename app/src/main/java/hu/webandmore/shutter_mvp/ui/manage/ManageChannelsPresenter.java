@@ -22,6 +22,7 @@ import java.util.concurrent.Executors;
 
 import hu.webandmore.shutter_mvp.R;
 import hu.webandmore.shutter_mvp.interactor.ShutterInteractor;
+import hu.webandmore.shutter_mvp.interactor.events.CreateShutterEvent;
 import hu.webandmore.shutter_mvp.interactor.events.DeleteShutterEvent;
 import hu.webandmore.shutter_mvp.interactor.events.GetShuttersEvent;
 import hu.webandmore.shutter_mvp.interactor.events.ShutterMovementEvent;
@@ -70,6 +71,15 @@ class ManageChannelsPresenter extends Presenter<ManageChannelsScreen> {
             public void run() {
                 int shutterId = screen.getSelectedShutterId(itemPosition);
                 shutterInteractor.deleteShutter(shutterId, itemPosition);
+            }
+        });
+    }
+
+    void createShutter() {
+        networkExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                shutterInteractor.createShutter();
             }
         });
     }
@@ -124,6 +134,24 @@ class ManageChannelsPresenter extends Presenter<ManageChannelsScreen> {
                 if (event.getCode() != 200) {
                     screen.showError(event.getErrorMessage());
                     screen.removeShutter(event.getItemPosition());
+                }
+            }
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventMainThread(final CreateShutterEvent event) {
+        if (event.getThrowable() != null) {
+            event.getThrowable().printStackTrace();
+            if (screen != null) {
+                screen.showError(event.getThrowable().getMessage());
+            }
+        } else {
+            if (screen != null) {
+                if (event.getCode() == 200) {
+                    screen.switchToCreatedChannel(event.getShutter().getId());
+                } else {
+                    screen.showError(event.getErrorMessage());
                 }
             }
         }
