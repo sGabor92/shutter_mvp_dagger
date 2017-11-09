@@ -53,5 +53,25 @@
     <string name="delete_channel_title">Are you sure you want to delete this channel?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="title_activity_new_shutter">New Channel</string>
+
+    <string name="copy_remote_signal">Copy remote signal</string>
+    <string name="copy_signal_text">During the signal copy process you’ll be asked to tap on the up, stop and down buttons on the remote control.</string>
+    <string name="start_signal_copy_process">Start signal copy process</string>
+    <string name="shutter_name">Shutter name</string>
+    <string name="hint_shutter_name">E.g. Living Room Window</string>
+    <string name="shutter_id">Shutter ID:</string>
+    <string name="press_the_up_button_now">Press the UP button now!</string>
+    <string name="try_out_the_up_button">Try out the UP button</string>
+    <string name="press_the_stop_button_now">Press the STOP button now!</string>
+    <string name="try_out_the_stop_button">Try out the STOP button</string>
+    <string name="press_the_down_button_now">Press the DOWN button now!</string>
+    <string name="try_out_the_down_button">Try out the DOWN button</string>
+    <string name="start_up_button_copy">Start up button copy</string>
+    <string name="start_stop_button_copy">Start stop button copy</string>
+    <string name="start_down_button_copy">Start down button copy</string>
+
+    <string name="restart">Restart</string>
+    <string name="save">Save</string>
 
 </resources>

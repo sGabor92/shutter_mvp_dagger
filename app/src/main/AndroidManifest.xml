@@ -39,9 +39,14 @@
             android:name=".ui.manage.ManageChannelsActivity"
             android:label="@string/title_activity_manage_channels"
             android:parentActivityName=".ui.program.ProgramShutterActivity"
-            android:theme="@style/AppTheme"
             android:screenOrientation="portrait"
-            />
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.manage.NewShutterActivity"
+            android:label="@string/title_activity_new_shutter"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".ui.manage.ManageChannelsActivity"/>
     </application>
 
 </manifest>

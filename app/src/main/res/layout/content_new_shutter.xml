@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="hu.webandmore.shutter_mvp.ui.manage.NewShutterActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:id="@+id/register_form"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/shutter_name"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/channel_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/elevation_background"
+                    android:elevation="2dp"
+                    android:hint="@string/hint_shutter_name"
+                    android:inputType="text|textNoSuggestions"
+                    android:paddingLeft="10dp"
+                    android:textColor="@color/colorBlack"
+                    android:textColorHint="@color/colorGreyText"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/shutter_id"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/shutter_id_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/copy_remote_signal"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/copy_signal_text"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/start_copy"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginBottom="60dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/button_rounded_blue"
+                    android:elevation="10dp"
+                    android:text="@string/start_signal_copy_process"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:id="@+id/copy_buttons_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="100">
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="60dp"
+                            android:layout_marginBottom="20dp"
+                            android:layout_weight="80">
+
+                            <Button
+                                android:id="@+id/up_btn"
+                                android:layout_width="match_parent"
+                                android:layout_height="55dp"
+                                android:background="@drawable/copy_states"
+                                android:text="@string/start_up_button_copy"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="12sp" />
+
+                            <ProgressBar
+                                android:id="@+id/upProgress"
+                                style="?android:attr/progressBarStyleSmall"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="10dp"
+                                android:elevation="2dp"
+                                android:indeterminate="true"
+                                android:indeterminateDrawable="@drawable/button_progress_bar_circular" />
+
+                        </RelativeLayout>
+
+                        <ImageButton
+                            android:id="@+id/up_icon"
+                            android:layout_width="0dp"
+                            android:layout_height="55dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="20"
+                            android:background="@drawable/copy_states"
+                            android:elevation="3dp"
+                            android:padding="9dp"
+                            android:src="@drawable/ic_arrow_up_white" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="100">
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="60dp"
+                            android:layout_marginBottom="20dp"
+                            android:layout_weight="80">
+
+                            <Button
+                                android:id="@+id/stop_btn"
+                                android:layout_width="match_parent"
+                                android:layout_height="55dp"
+                                android:background="@drawable/copy_states"
+                                android:text="@string/start_stop_button_copy"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="12sp" />
+
+                            <ProgressBar
+                                android:id="@+id/stopProgress"
+                                style="?android:attr/progressBarStyleSmall"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="10dp"
+                                android:elevation="2dp"
+                                android:indeterminate="true"
+                                android:indeterminateDrawable="@drawable/button_progress_bar_circular" />
+
+                        </RelativeLayout>
+
+                        <ImageButton
+                            android:id="@+id/stop_icon"
+                            android:layout_width="0dp"
+                            android:layout_height="55dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="20"
+                            android:background="@drawable/copy_states"
+                            android:elevation="3dp"
+                            android:padding="9dp"
+                            android:src="@drawable/ic_stop_white" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="100">
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="60dp"
+                            android:layout_marginBottom="20dp"
+                            android:layout_weight="80">
+
+                            <Button
+                                android:id="@+id/down_btn"
+                                android:layout_width="match_parent"
+                                android:layout_height="55dp"
+                                android:background="@drawable/copy_states"
+                                android:text="@string/start_down_button_copy"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="12sp" />
+
+                            <ProgressBar
+                                android:id="@+id/downProgress"
+                                style="?android:attr/progressBarStyleSmall"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="10dp"
+                                android:elevation="2dp"
+                                android:indeterminate="true"
+                                android:indeterminateDrawable="@drawable/button_progress_bar_circular" />
+
+                        </RelativeLayout>
+
+                        <ImageButton
+                            android:id="@+id/down_icon"
+                            android:layout_width="0dp"
+                            android:layout_height="55dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="20"
+                            android:background="@drawable/copy_states"
+                            android:elevation="3dp"
+                            android:padding="9dp"
+                            android:src="@drawable/ic_arrow_down_white" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>
+

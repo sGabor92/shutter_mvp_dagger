@@ -1,5 +1,6 @@
 package hu.webandmore.shutter_mvp.ui.manage;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -81,7 +82,8 @@ public class ManageChannelsActivity extends AppCompatActivity implements ManageC
 
     @OnClick(R.id.copy_channel)
     public void createNewChannel(View view) {
-        Log.i(TAG, "Clicked on add new channel!");
+        Intent intent = new Intent(this, NewShutterActivity.class);
+        startActivity(intent);
     }
 
     @Override
