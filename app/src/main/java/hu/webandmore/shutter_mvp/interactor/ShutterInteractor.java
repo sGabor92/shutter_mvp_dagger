@@ -15,6 +15,7 @@ import hu.webandmore.shutter_mvp.app.Enums;
 import hu.webandmore.shutter_mvp.interactor.events.CreateShutterEvent;
 import hu.webandmore.shutter_mvp.interactor.events.DeleteShutterEvent;
 import hu.webandmore.shutter_mvp.interactor.events.GetShuttersEvent;
+import hu.webandmore.shutter_mvp.interactor.events.ModifyShutterEvent;
 import hu.webandmore.shutter_mvp.interactor.events.ShutterMovementEvent;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -191,6 +192,45 @@ public class ShutterInteractor {
                 createShutterEvent.setErrorMessage(errorMessage);
                 createShutterEvent.setThrowable(t);
                 EventBus.getDefault().post(createShutterEvent);
+            }
+        });
+    }
+
+    public void modifyShutter(Channel channel) {
+        Call<Channel> call = shutterService.modifyChannel("channel/" + channel.getId(), channel);
+
+        final ModifyShutterEvent modifyShutterEvent = new ModifyShutterEvent();
+        call.enqueue(new Callback<Channel>() {
+
+            @Override
+            public void onResponse(Call<Channel> call, Response<Channel> result) {
+                if (result.isSuccessful()) {
+                    modifyShutterEvent.setCode(result.code());
+                    modifyShutterEvent.setShutter(result.body());
+                    EventBus.getDefault().post(modifyShutterEvent);
+                } else {
+                    modifyShutterEvent.setCode(result.code());
+                    try {
+                        modifyShutterEvent.setErrorMessage(result.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    EventBus.getDefault().post(modifyShutterEvent);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Channel> call, Throwable t) {
+
+                String errorMessage = context.getString(R.string.error_during_login);
+                if (t instanceof UnknownHostException) {
+                    errorMessage = context.getString(R.string.network_error);
+                } else if (t instanceof IOException) {
+                    errorMessage = context.getString(R.string.internal_server_error);
+                }
+                modifyShutterEvent.setErrorMessage(errorMessage);
+                modifyShutterEvent.setThrowable(t);
+                EventBus.getDefault().post(modifyShutterEvent);
             }
         });
     }

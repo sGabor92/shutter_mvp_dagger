@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import hu.webandmore.shutter_mvp.api.model.Channel;
 
-public interface ManageChannelsScreen {
+interface ManageChannelsScreen {
     void showProgressBar();
     void hideProgressBar();
     void showError(String errorMsg);

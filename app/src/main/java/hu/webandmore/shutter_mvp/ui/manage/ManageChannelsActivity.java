@@ -63,7 +63,6 @@ public class ManageChannelsActivity extends AppCompatActivity implements ManageC
     @Override
     protected void onResume() {
         super.onResume();
-
         manageChannelsPresenter.getShutters();
     }
 

@@ -136,7 +136,8 @@
                                 android:layout_marginLeft="10dp"
                                 android:elevation="2dp"
                                 android:indeterminate="true"
-                                android:indeterminateDrawable="@drawable/button_progress_bar_circular" />
+                                android:indeterminateDrawable="@drawable/button_progress_bar_circular"
+                                android:visibility="gone"/>
 
                         </RelativeLayout>
 
@@ -183,7 +184,8 @@
                                 android:layout_marginLeft="10dp"
                                 android:elevation="2dp"
                                 android:indeterminate="true"
-                                android:indeterminateDrawable="@drawable/button_progress_bar_circular" />
+                                android:indeterminateDrawable="@drawable/button_progress_bar_circular"
+                                android:visibility="gone"/>
 
                         </RelativeLayout>
 
@@ -196,7 +198,8 @@
                             android:background="@drawable/copy_states"
                             android:elevation="3dp"
                             android:padding="9dp"
-                            android:src="@drawable/ic_stop_white" />
+                            android:src="@drawable/ic_stop_white"
+                            />
 
                     </LinearLayout>
 
@@ -229,7 +232,8 @@
                                 android:layout_marginLeft="10dp"
                                 android:elevation="2dp"
                                 android:indeterminate="true"
-                                android:indeterminateDrawable="@drawable/button_progress_bar_circular" />
+                                android:indeterminateDrawable="@drawable/button_progress_bar_circular"
+                                android:visibility="gone"/>
 
                         </RelativeLayout>
 
