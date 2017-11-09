@@ -16,6 +16,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import hu.webandmore.shutter_mvp.R;
 import hu.webandmore.shutter_mvp.api.model.Channel;
+import hu.webandmore.shutter_mvp.app.Enums;
 
 public class NewShutterActivity extends AppCompatActivity implements NewShutterScreen {
 
@@ -139,17 +140,17 @@ public class NewShutterActivity extends AppCompatActivity implements NewShutterS
 
     @OnClick(R.id.up_icon)
     public void tryOutUp() {
-
+        newShutterPresenter.tryOutShutter(channelID, Enums.ShutterMovement.UP);
     }
 
     @OnClick(R.id.stop_icon)
     public void tryOutStop() {
-
+        newShutterPresenter.tryOutShutter(channelID, Enums.ShutterMovement.STOP);
     }
 
     @OnClick(R.id.down_icon)
     public void tryOutDown() {
-
+        newShutterPresenter.tryOutShutter(channelID, Enums.ShutterMovement.DOWN);
     }
 
 }

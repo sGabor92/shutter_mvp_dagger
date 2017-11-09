@@ -10,6 +10,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import hu.webandmore.shutter_mvp.api.model.Channel;
+import hu.webandmore.shutter_mvp.app.Enums;
 import hu.webandmore.shutter_mvp.interactor.ShutterInteractor;
 import hu.webandmore.shutter_mvp.interactor.events.ModifyShutterEvent;
 import hu.webandmore.shutter_mvp.ui.Presenter;
@@ -55,6 +56,16 @@ class NewShutterPresenter extends Presenter<NewShutterScreen> {
                 shutterInteractor.modifyShutter(channel);
             }
         });
+    }
+
+    void tryOutShutter(int channelId, Enums.ShutterMovement movement) {
+        if (movement == Enums.ShutterMovement.UP) {
+            shutterInteractor.moveShutter(channelId, Enums.ShutterMovement.UP);
+        } else if (movement == Enums.ShutterMovement.STOP) {
+            shutterInteractor.moveShutter(channelId, Enums.ShutterMovement.STOP);
+        } else {
+            shutterInteractor.moveShutter(channelId, Enums.ShutterMovement.DOWN);
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
