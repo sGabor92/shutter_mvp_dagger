@@ -1,6 +1,7 @@
 package hu.webandmore.shutter_mvp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import hu.webandmore.shutter_mvp.R;
 import hu.webandmore.shutter_mvp.api.model.Channel;
 import hu.webandmore.shutter_mvp.app.Enums;
 import hu.webandmore.shutter_mvp.interactor.ShutterInteractor;
+import hu.webandmore.shutter_mvp.ui.manage.NewShutterActivity;
 
 public class ShutterAdapter extends RecyclerView.Adapter<ShutterAdapter.ViewHolder> {
 
@@ -82,6 +84,11 @@ public class ShutterAdapter extends RecyclerView.Adapter<ShutterAdapter.ViewHold
             @Override
             public void onClick(View v) {
                 Log.i(TAG, "Clicked on item: " + holder.channel.getName());
+                Intent intent = new Intent(context, NewShutterActivity.class);
+                intent.putExtra("channelID", holder.channel.getId());
+                intent.putExtra("channelName", holder.channel.getName());
+                context.startActivity(intent);
+
             }
         });
 
