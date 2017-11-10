@@ -16,15 +16,19 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hu.webandmore.shutter_mvp.R;
+import hu.webandmore.shutter_mvp.adapter.GroupsAdapter;
 import hu.webandmore.shutter_mvp.adapter.ShutterAdapter;
 import hu.webandmore.shutter_mvp.api.model.Channel;
+import hu.webandmore.shutter_mvp.api.model.Group;
 
 public class ShutterCenterFragment extends Fragment implements ShutterCenterScreen {
 
     //private static String TAG = "ShutterCenterFragment";
 
     @BindView(R.id.ungroupped_shutters_list)
-    RecyclerView recyclerView;
+    RecyclerView unGroupedRecyclerView;
+    @BindView(R.id.grouped_shutters_list)
+    RecyclerView groupedRecyclerView;
     @BindView(R.id.mainLayout)
     LinearLayout mainLayout;
     @BindView(R.id.shutter_center_progress)
@@ -33,6 +37,10 @@ public class ShutterCenterFragment extends Fragment implements ShutterCenterScre
     ArrayList<Channel> channels;
     ShutterAdapter shutterAdapter;
     private LinearLayoutManager llmShutters;
+
+    ArrayList<Group> groups;
+    GroupsAdapter groupsAdapter;
+    private LinearLayoutManager llmGroups;
 
     ShutterCenterPresenter shutterCenterPresenter;
 
@@ -53,6 +61,10 @@ public class ShutterCenterFragment extends Fragment implements ShutterCenterScre
         llmShutters.setOrientation(LinearLayoutManager.VERTICAL);
         channels = new ArrayList<>();
 
+        llmGroups = new LinearLayoutManager(getContext());
+        llmGroups.setOrientation(LinearLayoutManager.VERTICAL);
+        groups = new ArrayList<>();
+
         showProgressBar();
 
         return view;
@@ -62,6 +74,7 @@ public class ShutterCenterFragment extends Fragment implements ShutterCenterScre
     public void onResume() {
         super.onResume();
 
+        shutterCenterPresenter.getGroups();
         shutterCenterPresenter.getShutters();
     }
 
@@ -91,13 +104,20 @@ public class ShutterCenterFragment extends Fragment implements ShutterCenterScre
     @Override
     public void showShutters(ArrayList<Channel> shutters) {
         shutterAdapter = new ShutterAdapter(getContext(), shutters);
-        recyclerView.setLayoutManager(llmShutters);
-        recyclerView.setAdapter(shutterAdapter);
+        unGroupedRecyclerView.setLayoutManager(llmShutters);
+        unGroupedRecyclerView.setAdapter(shutterAdapter);
         shutterAdapter.descendingByUpdate();
     }
 
     @Override
     public void activateShutters() {
         shutterAdapter.activateChannels();
+    }
+
+    @Override
+    public void showGroups(ArrayList<Group> groups) {
+        groupsAdapter = new GroupsAdapter(getContext(), groups);
+        groupedRecyclerView.setLayoutManager(llmGroups);
+        groupedRecyclerView.setAdapter(groupsAdapter);
     }
 }

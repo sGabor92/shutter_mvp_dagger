@@ -9,7 +9,9 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+import hu.webandmore.shutter_mvp.interactor.GroupsInteractor;
 import hu.webandmore.shutter_mvp.interactor.ShutterInteractor;
+import hu.webandmore.shutter_mvp.interactor.events.GetGroupsEvent;
 import hu.webandmore.shutter_mvp.interactor.events.GetShuttersEvent;
 import hu.webandmore.shutter_mvp.interactor.events.ShutterMovementEvent;
 import hu.webandmore.shutter_mvp.ui.Presenter;
@@ -22,11 +24,13 @@ public class ShutterCenterPresenter extends Presenter<ShutterCenterScreen>{
     private Context context;
 
     private ShutterInteractor shutterInteractor;
+    private GroupsInteractor groupsInteractor;
 
     public ShutterCenterPresenter(Context context) {
         this.context = context;
         networkExecutor = Executors.newFixedThreadPool(1);
         shutterInteractor = new ShutterInteractor(context);
+        groupsInteractor = new GroupsInteractor(context);
     }
 
     @Override
@@ -46,6 +50,15 @@ public class ShutterCenterPresenter extends Presenter<ShutterCenterScreen>{
             @Override
             public void run() {
                 shutterInteractor.getShutters();
+            }
+        });
+    }
+
+    void getGroups() {
+        networkExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                groupsInteractor.getGroups();
             }
         });
     }
@@ -84,6 +97,24 @@ public class ShutterCenterPresenter extends Presenter<ShutterCenterScreen>{
                     screen.showError(event.getErrorMessage());
                 }
                 screen.activateShutters();
+            }
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventMainThread(final GetGroupsEvent event) {
+        if (event.getThrowable() != null) {
+            event.getThrowable().printStackTrace();
+            if (screen != null) {
+                screen.showError(event.getThrowable().getMessage());
+            }
+        } else {
+            if (screen != null) {
+                if (event.getCode() == 200) {
+                    screen.showGroups(event.getGroups());
+                } else {
+                    screen.showError(event.getErrorMessage());
+                }
             }
         }
     }
