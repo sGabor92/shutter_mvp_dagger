@@ -131,9 +131,10 @@ class ManageChannelsPresenter extends Presenter<ManageChannelsScreen> {
             }
         } else {
             if (screen != null) {
-                if (event.getCode() != 200) {
-                    screen.showError(event.getErrorMessage());
+                if (event.getCode() == 204 || event.getCode() == 200) {
                     screen.removeShutter(event.getItemPosition());
+                } else {
+                    screen.showError(event.getErrorMessage());
                 }
             }
         }
