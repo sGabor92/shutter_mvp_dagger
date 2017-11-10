@@ -158,16 +158,22 @@ public class NewShutterActivity extends AppCompatActivity implements NewShutterS
 
     @OnClick(R.id.up_btn)
     public void upButtonCopy() {
+        buttonSetBackground(R.drawable.button_rounded_blue, Enums.ShutterMovement.UP);
+        showCopyProgressBar(Enums.ShutterMovement.UP);
         newShutterPresenter.copyTask(channelID, Enums.ShutterMovement.UP);
     }
 
     @OnClick(R.id.stop_btn)
     public void stopButtonCopy() {
+        buttonSetBackground(R.drawable.button_rounded_blue, Enums.ShutterMovement.STOP);
+        showCopyProgressBar(Enums.ShutterMovement.STOP);
         newShutterPresenter.copyTask(channelID, Enums.ShutterMovement.STOP);
     }
 
     @OnClick(R.id.down_btn)
     public void downButtonCopy() {
+        buttonSetBackground(R.drawable.button_rounded_blue, Enums.ShutterMovement.DOWN);
+        showCopyProgressBar(Enums.ShutterMovement.DOWN);
         newShutterPresenter.copyTask(channelID, Enums.ShutterMovement.DOWN);
     }
 

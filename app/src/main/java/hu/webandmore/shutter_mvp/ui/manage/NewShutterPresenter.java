@@ -15,6 +15,7 @@ import hu.webandmore.shutter_mvp.app.Enums;
 import hu.webandmore.shutter_mvp.interactor.ShutterInteractor;
 import hu.webandmore.shutter_mvp.interactor.events.CopySignalEvent;
 import hu.webandmore.shutter_mvp.interactor.events.ModifyShutterEvent;
+import hu.webandmore.shutter_mvp.interactor.events.ShutterMovementEvent;
 import hu.webandmore.shutter_mvp.ui.Presenter;
 
 class NewShutterPresenter extends Presenter<NewShutterScreen> {
@@ -91,6 +92,22 @@ class NewShutterPresenter extends Presenter<NewShutterScreen> {
                 if (event.getCode() == 200) {
                     screen.startCopyingChannel();
                 } else {
+                    screen.showError(event.getErrorMessage());
+                }
+            }
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventMainThread(final ShutterMovementEvent event) {
+        if (event.getThrowable() != null) {
+            event.getThrowable().printStackTrace();
+            if (screen != null) {
+                screen.showError(event.getThrowable().getMessage());
+            }
+        } else {
+            if (screen != null) {
+                if (event.getCode() != 200) {
                     screen.showError(event.getErrorMessage());
                 }
             }
