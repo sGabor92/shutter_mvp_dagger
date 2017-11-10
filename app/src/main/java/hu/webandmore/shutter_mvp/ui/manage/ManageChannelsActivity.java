@@ -117,6 +117,7 @@ public class ManageChannelsActivity extends AppCompatActivity implements ManageC
         savedShutters.setLayoutManager(llmShutters);
         savedShutters.setAdapter(shutterAdapter);
         manageChannelsPresenter.initSwipe();
+        shutterAdapter.descendingByUpdate();
     }
 
     @Override

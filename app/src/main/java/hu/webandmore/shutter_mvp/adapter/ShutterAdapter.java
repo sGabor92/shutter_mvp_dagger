@@ -2,6 +2,8 @@ package hu.webandmore.shutter_mvp.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,7 +12,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Locale;
 
 import hu.webandmore.shutter_mvp.R;
 import hu.webandmore.shutter_mvp.api.model.Channel;
@@ -138,6 +145,26 @@ public class ShutterAdapter extends RecyclerView.Adapter<ShutterAdapter.ViewHold
         }
         notifyDataSetChanged();
     }
+
+    public void descendingByUpdate() {
+        Collections.sort(channels, new Comparator<Channel>() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            @Override
+            public int compare(Channel o1, Channel o2) {
+                SimpleDateFormat sdf =
+                        new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+                try {
+                    return Long.compare(sdf.parse(o2.getUpdated_at()).getTime(),
+                            sdf.parse(o1.getUpdated_at()).getTime());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                return 0;
+            }
+        });
+        this.notifyDataSetChanged();
+    }
+
 
     class ViewHolder extends RecyclerView.ViewHolder {
         TextView channelName;

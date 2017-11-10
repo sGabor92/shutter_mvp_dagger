@@ -93,7 +93,7 @@ public class ShutterCenterFragment extends Fragment implements ShutterCenterScre
         shutterAdapter = new ShutterAdapter(getContext(), shutters);
         recyclerView.setLayoutManager(llmShutters);
         recyclerView.setAdapter(shutterAdapter);
-
+        shutterAdapter.descendingByUpdate();
     }
 
     @Override
