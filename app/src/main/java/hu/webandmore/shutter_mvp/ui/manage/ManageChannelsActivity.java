@@ -106,6 +106,7 @@ public class ManageChannelsActivity extends AppCompatActivity implements ManageC
         mMainView.setVisibility(View.VISIBLE);
     }
 
+    //TODO - valamiért meghívódik törlés után is, csekkolni!
     @Override
     public void showError(String errorMsg) {
         Toast.makeText(this, errorMsg, Toast.LENGTH_SHORT).show();

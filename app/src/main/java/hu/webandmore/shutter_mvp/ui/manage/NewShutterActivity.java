@@ -1,6 +1,7 @@
 package hu.webandmore.shutter_mvp.ui.manage;
 
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -108,7 +109,6 @@ public class NewShutterActivity extends AppCompatActivity implements NewShutterS
             Channel currentChannel = newShutterPresenter.createChannel(channelID,
                     mChannelName.getText().toString());
             newShutterPresenter.modifyChannel(currentChannel);
-
         }
     }
 
@@ -123,19 +123,52 @@ public class NewShutterActivity extends AppCompatActivity implements NewShutterS
         mCopyLayout.setVisibility(View.VISIBLE);
     }
 
-    @OnClick(R.id.up_btn)
-    public void upButtonCopy(){
+    @Override
+    public void hideCopyProgressBar(Enums.ShutterMovement movement) {
+        if (movement == Enums.ShutterMovement.UP) {
+            mUpProgress.setVisibility(View.GONE);
+        } else if (movement == Enums.ShutterMovement.STOP) {
+            mStopProgress.setVisibility(View.GONE);
+        } else {
+            mDownProgress.setVisibility(View.GONE);
+        }
+    }
 
+    @Override
+    public void showCopyProgressBar(Enums.ShutterMovement movement) {
+        if (movement == Enums.ShutterMovement.UP) {
+            mUpProgress.setVisibility(View.VISIBLE);
+        } else if (movement == Enums.ShutterMovement.STOP) {
+            mStopProgress.setVisibility(View.VISIBLE);
+        } else {
+            mDownProgress.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    public void buttonSetBackground(int resId, Enums.ShutterMovement movement) {
+        if (movement == Enums.ShutterMovement.UP) {
+            mUpBtn.setBackground(ContextCompat.getDrawable(this, resId));
+        } else if (movement == Enums.ShutterMovement.STOP) {
+            mStopBtn.setBackground(ContextCompat.getDrawable(this, resId));
+        } else {
+            mDownBtn.setBackground(ContextCompat.getDrawable(this, resId));
+        }
+    }
+
+    @OnClick(R.id.up_btn)
+    public void upButtonCopy() {
+        newShutterPresenter.copyTask(channelID, Enums.ShutterMovement.UP);
     }
 
     @OnClick(R.id.stop_btn)
-    public void stopButtonCopy(){
-
+    public void stopButtonCopy() {
+        newShutterPresenter.copyTask(channelID, Enums.ShutterMovement.STOP);
     }
 
     @OnClick(R.id.down_btn)
-    public void downButtonCopy(){
-
+    public void downButtonCopy() {
+        newShutterPresenter.copyTask(channelID, Enums.ShutterMovement.DOWN);
     }
 
     @OnClick(R.id.up_icon)

@@ -9,9 +9,11 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+import hu.webandmore.shutter_mvp.R;
 import hu.webandmore.shutter_mvp.api.model.Channel;
 import hu.webandmore.shutter_mvp.app.Enums;
 import hu.webandmore.shutter_mvp.interactor.ShutterInteractor;
+import hu.webandmore.shutter_mvp.interactor.events.CopySignalEvent;
 import hu.webandmore.shutter_mvp.interactor.events.ModifyShutterEvent;
 import hu.webandmore.shutter_mvp.ui.Presenter;
 
@@ -49,6 +51,15 @@ class NewShutterPresenter extends Presenter<NewShutterScreen> {
         return channel;
     }
 
+    void copyTask(final int channelId, final Enums.ShutterMovement movement) {
+        networkExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                shutterInteractor.copyTask(channelId, movement);
+            }
+        });
+    }
+
     void modifyChannel(final Channel channel) {
         networkExecutor.execute(new Runnable() {
             @Override
@@ -79,6 +90,25 @@ class NewShutterPresenter extends Presenter<NewShutterScreen> {
             if (screen != null) {
                 if (event.getCode() == 200) {
                     screen.startCopyingChannel();
+                } else {
+                    screen.showError(event.getErrorMessage());
+                }
+            }
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventMainThread(final CopySignalEvent event) {
+        if (event.getThrowable() != null) {
+            event.getThrowable().printStackTrace();
+            if (screen != null) {
+                screen.showError(event.getThrowable().getMessage());
+            }
+        } else {
+            if (screen != null) {
+                if (event.getCode() == 200) {
+                    screen.hideCopyProgressBar(event.getMovement());
+                    screen.buttonSetBackground(R.drawable.button_rounded_green, event.getMovement());
                 } else {
                     screen.showError(event.getErrorMessage());
                 }

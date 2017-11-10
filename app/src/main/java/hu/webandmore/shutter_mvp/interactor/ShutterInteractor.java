@@ -12,6 +12,7 @@ import hu.webandmore.shutter_mvp.api.ServiceGenerator;
 import hu.webandmore.shutter_mvp.api.model.Channel;
 import hu.webandmore.shutter_mvp.api.services.ShutterService;
 import hu.webandmore.shutter_mvp.app.Enums;
+import hu.webandmore.shutter_mvp.interactor.events.CopySignalEvent;
 import hu.webandmore.shutter_mvp.interactor.events.CreateShutterEvent;
 import hu.webandmore.shutter_mvp.interactor.events.DeleteShutterEvent;
 import hu.webandmore.shutter_mvp.interactor.events.GetShuttersEvent;
@@ -231,6 +232,52 @@ public class ShutterInteractor {
                 modifyShutterEvent.setErrorMessage(errorMessage);
                 modifyShutterEvent.setThrowable(t);
                 EventBus.getDefault().post(modifyShutterEvent);
+            }
+        });
+    }
+
+    public void copyTask(int channelId, final Enums.ShutterMovement movement){
+        Call<Void> call;
+        if (movement == Enums.ShutterMovement.UP) {
+            call = shutterService.copyUp(channelId);
+        } else if (movement == Enums.ShutterMovement.STOP) {
+            call = shutterService.copyStop(channelId);
+        } else {
+            call = shutterService.copyDown(channelId);
+        }
+
+        final CopySignalEvent copySignalEvent = new CopySignalEvent();
+        call.enqueue(new Callback<Void>() {
+
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> result) {
+                if (result.isSuccessful()) {
+                    copySignalEvent.setCode(result.code());
+                    copySignalEvent.setMovement(movement);
+                    EventBus.getDefault().post(copySignalEvent);
+                } else {
+                    copySignalEvent.setCode(result.code());
+                    try {
+                        copySignalEvent.setErrorMessage(result.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    EventBus.getDefault().post(copySignalEvent);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+                String errorMessage = context.getString(R.string.error_during_login);
+                if (t instanceof UnknownHostException) {
+                    errorMessage = context.getString(R.string.network_error);
+                } else if (t instanceof IOException) {
+                    errorMessage = context.getString(R.string.internal_server_error);
+                }
+                copySignalEvent.setErrorMessage(errorMessage);
+                copySignalEvent.setThrowable(t);
+                EventBus.getDefault().post(copySignalEvent);
             }
         });
     }
