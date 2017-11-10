@@ -27,7 +27,11 @@ public interface ShutterGroupsService {
     Call<Void> deleteGroup(@Path("id") int groupId);
 
     @PUT("groups/{groupId}/{channelId}")
-    Call<Group> attachChannelToGroup(@Path("groupId") int groupId, @Path("channelId") int channelId,
-                                     @Body Group group);
+    Call<Group> attachChannelToGroup(@Path("groupId") int groupId,
+                                     @Path("channelId") int channelId, @Body Group group);
+
+    @DELETE("groups/{groupId}/{channelId}")
+    Call<Group> removeChannelFromGroup(@Path("groupId") int groupId,
+                                       @Path("channelId") int channelId, @Body Group group);
 
 }
