@@ -73,5 +73,6 @@
 
     <string name="restart">Restart</string>
     <string name="save">Save</string>
+    <string name="title_activity_groups">GroupsActivity</string>
 
 </resources>
