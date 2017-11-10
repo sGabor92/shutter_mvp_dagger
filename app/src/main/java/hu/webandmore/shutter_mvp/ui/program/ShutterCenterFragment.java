@@ -1,5 +1,6 @@
 package hu.webandmore.shutter_mvp.ui.program;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,11 +16,13 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import hu.webandmore.shutter_mvp.R;
 import hu.webandmore.shutter_mvp.adapter.GroupsAdapter;
 import hu.webandmore.shutter_mvp.adapter.ShutterAdapter;
 import hu.webandmore.shutter_mvp.api.model.Channel;
 import hu.webandmore.shutter_mvp.api.model.Group;
+import hu.webandmore.shutter_mvp.ui.groups.GroupsActivity;
 
 public class ShutterCenterFragment extends Fragment implements ShutterCenterScreen {
 
@@ -82,6 +85,12 @@ public class ShutterCenterFragment extends Fragment implements ShutterCenterScre
     public void onDestroyView() {
         shutterCenterPresenter.detachScreen();
         super.onDestroyView();
+    }
+
+    @OnClick(R.id.edit_rooms)
+    public void switchToEditRooms() {
+        Intent intent = new Intent(getContext(), GroupsActivity.class);
+        startActivity(intent);
     }
 
     @Override

@@ -2,11 +2,11 @@ package hu.webandmore.shutter_mvp.ui.groups;
 
 import java.util.ArrayList;
 
-import hu.webandmore.shutter_mvp.api.model.Channel;
+import hu.webandmore.shutter_mvp.api.model.Group;
 
 interface GroupsScreen {
     void showProgressBar();
     void hideProgressBar();
     void showError(String errorMsg);
-    void showShutters(ArrayList<Channel> shutters);
+    void showGroups(ArrayList<Group> groups);
 }

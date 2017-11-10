@@ -28,6 +28,7 @@ public class GroupsInteractor {
     }
 
     public void getGroups() {
+        System.out.println("In groups interactor getGroups");
         Call<Group[]> call = shutterGroupsService.getGroups();
 
         final GetGroupsEvent getGroupsEvent = new GetGroupsEvent();
@@ -36,6 +37,7 @@ public class GroupsInteractor {
             @Override
             public void onResponse(Call<Group[]> call, Response<Group[]> result) {
                 if (result.isSuccessful()) {
+                    System.out.println("Calling getGroups successful");
                     getGroupsEvent.setGroups(result.body());
                     getGroupsEvent.setCode(result.code());
                     EventBus.getDefault().post(getGroupsEvent);
