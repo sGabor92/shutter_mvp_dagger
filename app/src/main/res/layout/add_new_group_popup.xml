@@ -8,14 +8,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginBottom="20dp">
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/group_name"
             android:textColor="@color/colorBlack"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            android:textStyle="bold"/>
 
         <EditText
             android:id="@+id/group_name_input"
@@ -28,16 +32,48 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:text="@string/shutters"
         android:textColor="@color/colorBlack"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:textStyle="bold"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/shutters_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:clipToPadding="false"
-        android:paddingBottom="70dp"
+        android:paddingBottom="20dp"
         android:layout_marginTop="20dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp">
+
+        <Button
+            android:id="@+id/cancel_add_group"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="@drawable/button_rounded_red"
+            android:text="@string/cancel"
+            android:textSize="16sp"
+            android:textColor="@color/colorWhite"
+            />
+
+        <Button
+            android:id="@+id/save_group"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="@drawable/button_rounded_green"
+            android:layout_alignParentRight="true"
+            android:text="@string/save"
+            android:textSize="16sp"
+            android:textColor="@color/colorWhite"/>
+
+    </RelativeLayout>
 
 </LinearLayout>

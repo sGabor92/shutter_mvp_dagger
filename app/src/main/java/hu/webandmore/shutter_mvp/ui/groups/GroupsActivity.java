@@ -56,6 +56,7 @@ public class GroupsActivity extends AppCompatActivity implements GroupsScreen {
     @OnClick(R.id.addGroupBtn)
     public void addNewGroup(){
         Log.i(TAG, "Add new group!");
+        groupsPresenter.addNewGroupDialog();
     }
 
     @Override
