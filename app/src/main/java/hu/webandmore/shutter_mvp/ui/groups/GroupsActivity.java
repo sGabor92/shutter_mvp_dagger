@@ -4,16 +4,20 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import hu.webandmore.shutter_mvp.R;
 import hu.webandmore.shutter_mvp.adapter.GroupsAdapter;
 import hu.webandmore.shutter_mvp.api.model.Group;
 
 public class GroupsActivity extends AppCompatActivity implements GroupsScreen {
+
+    public static final String TAG = "GroupsActivity";
 
     @BindView(R.id.groups_list)
     RecyclerView mGroupsRecyclerView;
@@ -47,6 +51,11 @@ public class GroupsActivity extends AppCompatActivity implements GroupsScreen {
         super.onResume();
 
         groupsPresenter.getGroups();
+    }
+
+    @OnClick(R.id.addGroupBtn)
+    public void addNewGroup(){
+        Log.i(TAG, "Add new group!");
     }
 
     @Override

@@ -33,13 +33,43 @@
             android:layout_marginTop="20dp"
             android:orientation="vertical">
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/add_new_group"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="26sp"
+                    android:textStyle="bold"/>
+
+                <Button
+                    android:id="@+id/addGroupBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_rounded_blue"
+                    android:text="@string/add"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorWhite"
+                    android:textAlignment="center"
+                    android:layout_marginRight="50dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"/>
+
+            </RelativeLayout>
+
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Your groups"
+                android:text="@string/your_groups"
                 android:textColor="@color/colorBlack"
-                android:textSize="32sp"
+                android:textSize="22sp"
                 android:textStyle="bold" />
 
             <android.support.v7.widget.RecyclerView

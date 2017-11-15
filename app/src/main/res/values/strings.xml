@@ -74,5 +74,10 @@
     <string name="restart">Restart</string>
     <string name="save">Save</string>
     <string name="title_activity_groups">Groups</string>
+    <string name="your_groups">Your groups</string>
+    <string name="add_new_group">Add new group</string>
+    <string name="add">Add</string>
+    <string name="group_name">Group name:</string>
+    <string name="shutters">Shutters:</string>
 
 </resources>
