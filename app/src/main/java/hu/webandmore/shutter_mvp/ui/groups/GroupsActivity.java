@@ -31,7 +31,11 @@ public class GroupsActivity extends AppCompatActivity implements GroupsScreen {
 
         ButterKnife.bind(this);
 
+        assert getSupportActionBar() != null;
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         groupsPresenter = new GroupsPresenter(this);
+        groupsPresenter.attachScreen(this);
 
         llmGroups = new LinearLayoutManager(this);
         llmGroups.setOrientation(LinearLayoutManager.VERTICAL);
@@ -42,7 +46,6 @@ public class GroupsActivity extends AppCompatActivity implements GroupsScreen {
     protected void onResume() {
         super.onResume();
 
-        System.out.println("Calling getGroups");
         groupsPresenter.getGroups();
     }
 
@@ -63,7 +66,6 @@ public class GroupsActivity extends AppCompatActivity implements GroupsScreen {
 
     @Override
     public void showGroups(ArrayList<Group> groups) {
-        System.out.println("GROUPS SHOWNS : " + groups.size());
         groupsAdapter = new GroupsAdapter(this, groups);
         mGroupsRecyclerView.setLayoutManager(llmGroups);
         mGroupsRecyclerView.setAdapter(groupsAdapter);

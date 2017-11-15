@@ -41,7 +41,6 @@ public class GroupsPresenter extends Presenter<GroupsScreen> {
     }
 
     void getGroups() {
-        System.out.println("In getGroups");
         networkExecutor.execute(new Runnable() {
             @Override
             public void run() {
@@ -60,7 +59,6 @@ public class GroupsPresenter extends Presenter<GroupsScreen> {
         } else {
             if (screen != null) {
                 if (event.getCode() == 200) {
-                    System.out.println("SHOW GROUPS: " + event.getGroups().size());
                     screen.showGroups(event.getGroups());
                 } else {
                     screen.showError(event.getErrorMessage());
