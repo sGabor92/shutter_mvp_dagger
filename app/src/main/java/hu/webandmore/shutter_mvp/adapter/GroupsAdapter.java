@@ -1,6 +1,7 @@
 package hu.webandmore.shutter_mvp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,7 +13,9 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import hu.webandmore.shutter_mvp.R;
+import hu.webandmore.shutter_mvp.api.model.Channel;
 import hu.webandmore.shutter_mvp.api.model.Group;
+import hu.webandmore.shutter_mvp.ui.groups.ManageGroupActivity;
 
 public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.ViewHolder> {
 
@@ -64,7 +67,15 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.ViewHolder
             @Override
             public void onClick(View v) {
                 Log.i(TAG, "Clicked on item: " + holder.group.getName());
-
+                ArrayList<Integer> channelsList = new ArrayList<>();
+                for(Channel channel: holder.group.getChannels()) {
+                    channelsList.add(channel.getId());
+                }
+                Intent intent = new Intent(context, ManageGroupActivity.class);
+                intent.putExtra("groupId", holder.group.getId());
+                intent.putExtra("groupName", holder.group.getName());
+                intent.putExtra("channels", channelsList);
+                context.startActivity(intent);
             }
         });
 

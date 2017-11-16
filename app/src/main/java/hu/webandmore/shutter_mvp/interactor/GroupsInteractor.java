@@ -9,12 +9,10 @@ import java.net.UnknownHostException;
 
 import hu.webandmore.shutter_mvp.R;
 import hu.webandmore.shutter_mvp.api.ServiceGenerator;
-import hu.webandmore.shutter_mvp.api.model.Channel;
 import hu.webandmore.shutter_mvp.api.model.Group;
 import hu.webandmore.shutter_mvp.api.services.ShutterGroupsService;
 import hu.webandmore.shutter_mvp.interactor.events.AttachChannelToGroupEvent;
 import hu.webandmore.shutter_mvp.interactor.events.CreateGroupEvent;
-import hu.webandmore.shutter_mvp.interactor.events.CreateShutterEvent;
 import hu.webandmore.shutter_mvp.interactor.events.DeleteGroupEvent;
 import hu.webandmore.shutter_mvp.interactor.events.DetachChannelToGroupEvent;
 import hu.webandmore.shutter_mvp.interactor.events.GetGroupsEvent;
@@ -150,8 +148,8 @@ public class GroupsInteractor {
         });
     }
 
-    public void attachChannelToGroup(Group group, int channelId) {
-        Call<Group> call = shutterGroupsService.attachChannelToGroup(group.getId(), channelId);
+    public void attachChannelToGroup(int groupId, int channelId) {
+        Call<Group> call = shutterGroupsService.attachChannelToGroup(groupId, channelId);
 
         final AttachChannelToGroupEvent attachChannelToGroupEvent = new AttachChannelToGroupEvent();
         call.enqueue(new Callback<Group>() {
@@ -188,8 +186,8 @@ public class GroupsInteractor {
         });
     }
 
-    public void detachChannelFromGroup(Group group, int channelId) {
-        Call<Group> call = shutterGroupsService.removeChannelFromGroup(group.getId(), channelId);
+    public void detachChannelFromGroup(int groupId, int channelId) {
+        Call<Group> call = shutterGroupsService.removeChannelFromGroup(groupId, channelId);
 
         final DetachChannelToGroupEvent detachChannelToGroupEvent = new DetachChannelToGroupEvent();
         call.enqueue(new Callback<Group>() {

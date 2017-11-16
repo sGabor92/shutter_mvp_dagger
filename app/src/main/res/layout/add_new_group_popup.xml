@@ -1,53 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20dp">
+    android:layout_margin="20dp"
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/group_name"
-            android:textColor="@color/colorBlack"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
-
-        <EditText
-            android:id="@+id/group_name_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"/>
-
-    </LinearLayout>
-
-    <!--<TextView
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:text="@string/shutters"
+        android:layout_marginBottom="10dp"
+        android:text="@string/group_name"
         android:textColor="@color/colorBlack"
         android:textSize="18sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/shutters_list"
+    <EditText
+        android:id="@+id/group_name_input"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:clipToPadding="false"
-        android:paddingBottom="20dp"
-        android:layout_marginTop="20dp" />-->
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/elevation_background"
+        android:elevation="2dp"
+        android:hint="@string/hint_shutter_name"
+        android:inputType="text|textNoSuggestions"
+        android:paddingLeft="10dp"
+        android:textColor="@color/colorBlack"
+        android:textColorHint="@color/colorGreyText"
+        android:textSize="14sp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -60,19 +41,18 @@
             android:layout_height="30dp"
             android:background="@drawable/button_rounded_red"
             android:text="@string/cancel"
-            android:textSize="16sp"
             android:textColor="@color/colorWhite"
-            />
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/save_group"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:background="@drawable/button_rounded_green"
             android:layout_alignParentRight="true"
+            android:background="@drawable/button_rounded_green"
             android:text="@string/save"
-            android:textSize="16sp"
-            android:textColor="@color/colorWhite"/>
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp" />
 
     </RelativeLayout>
 

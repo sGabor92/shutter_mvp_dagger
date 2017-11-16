@@ -1,7 +1,6 @@
 package hu.webandmore.shutter_mvp.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,16 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import hu.webandmore.shutter_mvp.R;
 import hu.webandmore.shutter_mvp.api.model.Channel;
-import hu.webandmore.shutter_mvp.api.model.Group;
 import hu.webandmore.shutter_mvp.interactor.GroupsInteractor;
-import hu.webandmore.shutter_mvp.ui.manage.NewShutterActivity;
 
 public class GroupShutterAdapter extends RecyclerView.Adapter<GroupShutterAdapter.ViewHolder> {
 
@@ -27,13 +23,13 @@ public class GroupShutterAdapter extends RecyclerView.Adapter<GroupShutterAdapte
     private final Context context;
 
     private ArrayList<Channel> channels = new ArrayList<>();
-    private Group group;
+    private int groupId;
     private GroupsInteractor groupsInteractor;
 
-    public GroupShutterAdapter(Context c, ArrayList<Channel> channels, Group group) {
+    public GroupShutterAdapter(Context c, ArrayList<Channel> channels, int groupId) {
         this.context = c;
         this.channels = channels;
-        this.group = group;
+        this.groupId = groupId;
         groupsInteractor = new GroupsInteractor(context);
     }
 
@@ -54,9 +50,9 @@ public class GroupShutterAdapter extends RecyclerView.Adapter<GroupShutterAdapte
                 Log.i(TAG, "Checked changed: " + isChecked);
                 holder.channel.setChecked(isChecked);
                 if(isChecked) {
-                    groupsInteractor.attachChannelToGroup(group, holder.channel.getId());
+                    groupsInteractor.attachChannelToGroup(groupId, holder.channel.getId());
                 } else {
-                    groupsInteractor.detachChannelFromGroup(group, holder.channel.getId());
+                    groupsInteractor.detachChannelFromGroup(groupId, holder.channel.getId());
                 }
             }
         });

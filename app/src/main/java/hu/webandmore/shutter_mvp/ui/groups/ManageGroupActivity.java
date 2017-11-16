@@ -1,5 +1,6 @@
 package hu.webandmore.shutter_mvp.ui.groups;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -31,6 +32,9 @@ public class ManageGroupActivity extends AppCompatActivity implements ManageGrou
 
     ManageGroupPresenter manageGroupPresenter;
 
+    private int groupId = 0;
+    private ArrayList<Integer> mGroupChannels;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +44,23 @@ public class ManageGroupActivity extends AppCompatActivity implements ManageGrou
 
         assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            try {
+                if (getIntent().hasExtra("groupId")) {
+                    groupId = extras.getInt("groupId");
+                }
+                if (getIntent().hasExtra("groupName")) {
+                    mGroupNameInput.setText(extras.getString("groupName"));
+                }
+                if (getIntent().hasExtra("channels")) {
+                    mGroupChannels = extras.getIntegerArrayList("channels");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
         manageGroupPresenter = new ManageGroupPresenter(this);
         manageGroupPresenter.attachScreen(this);
@@ -61,15 +82,15 @@ public class ManageGroupActivity extends AppCompatActivity implements ManageGrou
             mGroupNameInput.setError(getString(R.string.required_field), null);
             mGroupNameInput.requestFocus();
         } else {
-            createGroup();
+            // TODO - modify if groupName is different - else do nothing
         }
     }
 
     @Override
     public void showShutters(ArrayList<Channel> shutters) {
-        /*groupShutterAdapter = new GroupShutterAdapter(this, shutters);
+        groupShutterAdapter = new GroupShutterAdapter(this, shutters, groupId);
         shuttersRecyclerView.setLayoutManager(llmShutters);
-        shuttersRecyclerView.setAdapter(groupShutterAdapter);*/
+        shuttersRecyclerView.setAdapter(groupShutterAdapter);
     }
 
     @Override
