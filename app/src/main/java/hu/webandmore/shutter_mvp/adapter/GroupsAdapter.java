@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import hu.webandmore.shutter_mvp.R;
 import hu.webandmore.shutter_mvp.api.model.Channel;
 import hu.webandmore.shutter_mvp.api.model.Group;
+import hu.webandmore.shutter_mvp.app.Enums;
+import hu.webandmore.shutter_mvp.interactor.ShutterInteractor;
 import hu.webandmore.shutter_mvp.ui.groups.ManageGroupActivity;
 
 public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.ViewHolder> {
@@ -24,10 +26,12 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.ViewHolder
     private final Context context;
 
     private ArrayList<Group> groups = new ArrayList<>();
+    private ShutterInteractor shutterMovementInteractor;
 
     public GroupsAdapter(Context c, ArrayList<Group> groups) {
         this.context = c;
         this.groups = groups;
+        shutterMovementInteractor = new ShutterInteractor(context);
     }
 
     @Override
@@ -45,21 +49,33 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.ViewHolder
         holder.upBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                for (Channel channel : holder.group.getChannels()) {
+                    Log.i(TAG, "Calling UP to channel: " + channel.getId());
+                    shutterMovementInteractor.moveShutter(channel.getId(),
+                            Enums.ShutterMovement.UP);
+                }
             }
         });
 
         holder.stopBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                for (Channel channel : holder.group.getChannels()) {
+                    Log.i(TAG, "Calling STOP to channel: " + channel.getId());
+                    shutterMovementInteractor.moveShutter(channel.getId(),
+                            Enums.ShutterMovement.STOP);
+                }
             }
         });
 
         holder.downBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                for (Channel channel : holder.group.getChannels()) {
+                    Log.i(TAG, "Calling DOWN to channel: " + channel.getId());
+                    shutterMovementInteractor.moveShutter(channel.getId(),
+                            Enums.ShutterMovement.DOWN);
+                }
             }
         });
 

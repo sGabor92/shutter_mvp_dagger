@@ -30,6 +30,7 @@ import hu.webandmore.shutter_mvp.interactor.GroupsInteractor;
 import hu.webandmore.shutter_mvp.interactor.events.CreateGroupEvent;
 import hu.webandmore.shutter_mvp.interactor.events.DeleteGroupEvent;
 import hu.webandmore.shutter_mvp.interactor.events.GetGroupsEvent;
+import hu.webandmore.shutter_mvp.interactor.events.ShutterMovementEvent;
 import hu.webandmore.shutter_mvp.ui.Presenter;
 
 class GroupsPresenter extends Presenter<GroupsScreen> {
@@ -174,6 +175,22 @@ class GroupsPresenter extends Presenter<GroupsScreen> {
                     screen.showError(event.getErrorMessage());
                 }
                 //screen.hideProgressBar();
+            }
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventMainThread(final ShutterMovementEvent event) {
+        if (event.getThrowable() != null) {
+            event.getThrowable().printStackTrace();
+            if (screen != null) {
+                screen.showError(event.getThrowable().getMessage());
+            }
+        } else {
+            if (screen != null) {
+                if (event.getCode() != 200) {
+                    screen.showError(event.getErrorMessage());
+                }
             }
         }
     }
