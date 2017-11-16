@@ -18,7 +18,7 @@ public interface ShutterGroupsService {
     Call<Group> getGroup(@Path("id") int groupId);
 
     @POST("groups")
-    Call<Group> createGroup();
+    Call<Group> createGroup(@Body Group group);
 
     @PUT("groups/{id}")
     Call<Group> modifyGroup(@Path("id") int groupId, @Body Group group);
@@ -28,10 +28,10 @@ public interface ShutterGroupsService {
 
     @PUT("groups/{groupId}/{channelId}")
     Call<Group> attachChannelToGroup(@Path("groupId") int groupId,
-                                     @Path("channelId") int channelId, @Body Group group);
+                                     @Path("channelId") int channelId);
 
     @DELETE("groups/{groupId}/{channelId}")
     Call<Group> removeChannelFromGroup(@Path("groupId") int groupId,
-                                       @Path("channelId") int channelId, @Body Group group);
+                                       @Path("channelId") int channelId);
 
 }

@@ -9,4 +9,5 @@ interface GroupsScreen {
     void hideProgressBar();
     void showError(String errorMsg);
     void showGroups(ArrayList<Group> groups);
+    void savedSuccessful();
 }

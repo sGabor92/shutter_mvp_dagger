@@ -18,7 +18,9 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import hu.webandmore.shutter_mvp.R;
+import hu.webandmore.shutter_mvp.api.model.Group;
 import hu.webandmore.shutter_mvp.interactor.GroupsInteractor;
+import hu.webandmore.shutter_mvp.interactor.events.CreateGroupEvent;
 import hu.webandmore.shutter_mvp.interactor.events.GetGroupsEvent;
 import hu.webandmore.shutter_mvp.ui.Presenter;
 
@@ -63,7 +65,7 @@ public class GroupsPresenter extends Presenter<GroupsScreen> {
         View mView = LayoutInflater.from(context).inflate(R.layout.add_new_group_popup, null);
 
         final EditText mNameInput = (EditText) mView.findViewById(R.id.group_name_input);
-        RecyclerView mShuttersView = (RecyclerView)mView.findViewById(R.id.shutters_list);
+        RecyclerView mShuttersView = (RecyclerView) mView.findViewById(R.id.shutters_list);
 
         Button mPositiveButton = (Button) mView.findViewById(R.id.save_group);
         Button mNegativeButton = (Button) mView.findViewById(R.id.cancel_add_group);
@@ -76,6 +78,16 @@ public class GroupsPresenter extends Presenter<GroupsScreen> {
             @Override
             public void onClick(View v) {
                 Log.i(TAG, "SAVE clicked");
+                if (mNameInput.getText().toString().isEmpty()) {
+                    mNameInput.setError(context.getString(R.string.required_field), null);
+                    mNameInput.requestFocus();
+                } else {
+                    Group group = new Group();
+                    group.setName(mNameInput.getText().toString());
+                    group.setColor("0x000000");
+                    groupsInteractor.createGroup(group);
+                    dialog.dismiss();
+                }
             }
         });
 
@@ -84,6 +96,7 @@ public class GroupsPresenter extends Presenter<GroupsScreen> {
             @Override
             public void onClick(View v) {
                 Log.i(TAG, "CANCEL clicked");
+                dialog.dismiss();
             }
         });
 
@@ -105,6 +118,26 @@ public class GroupsPresenter extends Presenter<GroupsScreen> {
                 } else {
                     screen.showError(event.getErrorMessage());
                 }
+            }
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventMainThread(final CreateGroupEvent event) {
+        if (event.getThrowable() != null) {
+            event.getThrowable().printStackTrace();
+            if (screen != null) {
+                screen.showError(event.getThrowable().getMessage());
+                //screen.hideProgressBar();
+            }
+        } else {
+            if (screen != null) {
+                if (event.getCode() == 200) {
+                    screen.savedSuccessful();
+                } else {
+                    screen.showError(event.getErrorMessage());
+                }
+                //screen.hideProgressBar();
             }
         }
     }

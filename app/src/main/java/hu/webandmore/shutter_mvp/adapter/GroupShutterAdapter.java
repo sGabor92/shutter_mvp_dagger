@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -15,6 +16,8 @@ import java.util.ArrayList;
 
 import hu.webandmore.shutter_mvp.R;
 import hu.webandmore.shutter_mvp.api.model.Channel;
+import hu.webandmore.shutter_mvp.api.model.Group;
+import hu.webandmore.shutter_mvp.interactor.GroupsInteractor;
 import hu.webandmore.shutter_mvp.ui.manage.NewShutterActivity;
 
 public class GroupShutterAdapter extends RecyclerView.Adapter<GroupShutterAdapter.ViewHolder> {
@@ -24,15 +27,19 @@ public class GroupShutterAdapter extends RecyclerView.Adapter<GroupShutterAdapte
     private final Context context;
 
     private ArrayList<Channel> channels = new ArrayList<>();
+    private Group group;
+    private GroupsInteractor groupsInteractor;
 
-    public GroupShutterAdapter(Context c, ArrayList<Channel> channels) {
+    public GroupShutterAdapter(Context c, ArrayList<Channel> channels, Group group) {
         this.context = c;
         this.channels = channels;
+        this.group = group;
+        groupsInteractor = new GroupsInteractor(context);
     }
 
     @Override
     public GroupShutterAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_shutter, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_shutter_to_group, parent, false);
         return new ViewHolder(view);
     }
 
@@ -45,6 +52,12 @@ public class GroupShutterAdapter extends RecyclerView.Adapter<GroupShutterAdapte
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 Log.i(TAG, "Checked changed: " + isChecked);
+                holder.channel.setChecked(isChecked);
+                if(isChecked) {
+                    groupsInteractor.attachChannelToGroup(group, holder.channel.getId());
+                } else {
+                    groupsInteractor.detachChannelFromGroup(group, holder.channel.getId());
+                }
             }
         });
 
@@ -64,15 +77,25 @@ public class GroupShutterAdapter extends RecyclerView.Adapter<GroupShutterAdapte
         return channels.get(position);
     }
 
+    public ArrayList<Channel> getCheckedShutters() {
+        ArrayList<Channel> returnChannels = new ArrayList<>();
+        for(Channel channel: channels) {
+            if(channel.isChecked()){
+                returnChannels.add(channel);
+            }
+        }
+        return returnChannels;
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder {
         TextView channelName;
-        RadioButton isGrouped;
+        CheckBox isGrouped;
         Channel channel;
 
         ViewHolder(View itemView) {
             super(itemView);
             channelName = (TextView) itemView.findViewById(R.id.shutter_name);
-            isGrouped = (RadioButton) itemView.findViewById(R.id.group_channel);
+            isGrouped = (CheckBox) itemView.findViewById(R.id.group_channel);
         }
     }
 

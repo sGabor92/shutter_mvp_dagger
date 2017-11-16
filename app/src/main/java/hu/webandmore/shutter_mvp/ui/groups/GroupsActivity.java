@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -71,7 +72,7 @@ public class GroupsActivity extends AppCompatActivity implements GroupsScreen {
 
     @Override
     public void showError(String errorMsg) {
-
+        Toast.makeText(this, errorMsg, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -79,6 +80,12 @@ public class GroupsActivity extends AppCompatActivity implements GroupsScreen {
         groupsAdapter = new GroupsAdapter(this, groups);
         mGroupsRecyclerView.setLayoutManager(llmGroups);
         mGroupsRecyclerView.setAdapter(groupsAdapter);
+    }
+
+    @Override
+    public void savedSuccessful() {
+        groupsPresenter.getGroups();
+        Toast.makeText(this, R.string.group_is_created, Toast.LENGTH_SHORT).show();
     }
 
 }

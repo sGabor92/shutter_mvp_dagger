@@ -7,6 +7,7 @@ public class Channel {
     private boolean isActive = true;
     private String created_at;
     private String updated_at;
+    private boolean checked;
 
     public int getId() {
         return id;
@@ -46,5 +47,13 @@ public class Channel {
 
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
 }

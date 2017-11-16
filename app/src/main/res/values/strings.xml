@@ -80,6 +80,7 @@
     <string name="group_name">Group name:</string>
     <string name="shutters">Shutters:</string>
     <string name="cancel">Cancel</string>
-    <string name="title_activity_manage_group">ManageGroupActivity</string>
+    <string name="title_activity_manage_group">Manage Group</string>
+    <string name="group_is_created">Group is created!</string>
 
 </resources>
