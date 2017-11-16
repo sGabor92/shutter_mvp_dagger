@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="hu.webandmore.shutter_mvp.ui.groups.ManageGroupActivity">
+    tools:context="hu.webandmore.shutter_mvp.ui.groups.EditGroupActivity">
 
     <include layout="@layout/content_manage_group" />
 

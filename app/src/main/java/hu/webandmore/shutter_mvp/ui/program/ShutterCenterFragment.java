@@ -23,6 +23,7 @@ import hu.webandmore.shutter_mvp.adapter.ShutterAdapter;
 import hu.webandmore.shutter_mvp.api.model.Channel;
 import hu.webandmore.shutter_mvp.api.model.Group;
 import hu.webandmore.shutter_mvp.ui.groups.GroupsActivity;
+import hu.webandmore.shutter_mvp.ui.manage.ManageChannelsActivity;
 
 public class ShutterCenterFragment extends Fragment implements ShutterCenterScreen {
 
@@ -90,6 +91,12 @@ public class ShutterCenterFragment extends Fragment implements ShutterCenterScre
     @OnClick(R.id.edit_rooms)
     public void switchToEditRooms() {
         Intent intent = new Intent(getContext(), GroupsActivity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.edit_shutters)
+    public void switchToEditShutters() {
+        Intent intent = new Intent(getContext(), ManageChannelsActivity.class);
         startActivity(intent);
     }
 

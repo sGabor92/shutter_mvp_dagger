@@ -51,14 +51,8 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="12sp" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/grouped_shutters_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp" />
-
             <RelativeLayout
-                android:id="@+id/ungrouppedLayout"
+                android:id="@+id/grouppedLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp">
@@ -67,7 +61,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="@string/ungroupped"
+                    android:text="@string/grouped"
                     android:textColor="@color/colorBlack"
                     android:textSize="22sp"
                     android:textStyle="bold" />
@@ -79,6 +73,40 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:text="@string/edit_rooms"
+                    android:textColor="@color/colorMainBlue"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/grouped_shutters_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp" />
+
+            <RelativeLayout
+                android:id="@+id/unGroupedLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/all_shutter"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/edit_shutters"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/edit_shutters"
                     android:textColor="@color/colorMainBlue"
                     android:textSize="15sp"
                     android:textStyle="bold" />

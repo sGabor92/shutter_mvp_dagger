@@ -17,7 +17,7 @@ import hu.webandmore.shutter_mvp.api.model.Channel;
 import hu.webandmore.shutter_mvp.api.model.Group;
 import hu.webandmore.shutter_mvp.app.Enums;
 import hu.webandmore.shutter_mvp.interactor.ShutterInteractor;
-import hu.webandmore.shutter_mvp.ui.groups.ManageGroupActivity;
+import hu.webandmore.shutter_mvp.ui.groups.EditGroupActivity;
 
 public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.ViewHolder> {
 
@@ -87,7 +87,7 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.ViewHolder
                 for (Channel channel : holder.group.getChannels()) {
                     channelsList.add(channel.getId());
                 }
-                Intent intent = new Intent(context, ManageGroupActivity.class);
+                Intent intent = new Intent(context, EditGroupActivity.class);
                 intent.putExtra("groupId", holder.group.getId());
                 intent.putExtra("groupName", holder.group.getName());
                 intent.putExtra("channels", channelsList);

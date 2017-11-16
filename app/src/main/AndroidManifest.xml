@@ -53,7 +53,7 @@
             android:theme="@style/AppTheme"
             android:parentActivityName=".ui.program.ProgramShutterActivity"/>
         <activity
-            android:name=".ui.groups.ManageGroupActivity"
+            android:name=".ui.groups.EditGroupActivity"
             android:label="@string/title_activity_manage_group"
             android:theme="@style/AppTheme"
             android:parentActivityName=".ui.groups.GroupsActivity"/>

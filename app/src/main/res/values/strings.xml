@@ -38,7 +38,7 @@
 
     <string name="ready_to_use">Ready to use</string>
     <string name="shutter_center">Shutter center</string>
-    <string name="ungroupped">Ungroupped</string>
+    <string name="unGrouped">Ungrouped</string>
     <string name="edit_rooms">Edit Rooms</string>
 
     <string name="settings">Settings</string>
@@ -73,14 +73,14 @@
 
     <string name="restart">Restart</string>
     <string name="save">Save</string>
-    <string name="title_activity_groups">Groups</string>
+    <string name="title_activity_groups">Manage Groups</string>
     <string name="your_groups">Your groups</string>
     <string name="add_new_group">Add new group</string>
     <string name="add">Add</string>
     <string name="group_name">Group name:</string>
     <string name="shutters">Shutters:</string>
     <string name="cancel">Cancel</string>
-    <string name="title_activity_manage_group">Manage Group</string>
+    <string name="title_activity_manage_group">Edit Group</string>
     <string name="group_is_created">Group is created!</string>
 
     <string name="delete_group_title">Are you sure you want to delete this group?</string>
@@ -88,5 +88,8 @@
     <string name="channel_attached">Channel attached to this group!</string>
     <string name="channel_detached">Channel detached from this group!</string>
     <string name="group_is_modified">Group is modified!</string>
+    <string name="grouped">Grouped</string>
+    <string name="all_shutter">All shutter</string>
+    <string name="edit_shutters">Edit shutters</string>
 
 </resources>

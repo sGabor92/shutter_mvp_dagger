@@ -13,13 +13,12 @@ import hu.webandmore.shutter_mvp.api.model.Group;
 import hu.webandmore.shutter_mvp.interactor.GroupsInteractor;
 import hu.webandmore.shutter_mvp.interactor.ShutterInteractor;
 import hu.webandmore.shutter_mvp.interactor.events.AttachChannelToGroupEvent;
-import hu.webandmore.shutter_mvp.interactor.events.CreateGroupEvent;
 import hu.webandmore.shutter_mvp.interactor.events.DetachChannelToGroupEvent;
 import hu.webandmore.shutter_mvp.interactor.events.GetShuttersEvent;
 import hu.webandmore.shutter_mvp.interactor.events.ModifyGroupEvent;
 import hu.webandmore.shutter_mvp.ui.Presenter;
 
-class ManageGroupPresenter extends Presenter<ManageGroupScreen> {
+class EditGroupPresenter extends Presenter<EditGroupScreen> {
 
     //private static String TAG = "ManageGroupPresenter";
 
@@ -29,7 +28,7 @@ class ManageGroupPresenter extends Presenter<ManageGroupScreen> {
     private ShutterInteractor shutterInteractor;
     private GroupsInteractor groupsInteractor;
 
-    ManageGroupPresenter(Context context) {
+    EditGroupPresenter(Context context) {
         this.context = context;
         networkExecutor = Executors.newFixedThreadPool(1);
         shutterInteractor = new ShutterInteractor(context);
@@ -37,7 +36,7 @@ class ManageGroupPresenter extends Presenter<ManageGroupScreen> {
     }
 
     @Override
-    public void attachScreen(ManageGroupScreen screen) {
+    public void attachScreen(EditGroupScreen screen) {
         super.attachScreen(screen);
         EventBus.getDefault().register(this);
     }

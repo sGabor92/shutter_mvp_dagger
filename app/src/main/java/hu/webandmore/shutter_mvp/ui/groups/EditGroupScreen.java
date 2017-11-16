@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import hu.webandmore.shutter_mvp.api.model.Channel;
 
-interface ManageGroupScreen {
+interface EditGroupScreen {
     void showShutters(ArrayList<Channel> shutters);
     void showError(String errorMessage);
     void hideProgressBar();

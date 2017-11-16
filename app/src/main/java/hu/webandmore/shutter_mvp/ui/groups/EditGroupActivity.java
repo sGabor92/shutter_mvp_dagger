@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -18,9 +17,9 @@ import hu.webandmore.shutter_mvp.R;
 import hu.webandmore.shutter_mvp.adapter.GroupShutterAdapter;
 import hu.webandmore.shutter_mvp.api.model.Channel;
 
-public class ManageGroupActivity extends AppCompatActivity implements ManageGroupScreen {
+public class EditGroupActivity extends AppCompatActivity implements EditGroupScreen {
 
-    private static final String TAG = "ManageGroupActivity";
+    private static final String TAG = "EditGroupActivity";
 
     @BindView(R.id.group_name_input)
     EditText mGroupNameInput;
@@ -32,7 +31,7 @@ public class ManageGroupActivity extends AppCompatActivity implements ManageGrou
     GroupShutterAdapter groupShutterAdapter;
     private LinearLayoutManager llmShutters;
 
-    ManageGroupPresenter manageGroupPresenter;
+    EditGroupPresenter manageGroupPresenter;
 
     private int groupId = 0;
     private ArrayList<Integer> mGroupChannels;
@@ -64,7 +63,7 @@ public class ManageGroupActivity extends AppCompatActivity implements ManageGrou
             }
         }
 
-        manageGroupPresenter = new ManageGroupPresenter(this);
+        manageGroupPresenter = new EditGroupPresenter(this);
         manageGroupPresenter.attachScreen(this);
 
         llmShutters = new LinearLayoutManager(this);
