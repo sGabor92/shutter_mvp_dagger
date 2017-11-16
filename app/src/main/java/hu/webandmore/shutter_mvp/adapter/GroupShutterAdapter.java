@@ -24,12 +24,15 @@ public class GroupShutterAdapter extends RecyclerView.Adapter<GroupShutterAdapte
 
     private ArrayList<Channel> channels = new ArrayList<>();
     private int groupId;
+    private ArrayList<Integer> channelIds;
     private GroupsInteractor groupsInteractor;
 
-    public GroupShutterAdapter(Context c, ArrayList<Channel> channels, int groupId) {
+    public GroupShutterAdapter(Context c, ArrayList<Channel> channels,
+                               int groupId, ArrayList<Integer> channelIds) {
         this.context = c;
         this.channels = channels;
         this.groupId = groupId;
+        this.channelIds = channelIds;
         groupsInteractor = new GroupsInteractor(context);
     }
 
@@ -44,12 +47,18 @@ public class GroupShutterAdapter extends RecyclerView.Adapter<GroupShutterAdapte
         holder.channel = channels.get(position);
         holder.channelName.setText(holder.channel.getName());
 
+        if (channelIds.contains(holder.channel.getId())) {
+            holder.isGrouped.setChecked(true);
+        } else {
+            holder.isGrouped.setChecked(false);
+        }
+
         holder.isGrouped.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 Log.i(TAG, "Checked changed: " + isChecked);
                 holder.channel.setChecked(isChecked);
-                if(isChecked) {
+                if (isChecked) {
                     groupsInteractor.attachChannelToGroup(groupId, holder.channel.getId());
                 } else {
                     groupsInteractor.detachChannelFromGroup(groupId, holder.channel.getId());
@@ -75,8 +84,8 @@ public class GroupShutterAdapter extends RecyclerView.Adapter<GroupShutterAdapte
 
     public ArrayList<Channel> getCheckedShutters() {
         ArrayList<Channel> returnChannels = new ArrayList<>();
-        for(Channel channel: channels) {
-            if(channel.isChecked()){
+        for (Channel channel : channels) {
+            if (channel.isChecked()) {
                 returnChannels.add(channel);
             }
         }

@@ -12,4 +12,6 @@ interface ManageGroupScreen {
     void showProgressBar();
     void createGroup();
     void savedSuccessful();
+    void channelAttached();
+    void channelDetached();
 }

@@ -88,7 +88,7 @@ public class ManageGroupActivity extends AppCompatActivity implements ManageGrou
 
     @Override
     public void showShutters(ArrayList<Channel> shutters) {
-        groupShutterAdapter = new GroupShutterAdapter(this, shutters, groupId);
+        groupShutterAdapter = new GroupShutterAdapter(this, shutters, groupId, mGroupChannels);
         shuttersRecyclerView.setLayoutManager(llmShutters);
         shuttersRecyclerView.setAdapter(groupShutterAdapter);
     }
@@ -122,6 +122,16 @@ public class ManageGroupActivity extends AppCompatActivity implements ManageGrou
     @Override
     public void savedSuccessful() {
         finish();
+    }
+
+    @Override
+    public void channelAttached() {
+        Toast.makeText(this, R.string.channel_attached, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void channelDetached() {
+        Toast.makeText(this, R.string.channel_detached, Toast.LENGTH_SHORT).show();
     }
 
 }

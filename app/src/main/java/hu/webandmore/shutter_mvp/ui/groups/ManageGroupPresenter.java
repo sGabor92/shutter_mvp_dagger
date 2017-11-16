@@ -118,7 +118,7 @@ public class ManageGroupPresenter extends Presenter<ManageGroupScreen> {
         } else {
             if (screen != null) {
                 if (event.getCode() == 200) {
-
+                    screen.channelAttached();
                 } else {
                     screen.showError(event.getErrorMessage());
                 }
@@ -138,7 +138,7 @@ public class ManageGroupPresenter extends Presenter<ManageGroupScreen> {
         } else {
             if (screen != null) {
                 if (event.getCode() == 200) {
-
+                    screen.channelDetached();
                 } else {
                     screen.showError(event.getErrorMessage());
                 }
