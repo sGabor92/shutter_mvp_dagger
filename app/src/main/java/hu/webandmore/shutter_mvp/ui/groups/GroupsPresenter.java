@@ -1,5 +1,6 @@
 package hu.webandmore.shutter_mvp.ui.groups;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
@@ -11,7 +12,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -32,9 +32,9 @@ import hu.webandmore.shutter_mvp.interactor.events.DeleteGroupEvent;
 import hu.webandmore.shutter_mvp.interactor.events.GetGroupsEvent;
 import hu.webandmore.shutter_mvp.ui.Presenter;
 
-public class GroupsPresenter extends Presenter<GroupsScreen> {
+class GroupsPresenter extends Presenter<GroupsScreen> {
 
-    private static String TAG = "GroupsPresenter";
+    //private static String TAG = "GroupsPresenter";
 
     private Executor networkExecutor;
     private Context context;
@@ -69,7 +69,7 @@ public class GroupsPresenter extends Presenter<GroupsScreen> {
         });
     }
 
-    void deleteGroup(final int itemPosition) {
+    private void deleteGroup(final int itemPosition) {
         networkExecutor.execute(new Runnable() {
             @Override
             public void run() {
@@ -79,9 +79,10 @@ public class GroupsPresenter extends Presenter<GroupsScreen> {
         });
     }
 
-    public void addNewGroupDialog() {
+    void addNewGroupDialog() {
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(context);
-        View mView = LayoutInflater.from(context).inflate(R.layout.add_new_group_popup, null);
+        @SuppressLint("InflateParams") View mView =
+                LayoutInflater.from(context).inflate(R.layout.add_new_group_popup, null);
 
         final EditText mNameInput = (EditText) mView.findViewById(R.id.group_name_input);
         Button mPositiveButton = (Button) mView.findViewById(R.id.save_group);
@@ -94,7 +95,6 @@ public class GroupsPresenter extends Presenter<GroupsScreen> {
 
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "SAVE clicked");
                 if (mNameInput.getText().toString().isEmpty()) {
                     mNameInput.setError(context.getString(R.string.required_field), null);
                     mNameInput.requestFocus();
@@ -112,7 +112,6 @@ public class GroupsPresenter extends Presenter<GroupsScreen> {
 
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "CANCEL clicked");
                 dialog.dismiss();
             }
         });

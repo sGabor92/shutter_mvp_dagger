@@ -57,7 +57,6 @@ public class GroupShutterAdapter extends RecyclerView.Adapter<GroupShutterAdapte
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 Log.i(TAG, "Checked changed: " + isChecked);
-                holder.channel.setChecked(isChecked);
                 if (isChecked) {
                     groupsInteractor.attachChannelToGroup(groupId, holder.channel.getId());
                 } else {
@@ -76,20 +75,6 @@ public class GroupShutterAdapter extends RecyclerView.Adapter<GroupShutterAdapte
     @Override
     public int getItemCount() {
         return channels.size();
-    }
-
-    public Channel getItem(int position) {
-        return channels.get(position);
-    }
-
-    public ArrayList<Channel> getCheckedShutters() {
-        ArrayList<Channel> returnChannels = new ArrayList<>();
-        for (Channel channel : channels) {
-            if (channel.isChecked()) {
-                returnChannels.add(channel);
-            }
-        }
-        return returnChannels;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

@@ -68,7 +68,7 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.ViewHolder
             public void onClick(View v) {
                 Log.i(TAG, "Clicked on item: " + holder.group.getName());
                 ArrayList<Integer> channelsList = new ArrayList<>();
-                for(Channel channel: holder.group.getChannels()) {
+                for (Channel channel : holder.group.getChannels()) {
                     channelsList.add(channel.getId());
                 }
                 Intent intent = new Intent(context, ManageGroupActivity.class);

@@ -16,10 +16,12 @@ import hu.webandmore.shutter_mvp.interactor.events.AttachChannelToGroupEvent;
 import hu.webandmore.shutter_mvp.interactor.events.CreateGroupEvent;
 import hu.webandmore.shutter_mvp.interactor.events.DetachChannelToGroupEvent;
 import hu.webandmore.shutter_mvp.interactor.events.GetShuttersEvent;
+import hu.webandmore.shutter_mvp.interactor.events.ModifyGroupEvent;
 import hu.webandmore.shutter_mvp.ui.Presenter;
 
-public class ManageGroupPresenter extends Presenter<ManageGroupScreen> {
-    private static String TAG = "ManageGroupPresenter";
+class ManageGroupPresenter extends Presenter<ManageGroupScreen> {
+
+    //private static String TAG = "ManageGroupPresenter";
 
     private Executor networkExecutor;
     private Context context;
@@ -55,14 +57,14 @@ public class ManageGroupPresenter extends Presenter<ManageGroupScreen> {
         });
     }
 
-    void createGroup(String groupName) {
+    void modifyGroupName(int groupId, String groupName) {
         final Group group = new Group();
+        group.setId(groupId);
         group.setName(groupName);
-        group.setColor("0x000000");
         networkExecutor.execute(new Runnable() {
             @Override
             public void run() {
-                groupsInteractor.createGroup(group);
+                groupsInteractor.modifyGroup(group);
             }
         });
     }
@@ -88,7 +90,7 @@ public class ManageGroupPresenter extends Presenter<ManageGroupScreen> {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEventMainThread(final CreateGroupEvent event) {
+    public void onEventMainThread(final ModifyGroupEvent event) {
         if (event.getThrowable() != null) {
             event.getThrowable().printStackTrace();
             if (screen != null) {

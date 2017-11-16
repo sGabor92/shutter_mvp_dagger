@@ -1,11 +1,11 @@
 package hu.webandmore.shutter_mvp.ui.groups;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -19,6 +19,8 @@ import hu.webandmore.shutter_mvp.adapter.GroupShutterAdapter;
 import hu.webandmore.shutter_mvp.api.model.Channel;
 
 public class ManageGroupActivity extends AppCompatActivity implements ManageGroupScreen {
+
+    private static final String TAG = "ManageGroupActivity";
 
     @BindView(R.id.group_name_input)
     EditText mGroupNameInput;
@@ -82,8 +84,13 @@ public class ManageGroupActivity extends AppCompatActivity implements ManageGrou
             mGroupNameInput.setError(getString(R.string.required_field), null);
             mGroupNameInput.requestFocus();
         } else {
-            // TODO - modify if groupName is different - else do nothing
+            manageGroupPresenter.modifyGroupName(groupId, mGroupNameInput.getText().toString());
         }
+    }
+
+    @OnClick(R.id.cancel_add_group)
+    public void cancel() {
+        finish();
     }
 
     @Override
@@ -109,18 +116,8 @@ public class ManageGroupActivity extends AppCompatActivity implements ManageGrou
     }
 
     @Override
-    public void createGroup() {
-        String name = mGroupNameInput.getText().toString();
-        Channel[] channels;
-        /*if (groupShutterAdapter != null) {
-            channels = groupShutterAdapter.getCheckedShutters().
-                    toArray(new Channel[groupShutterAdapter.getItemCount()]);
-            manageGroupPresenter.createGroup(name, channels);
-        }*/
-    }
-
-    @Override
     public void savedSuccessful() {
+        Toast.makeText(this, R.string.group_is_modified, Toast.LENGTH_SHORT).show();
         finish();
     }
 

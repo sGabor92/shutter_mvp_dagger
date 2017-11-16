@@ -35,7 +35,4 @@ public class Group {
         return channels;
     }
 
-    public void setChannels(Channel[] channels) {
-        this.channels = channels;
-    }
 }

@@ -87,5 +87,6 @@
     <string name="hint_group_name">E.g. Living Room</string>
     <string name="channel_attached">Channel attached to this group!</string>
     <string name="channel_detached">Channel detached from this group!</string>
+    <string name="group_is_modified">Group is modified!</string>
 
 </resources>

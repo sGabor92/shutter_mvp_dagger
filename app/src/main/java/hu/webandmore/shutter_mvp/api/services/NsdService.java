@@ -56,7 +56,7 @@ public class NsdService implements DiscoveryTimer.OnTimeoutListener {
                     listener.foundDevice(service.getHost());
                 Log.d(TAG, "Service discovery success " + service);
                 if (!service.getServiceType().equals(SERVICE_TYPE)) {
-
+                    Log.d(TAG, "Cannot resolve service: " + service);
                 } else if (service.getServiceName().equals(mServiceName)) {
                     mNsdManager.resolveService(service, mResolveListener);
                 }
