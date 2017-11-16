@@ -9,7 +9,6 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-import hu.webandmore.shutter_mvp.api.model.Channel;
 import hu.webandmore.shutter_mvp.api.model.Group;
 import hu.webandmore.shutter_mvp.interactor.GroupsInteractor;
 import hu.webandmore.shutter_mvp.interactor.ShutterInteractor;

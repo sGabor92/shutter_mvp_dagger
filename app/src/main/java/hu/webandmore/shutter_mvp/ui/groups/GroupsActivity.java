@@ -55,7 +55,7 @@ public class GroupsActivity extends AppCompatActivity implements GroupsScreen {
     }
 
     @OnClick(R.id.addGroupBtn)
-    public void addNewGroup(){
+    public void addNewGroup() {
         Log.i(TAG, "Add new group!");
         groupsPresenter.addNewGroupDialog();
     }
@@ -80,12 +80,38 @@ public class GroupsActivity extends AppCompatActivity implements GroupsScreen {
         groupsAdapter = new GroupsAdapter(this, groups);
         mGroupsRecyclerView.setLayoutManager(llmGroups);
         mGroupsRecyclerView.setAdapter(groupsAdapter);
+        groupsPresenter.initSwipe();
     }
 
     @Override
     public void savedSuccessful() {
         groupsPresenter.getGroups();
         Toast.makeText(this, R.string.group_is_created, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public RecyclerView getGroupRecyclerView() {
+        if (mGroupsRecyclerView != null) {
+            return mGroupsRecyclerView;
+        }
+        return null;
+    }
+
+    @Override
+    public void removeGroup(int position) {
+        groupsAdapter.removeItem(position);
+    }
+
+    @Override
+    public void restoreGroup(int position) {
+        Group removedGroup = groupsAdapter.getItem(position);
+        groupsAdapter.removeItem(position);
+        groupsAdapter.restoreItem(position, removedGroup);
+    }
+
+    @Override
+    public int getSelectedGroupId(int position) {
+        return groupsAdapter.getCurrentId(position);
     }
 
 }

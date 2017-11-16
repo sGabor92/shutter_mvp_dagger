@@ -102,4 +102,5 @@ public class ManageGroupActivity extends AppCompatActivity implements ManageGrou
     public void savedSuccessful() {
         finish();
     }
+
 }

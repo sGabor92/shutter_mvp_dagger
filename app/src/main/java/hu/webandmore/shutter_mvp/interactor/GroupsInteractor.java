@@ -15,6 +15,7 @@ import hu.webandmore.shutter_mvp.api.services.ShutterGroupsService;
 import hu.webandmore.shutter_mvp.interactor.events.AttachChannelToGroupEvent;
 import hu.webandmore.shutter_mvp.interactor.events.CreateGroupEvent;
 import hu.webandmore.shutter_mvp.interactor.events.CreateShutterEvent;
+import hu.webandmore.shutter_mvp.interactor.events.DeleteGroupEvent;
 import hu.webandmore.shutter_mvp.interactor.events.DetachChannelToGroupEvent;
 import hu.webandmore.shutter_mvp.interactor.events.GetGroupsEvent;
 import retrofit2.Call;
@@ -106,6 +107,45 @@ public class GroupsInteractor {
                 createGroupEvent.setErrorMessage(errorMessage);
                 createGroupEvent.setThrowable(t);
                 EventBus.getDefault().post(createGroupEvent);
+            }
+        });
+    }
+
+    public void deleteGroup(int groupId, final int itemPosition) {
+        Call<Void> call = shutterGroupsService.deleteGroup(groupId);
+
+        final DeleteGroupEvent deleteGroupEvent = new DeleteGroupEvent();
+        call.enqueue(new Callback<Void>() {
+
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> result) {
+                if (result.isSuccessful()) {
+                    deleteGroupEvent.setCode(result.code());
+                    deleteGroupEvent.setItemPosition(itemPosition);
+                    EventBus.getDefault().post(deleteGroupEvent);
+                } else {
+                    deleteGroupEvent.setCode(result.code());
+                    try {
+                        deleteGroupEvent.setErrorMessage(result.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    EventBus.getDefault().post(deleteGroupEvent);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+                String errorMessage = context.getString(R.string.error_during_login);
+                if (t instanceof UnknownHostException) {
+                    errorMessage = context.getString(R.string.network_error);
+                } else if (t instanceof IOException) {
+                    errorMessage = context.getString(R.string.internal_server_error);
+                }
+                deleteGroupEvent.setErrorMessage(errorMessage);
+                deleteGroupEvent.setThrowable(t);
+                EventBus.getDefault().post(deleteGroupEvent);
             }
         });
     }
