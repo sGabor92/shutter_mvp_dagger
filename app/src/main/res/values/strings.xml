@@ -91,5 +91,10 @@
     <string name="grouped">Grouped</string>
     <string name="all_shutter">All shutter</string>
     <string name="edit_shutters">Edit shutters</string>
+    <string name="saved_groups">Saved groups</string>
+    <string name="tap_on_create_new_group">Tap on the \'Add new group\' button to create a new group</string>
+    <string name="create_a_new_automation_text">Tap on the \'Add new\' button to create a new automation!</string>
+    <string name="there_is_no_automation_text">There is no automation yet!</string>
+    <string name="title_activity_create_automation_acivity">CreateAutomationAcivity</string>
 
 </resources>

@@ -22,6 +22,39 @@
             android:textSize="32sp"
             android:textStyle="bold" />
 
+        <LinearLayout
+            android:id="@+id/noAutomationLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            >
+
+            <TextView
+                android:id="@+id/noAutomation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_centerInParent="true"
+                android:text="@string/there_is_no_automation_text"
+                android:textAlignment="center"
+                android:textColor="@color/colorBlack"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/create_a_new_automation_text"
+                android:textAlignment="center"
+                android:textColor="@color/colorGreyText"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/automation_list"
             android:layout_width="match_parent"
@@ -43,7 +76,7 @@
             android:text="@string/add_new"
             android:textColor="@color/colorWhite"
             android:textSize="12sp"
-            android:textAllCaps="false"
+            android:textAllCaps="true"
             android:drawableLeft="@drawable/ic_add_white"
             android:drawablePadding="10dp"
             android:textAlignment="center"

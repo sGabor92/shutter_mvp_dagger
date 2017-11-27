@@ -8,12 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import hu.webandmore.shutter_mvp.R;
+import hu.webandmore.shutter_mvp.api.model.Automation;
 
-public class AutomationFragment extends Fragment {
+public class AutomationFragment extends Fragment implements AutomationScreen {
 
     private static String TAG = "AutomationFragment";
 
@@ -45,4 +48,23 @@ public class AutomationFragment extends Fragment {
         Log.i(TAG, "Clicked on add new automation!");
     }
 
+    @Override
+    public void showError(String errorMessage) {
+        
+    }
+
+    @Override
+    public void showProgressBar() {
+
+    }
+
+    @Override
+    public void hideProgressBar() {
+
+    }
+
+    @Override
+    public void showAutomations(ArrayList<Automation> automations) {
+
+    }
 }

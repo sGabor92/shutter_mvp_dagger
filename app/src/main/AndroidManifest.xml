@@ -50,13 +50,18 @@
         <activity
             android:name=".ui.groups.GroupsActivity"
             android:label="@string/title_activity_groups"
-            android:theme="@style/AppTheme"
-            android:parentActivityName=".ui.program.ProgramShutterActivity"/>
+            android:parentActivityName=".ui.program.ProgramShutterActivity"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".ui.groups.EditGroupActivity"
             android:label="@string/title_activity_manage_group"
-            android:theme="@style/AppTheme"
-            android:parentActivityName=".ui.groups.GroupsActivity"/>
+            android:parentActivityName=".ui.groups.GroupsActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.automation.CreateAutomationAcivity"
+            android:label="@string/title_activity_create_automation_acivity"
+            android:parentActivityName=".ui.program.ProgramShutterActivity"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>
