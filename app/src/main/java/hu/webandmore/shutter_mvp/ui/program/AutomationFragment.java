@@ -1,5 +1,6 @@
 package hu.webandmore.shutter_mvp.ui.program;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -15,6 +16,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import hu.webandmore.shutter_mvp.R;
 import hu.webandmore.shutter_mvp.api.model.Automation;
+import hu.webandmore.shutter_mvp.ui.automation.CreateAutomationAcivity;
 
 public class AutomationFragment extends Fragment implements AutomationScreen {
 
@@ -46,11 +48,13 @@ public class AutomationFragment extends Fragment implements AutomationScreen {
     @OnClick(R.id.addNewAutomation)
     public void addNewAutomation() {
         Log.i(TAG, "Clicked on add new automation!");
+        Intent intent = new Intent(getContext(), CreateAutomationAcivity.class);
+        startActivity(intent);
     }
 
     @Override
     public void showError(String errorMessage) {
-        
+
     }
 
     @Override

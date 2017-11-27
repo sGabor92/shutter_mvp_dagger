@@ -95,6 +95,32 @@
     <string name="tap_on_create_new_group">Tap on the \'Add new group\' button to create a new group</string>
     <string name="create_a_new_automation_text">Tap on the \'Add new\' button to create a new automation!</string>
     <string name="there_is_no_automation_text">There is no automation yet!</string>
-    <string name="title_activity_create_automation_acivity">CreateAutomationAcivity</string>
+    <string name="title_activity_create_automation_acivity">New Automation</string>
+    <string name="automation_name">Automation Name</string>
+    <string name="hint_enter_a_name">Enter a name</string>
+    <string name="when">When?</string>
+    <string name="sunrise">Sunrise</string>
+    <string name="sunset">Sunset</string>
+    <string name="set_time">Set Time</string>
+    <string name="repeat">Repeat</string>
+    <string name="shutter_movement">Shutter movement</string>
+    <string name="upwards">Upwards</string>
+    <string name="where">Where?</string>
+    <string name="downwards">Downwards</string>
+    <string name="select_one_or_more_rooms">Select one or more rooms</string>
+    <string name="_0_room">0 room</string>
+    <string name="delete_automation">Delete Automation</string>
+    <string name="select_every_day">Select every day</string>
+    <string name="deselect_days">Deselect days</string>
+
+    <string-array name="days_array">
+        <item>Mon</item>
+        <item>Tue</item>
+        <item>Wed</item>
+        <item>Thu</item>
+        <item>Fri</item>
+        <item>Sat</item>
+        <item>Sun</item>
+    </string-array>
 
 </resources>
