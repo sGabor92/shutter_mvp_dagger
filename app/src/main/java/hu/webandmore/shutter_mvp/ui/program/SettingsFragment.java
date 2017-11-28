@@ -16,6 +16,7 @@ import hu.webandmore.shutter_mvp.R;
 import hu.webandmore.shutter_mvp.ui.groups.EditGroupActivity;
 import hu.webandmore.shutter_mvp.ui.groups.GroupsActivity;
 import hu.webandmore.shutter_mvp.ui.manage.ManageChannelsActivity;
+import hu.webandmore.shutter_mvp.ui.nsd.SearchingDeviceActivity;
 import hu.webandmore.shutter_mvp.utils.Utils;
 
 public class SettingsFragment extends Fragment {
@@ -64,6 +65,12 @@ public class SettingsFragment extends Fragment {
     @OnClick(R.id.manageGroups)
     public void manageGroups() {
         Intent intent = new Intent(getContext(), GroupsActivity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.searchDevice)
+    public void searchDevice() {
+        Intent intent = new Intent(getContext(), SearchingDeviceActivity.class);
         startActivity(intent);
     }
 

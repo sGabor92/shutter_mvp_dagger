@@ -18,6 +18,7 @@ import hu.webandmore.shutter_mvp.MainActivity;
 import hu.webandmore.shutter_mvp.R;
 import hu.webandmore.shutter_mvp.api.services.NsdDeviceListener;
 import hu.webandmore.shutter_mvp.api.services.NsdService;
+import hu.webandmore.shutter_mvp.ui.program.ProgramShutterActivity;
 
 public class SearchingDeviceActivity extends AppCompatActivity
         implements SearchingDeviceScreen, NsdDeviceListener {
@@ -101,10 +102,17 @@ public class SearchingDeviceActivity extends AppCompatActivity
         searchDevice();
     }
 
+    @OnClick(R.id.remoteBtn)
+    public void usingDeviceRemotly() {
+        Intent intent = new Intent(this, ProgramShutterActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
     @Override
     public void searchDevice() {
         showSearchingProgress();
-        if(mNsdService != null)
+        if (mNsdService != null)
             mNsdService.discoverServices();
 
         searchingText.setVisibility(View.VISIBLE);
@@ -147,6 +155,6 @@ public class SearchingDeviceActivity extends AppCompatActivity
         Log.i(TAG, "NSD SERVICE NOT FOUND");
         searchingText.setVisibility(View.GONE);
         deviceNotFoundLayout.setVisibility(View.VISIBLE);
-        
+
     }
 }

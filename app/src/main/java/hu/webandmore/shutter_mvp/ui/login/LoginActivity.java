@@ -180,8 +180,8 @@ public class LoginActivity extends AppCompatActivity implements LoginScreen {
         if (userHasDevice) {
             intent = new Intent(this, MainActivity.class);
         } else {
-            //intent = new Intent(this, SearchingDeviceActivity.class);
-            intent = new Intent(this, ProgramShutterActivity.class);
+            intent = new Intent(this, SearchingDeviceActivity.class);
+            //intent = new Intent(this, ProgramShutterActivity.class);
         }
         startActivity(intent);
         finish();

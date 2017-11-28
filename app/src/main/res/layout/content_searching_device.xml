@@ -37,15 +37,33 @@
             android:textSize="32sp"
             android:textAlignment="center" />
 
-        <Button
-            android:id="@+id/retrySearchingBtn"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/retry"
-            android:textColor="@color/colorWhite"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
-            android:background="@drawable/button_rounded_blue" />
+            >
+
+            <Button
+                android:id="@+id/retrySearchingBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="@string/retry"
+                android:textColor="@color/colorWhite"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/button_rounded_blue" />
+
+            <Button
+                android:id="@+id/remoteBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="30dp"
+                android:text="@string/remote"
+                android:textColor="@color/colorWhite"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/button_rounded_blue" />
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
