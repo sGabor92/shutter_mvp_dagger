@@ -115,6 +115,7 @@
     <string name="select_rooms">Select rooms</string>
     <string name="pick_one_room_at_least">You have to pick at least one room!</string>
     <string name="have_to_pick_one_day_at_least">You have to pick at least one day!</string>
+    <string name="manage_groups">Manage groups</string>
 
     <string-array name="days_array">
         <item>Mon</item>

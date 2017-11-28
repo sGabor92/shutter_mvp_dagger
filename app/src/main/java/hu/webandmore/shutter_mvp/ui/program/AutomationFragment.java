@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -23,9 +25,16 @@ public class AutomationFragment extends Fragment implements AutomationScreen {
     private static String TAG = "AutomationFragment";
 
     @BindView(R.id.addNewAutomation)
-    Button addNewAutomationBtn;
+    Button mAddNewAutomationBtn;
+
+    @BindView(R.id.noAutomationLayout)
+    LinearLayout mNoAutomationView;
+
+    ArrayList<Automation> automations;
 
     public AutomationFragment() {
+
+        automations = new ArrayList<>();
 
     }
 
@@ -35,6 +44,10 @@ public class AutomationFragment extends Fragment implements AutomationScreen {
         View view = inflater.inflate(R.layout.fragment_shutter_automation, container, false);
 
         ButterKnife.bind(this, view);
+
+        if(automations.size() == 0) {
+            mNoAutomationView.setVisibility(View.VISIBLE);
+        }
 
         return view;
     }

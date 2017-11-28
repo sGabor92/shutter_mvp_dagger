@@ -13,6 +13,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import hu.webandmore.shutter_mvp.R;
+import hu.webandmore.shutter_mvp.ui.groups.EditGroupActivity;
+import hu.webandmore.shutter_mvp.ui.groups.GroupsActivity;
 import hu.webandmore.shutter_mvp.ui.manage.ManageChannelsActivity;
 import hu.webandmore.shutter_mvp.utils.Utils;
 
@@ -23,8 +25,9 @@ public class SettingsFragment extends Fragment {
     @BindView(R.id.logoutUser)
     Button logoutBtn;
 
-    @BindView(R.id.addNewChannel)
-    Button addNewChannelBtn;
+    @BindView(R.id.manageChannels)
+    Button manageChannelsBtn;
+
 
     public SettingsFragment() {
 
@@ -52,9 +55,15 @@ public class SettingsFragment extends Fragment {
         Utils.userLogout(getContext());
     }
 
-    @OnClick(R.id.addNewChannel)
-    public void addNewChannel() {
+    @OnClick(R.id.manageChannels)
+    public void manageChannels() {
         Intent intent = new Intent(getContext(), ManageChannelsActivity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.manageGroups)
+    public void manageGroups() {
+        Intent intent = new Intent(getContext(), GroupsActivity.class);
         startActivity(intent);
     }
 

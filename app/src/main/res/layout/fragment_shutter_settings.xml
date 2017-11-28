@@ -11,42 +11,77 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="40dp"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/addNewChannel"
+        <ImageView
+            android:id="@+id/icon"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginTop="40dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:layout_centerHorizontal="true"
-            android:text="@string/manage_channels"
-            android:textColor="@color/colorWhite"
-            android:textSize="14sp"
-            android:textAllCaps="false"
-            android:textAlignment="center"
-            android:background="@drawable/button_rounded_blue"
-            />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/shutter"
+            android:layout_centerHorizontal="true"/>
 
-        <Button
-            android:id="@+id/logoutUser"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginTop="20dp"
-            android:layout_below="@+id/addNewChannel"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:layout_centerHorizontal="true"
-            android:text="@string/logout"
-            android:textColor="@color/colorWhite"
-            android:textSize="14sp"
-            android:textAllCaps="false"
-            android:drawableLeft="@drawable/ic_exit_app_white"
-            android:drawablePadding="10dp"
-            android:textAlignment="center"
-            android:background="@drawable/button_rounded_grey"
-            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/icon"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/manageChannels"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginTop="40dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_centerHorizontal="true"
+                android:text="@string/manage_channels"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp"
+                android:textAllCaps="false"
+                android:textAlignment="center"
+                android:background="@drawable/button_rounded_blue"
+                />
+
+            <Button
+                android:id="@+id/manageGroups"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginTop="100dp"
+                android:layout_centerHorizontal="true"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="@string/manage_groups"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp"
+                android:textAllCaps="false"
+                android:textAlignment="center"
+                android:background="@drawable/button_rounded_blue"
+                />
+
+            <Button
+                android:id="@+id/logoutUser"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/manageGroups"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_centerHorizontal="true"
+                android:text="@string/logout"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp"
+                android:textAllCaps="false"
+                android:drawableLeft="@drawable/ic_exit_app_white"
+                android:drawablePadding="10dp"
+                android:textAlignment="center"
+                android:background="@drawable/button_rounded_grey"
+                />
+
+        </RelativeLayout>
+
 
     </RelativeLayout>
 
