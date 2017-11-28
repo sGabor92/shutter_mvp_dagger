@@ -6,11 +6,14 @@ import hu.webandmore.shutter_mvp.app.Enums;
 
 public class Automation {
 
-    int id;
-    String name;
-    Enums.ShutterMovement shutterMovement;
-    Group group;
-    ArrayList<PickedDay> pickedDays;
+    private int id;
+    private String name;
+    // TODO - kideríteni, hogy küldi az enum-ot
+    private Enums.ShutterMovement shutter_movement;
+    private ArrayList<Group> group;
+    private String automation_time; // rendes UTC szerint
+    private ArrayList<PickedDay> picked_days;
+    private boolean active;
 
     public int getId() {
         return id;
@@ -29,26 +32,34 @@ public class Automation {
     }
 
     public Enums.ShutterMovement getShutterMovement() {
-        return shutterMovement;
+        return shutter_movement;
     }
 
     public void setShutterMovement(Enums.ShutterMovement shutterMovement) {
-        this.shutterMovement = shutterMovement;
+        this.shutter_movement = shutterMovement;
     }
 
-    public Group getGroup() {
+    public ArrayList<Group> getGroup() {
         return group;
     }
 
-    public void setGroup(Group group) {
+    public void setGroup(ArrayList<Group> group) {
         this.group = group;
     }
 
     public ArrayList<PickedDay> getPickedDays() {
-        return pickedDays;
+        return picked_days;
     }
 
     public void setPickedDays(ArrayList<PickedDay> pickedDays) {
-        this.pickedDays = pickedDays;
+        this.picked_days = pickedDays;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }
