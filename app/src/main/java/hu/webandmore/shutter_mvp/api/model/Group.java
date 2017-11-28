@@ -6,6 +6,7 @@ public class Group {
     private String name;
     private String color;
     private Channel[] channels;
+    private boolean active;
 
     public int getId() {
         return id;
@@ -35,4 +36,11 @@ public class Group {
         return channels;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 }

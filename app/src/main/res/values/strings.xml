@@ -108,10 +108,13 @@
     <string name="where">Where?</string>
     <string name="downwards">Downwards</string>
     <string name="select_one_or_more_rooms">Select one or more rooms</string>
-    <string name="_0_room">0 room</string>
+    <string name="_0_room">%1$d room</string>
     <string name="delete_automation">Delete Automation</string>
     <string name="select_every_day">Select every day</string>
     <string name="deselect_days">Deselect days</string>
+    <string name="select_rooms">Select rooms</string>
+    <string name="pick_one_room_at_least">You have to pick at least one room!</string>
+    <string name="have_to_pick_one_day_at_least">You have to pick at least one day!</string>
 
     <string-array name="days_array">
         <item>Mon</item>

@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="hu.webandmore.shutter_mvp.ui.automation.CreateAutomationAcivity">
 
     <ScrollView
@@ -81,7 +80,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginRight="10dp"
                         android:src="@drawable/ic_check_blue"
-                        android:visibility="gone"/>
+                        />
 
                 </RelativeLayout>
 
@@ -159,6 +158,7 @@
                     >
 
                     <TimePicker
+                        android:id="@+id/timePicker"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
@@ -200,7 +200,7 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="22sp"
                 android:textStyle="bold" />
-            
+
             <ToggleButton
                 android:id="@+id/shutterMovement"
                 android:layout_width="match_parent"
@@ -225,6 +225,7 @@
                 android:id="@+id/select_room_layout"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/elevation_background"
                 >
 
@@ -238,6 +239,7 @@
                     android:textSize="14sp" />
 
                 <TextView
+                    android:id="@+id/countText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -258,11 +260,24 @@
 
             </RelativeLayout>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/selected_shutters_list"
+            <LinearLayout
+                android:id="@+id/groupsLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp" />
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/elevation_background"
+                android:visibility="gone">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/selected_groups_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"/>
+
+            </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -271,7 +286,7 @@
                 android:layout_margin="20dp">
 
                 <Button
-                    android:id="@+id/cancel_add_group"
+                    android:id="@+id/cancel_automation"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:background="@drawable/button_rounded_red"
@@ -280,7 +295,7 @@
                     android:textSize="16sp" />
 
                 <Button
-                    android:id="@+id/save_group"
+                    android:id="@+id/save_automation"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_alignParentRight="true"

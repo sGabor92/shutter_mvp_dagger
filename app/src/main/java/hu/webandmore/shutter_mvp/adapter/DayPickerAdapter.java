@@ -43,7 +43,7 @@ public class DayPickerAdapter extends RecyclerView.Adapter<DayPickerAdapter.View
 
         holder.dayName.setText(holder.pickedDay.getName());
 
-        if(holder.pickedDay.isSelected()) {
+        if (holder.pickedDay.isSelected()) {
             holder.dayName.setBackground(ContextCompat.getDrawable(context, R.drawable.button_rounded_blue));
         } else {
             holder.dayName.setBackground(ContextCompat.getDrawable(context, R.drawable.button_rounded_grey));
@@ -53,7 +53,7 @@ public class DayPickerAdapter extends RecyclerView.Adapter<DayPickerAdapter.View
             @Override
             public void onClick(View v) {
                 Log.i(TAG, "Clicked on day item!");
-                if(holder.pickedDay.isSelected()) {
+                if (holder.pickedDay.isSelected()) {
                     holder.pickedDay.setSelected(false);
                     holder.dayName.setBackground(ContextCompat.getDrawable(context, R.drawable.button_rounded_grey));
                 } else {
@@ -67,8 +67,8 @@ public class DayPickerAdapter extends RecyclerView.Adapter<DayPickerAdapter.View
 
     public ArrayList<PickedDay> getSelectedDays() {
         ArrayList<PickedDay> returnDays = new ArrayList<>();
-        for(PickedDay day: days) {
-            if(day.isSelected()) {
+        for (PickedDay day : days) {
+            if (day.isSelected()) {
                 returnDays.add(day);
             }
         }
@@ -77,14 +77,14 @@ public class DayPickerAdapter extends RecyclerView.Adapter<DayPickerAdapter.View
 
     public void selectAllDay() {
         Log.i(TAG, "Select every day!");
-        for(PickedDay day: days) {
+        for (PickedDay day : days) {
             day.setSelected(true);
         }
         notifyDataSetChanged();
     }
 
     public void deselectDays() {
-        for(PickedDay day: days) {
+        for (PickedDay day : days) {
             day.setSelected(false);
         }
         notifyDataSetChanged();
@@ -93,6 +93,16 @@ public class DayPickerAdapter extends RecyclerView.Adapter<DayPickerAdapter.View
     @Override
     public int getItemCount() {
         return days.size();
+    }
+
+    public int getSelectedItemsCount() {
+        int count = 0;
+        for (PickedDay day : days) {
+            if (day.isSelected()) {
+                count++;
+            }
+        }
+        return count;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

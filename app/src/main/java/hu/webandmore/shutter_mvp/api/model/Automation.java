@@ -10,10 +10,10 @@ public class Automation {
     private String name;
     // TODO - kideríteni, hogy küldi az enum-ot
     private Enums.ShutterMovement shutter_movement;
-    private ArrayList<Group> group;
+    private ArrayList<Group> groups;
     private String automation_time; // rendes UTC szerint
     private ArrayList<PickedDay> picked_days;
-    private boolean active;
+    private boolean active = true;
 
     public int getId() {
         return id;
@@ -31,28 +31,36 @@ public class Automation {
         this.name = name;
     }
 
-    public Enums.ShutterMovement getShutterMovement() {
+    public Enums.ShutterMovement getShutter_movement() {
         return shutter_movement;
     }
 
-    public void setShutterMovement(Enums.ShutterMovement shutterMovement) {
-        this.shutter_movement = shutterMovement;
+    public void setShutter_movement(Enums.ShutterMovement shutter_movement) {
+        this.shutter_movement = shutter_movement;
     }
 
     public ArrayList<Group> getGroup() {
-        return group;
+        return groups;
     }
 
-    public void setGroup(ArrayList<Group> group) {
-        this.group = group;
+    public void setGroup(ArrayList<Group> groups) {
+        this.groups = groups;
     }
 
-    public ArrayList<PickedDay> getPickedDays() {
+    public String getAutomation_time() {
+        return automation_time;
+    }
+
+    public void setAutomation_time(String automation_time) {
+        this.automation_time = automation_time;
+    }
+
+    public ArrayList<PickedDay> getPicked_days() {
         return picked_days;
     }
 
-    public void setPickedDays(ArrayList<PickedDay> pickedDays) {
-        this.picked_days = pickedDays;
+    public void setPicked_days(ArrayList<PickedDay> picked_days) {
+        this.picked_days = picked_days;
     }
 
     public boolean isActive() {
