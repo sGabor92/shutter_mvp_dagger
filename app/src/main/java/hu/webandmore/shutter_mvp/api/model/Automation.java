@@ -70,4 +70,12 @@ public class Automation {
     public void setActive(boolean active) {
         this.active = active;
     }
+
+    public String getPickedDayString() {
+        StringBuilder ret = new StringBuilder();
+        for(PickedDay day: picked_days) {
+            ret.append(day.getName()).append(",");
+        }
+        return ret.toString();
+    }
 }
