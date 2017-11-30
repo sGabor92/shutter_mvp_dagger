@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import hu.webandmore.shutter_mvp.R;
 import hu.webandmore.shutter_mvp.api.model.Automation;
+import hu.webandmore.shutter_mvp.api.model.Group;
 
 public class AutomationAdapter extends RecyclerView.Adapter<AutomationAdapter.ViewHolder> {
 
@@ -57,6 +58,26 @@ public class AutomationAdapter extends RecyclerView.Adapter<AutomationAdapter.Vi
 
     @Override
     public long getItemId(int position) {
+        return automations.get(position).getId();
+    }
+
+    public Automation getItem(int position) {
+        return automations.get(position);
+    }
+
+    public void removeItem(int position) {
+        automations.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, automations.size());
+    }
+
+    public void restoreItem(int position, Automation automation) {
+        automations.add(position, automation);
+        notifyDataSetChanged();
+        notifyItemInserted(position);
+    }
+
+    public int getCurrentId(int position) {
         return automations.get(position).getId();
     }
 

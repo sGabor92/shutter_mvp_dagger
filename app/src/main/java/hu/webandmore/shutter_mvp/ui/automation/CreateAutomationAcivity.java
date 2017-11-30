@@ -197,6 +197,11 @@ public class CreateAutomationAcivity extends AppCompatActivity implements Create
         mGroupsRecyclerView.setAdapter(groupAutomationAdapter);
     }
 
+    @Override
+    public void backToList() {
+        finish();
+    }
+
     @OnClick(R.id.selectEveryDay)
     public void selectEveryDay() {
         if (!daysSelected) {
@@ -264,6 +269,7 @@ public class CreateAutomationAcivity extends AppCompatActivity implements Create
             Log.i("Automation", "Clicked on save - Automation: " +
                     new Gson().toJson(automation));
             // TODO - API hívás
+            createAutomationPresenter.createAutomation(automation);
         }
     }
 

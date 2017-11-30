@@ -119,6 +119,8 @@
     <string name="remote">Remote</string>
     <string name="search_device">Search device</string>
 
+    <string name="delete_automation_title">Are you sure you want to delete this automation?</string>
+
     <string-array name="days_array">
         <item>Mon</item>
         <item>Tue</item>

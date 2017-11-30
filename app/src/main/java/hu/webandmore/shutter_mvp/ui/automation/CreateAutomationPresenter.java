@@ -1,6 +1,17 @@
 package hu.webandmore.shutter_mvp.ui.automation;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.View;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -13,8 +24,11 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import hu.webandmore.shutter_mvp.R;
+import hu.webandmore.shutter_mvp.api.model.Automation;
 import hu.webandmore.shutter_mvp.api.model.PickedDay;
+import hu.webandmore.shutter_mvp.interactor.AutomationInteractor;
 import hu.webandmore.shutter_mvp.interactor.GroupsInteractor;
+import hu.webandmore.shutter_mvp.interactor.events.CreateAutomationEvent;
 import hu.webandmore.shutter_mvp.interactor.events.GetGroupsEvent;
 import hu.webandmore.shutter_mvp.interactor.events.GetShuttersEvent;
 import hu.webandmore.shutter_mvp.ui.Presenter;
@@ -24,11 +38,13 @@ public class CreateAutomationPresenter extends Presenter<CreateAutomationScreen>
     private Context context;
     private Executor networkExecutor;
     private GroupsInteractor groupsInteractor;
+    private AutomationInteractor automationInteractor;
 
     CreateAutomationPresenter(Context context) {
         this.context = context;
         networkExecutor = Executors.newFixedThreadPool(1);
         groupsInteractor = new GroupsInteractor(context);
+        automationInteractor = new AutomationInteractor(context);
     }
 
     public void fillDays() {
@@ -62,6 +78,15 @@ public class CreateAutomationPresenter extends Presenter<CreateAutomationScreen>
         });
     }
 
+    void createAutomation(final Automation automation) {
+        networkExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                automationInteractor.createAutomation(automation);
+            }
+        });
+    }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(final GetGroupsEvent event) {
         if (event.getThrowable() != null) {
@@ -74,6 +99,26 @@ public class CreateAutomationPresenter extends Presenter<CreateAutomationScreen>
             if (screen != null) {
                 if (event.getCode() == 200) {
                     screen.showGroups(event.getGroups());
+                } else {
+                    screen.showError(event.getErrorMessage());
+                }
+                //screen.hideProgressBar();
+            }
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventMainThread(final CreateAutomationEvent event) {
+        if (event.getThrowable() != null) {
+            event.getThrowable().printStackTrace();
+            if (screen != null) {
+                screen.showError(event.getThrowable().getMessage());
+                //screen.hideProgressBar();
+            }
+        } else {
+            if (screen != null) {
+                if (event.getCode() == 200) {
+                    screen.backToList();
                 } else {
                     screen.showError(event.getErrorMessage());
                 }
