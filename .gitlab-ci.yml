@@ -1,0 +1,20 @@
+image: jangrewe/gitlab-ci-android
+
+stages:
+    - build
+    - publish
+
+build-apk:
+    stage: build
+    when: manual
+    script:
+        - ./gradlew assembleRelease
+    artifacts:
+        paths:
+            - app/build/outputs/apk/app-release.apk
+
+publish-play:
+    stage: publish
+    when: manual
+    script:
+        - ./gradlew publishApkRelease
