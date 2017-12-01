@@ -1,16 +1,12 @@
 package hu.webandmore.shutter_mvp.ui.automation;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -24,7 +20,11 @@ import android.widget.ToggleButton;
 
 import com.google.gson.Gson;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,15 +32,11 @@ import butterknife.OnClick;
 import hu.webandmore.shutter_mvp.R;
 import hu.webandmore.shutter_mvp.adapter.DayPickerAdapter;
 import hu.webandmore.shutter_mvp.adapter.GroupAutomationAdapter;
-import hu.webandmore.shutter_mvp.adapter.GroupShutterAdapter;
-import hu.webandmore.shutter_mvp.adapter.GroupsAdapter;
-import hu.webandmore.shutter_mvp.adapter.ShutterAdapter;
 import hu.webandmore.shutter_mvp.api.model.Automation;
-import hu.webandmore.shutter_mvp.api.model.Channel;
 import hu.webandmore.shutter_mvp.api.model.Group;
 import hu.webandmore.shutter_mvp.api.model.PickedDay;
 import hu.webandmore.shutter_mvp.app.Enums;
-import hu.webandmore.shutter_mvp.ui.program.ShutterCenterPresenter;
+import retrofit2.http.Body;
 
 public class CreateAutomationAcivity extends AppCompatActivity implements CreateAutomationScreen {
 
@@ -95,6 +91,9 @@ public class CreateAutomationAcivity extends AppCompatActivity implements Create
     GroupAutomationAdapter groupAutomationAdapter;
     private LinearLayoutManager llmGroups;
 
+    private SimpleDateFormat dateFormat =
+            new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,6 +103,8 @@ public class CreateAutomationAcivity extends AppCompatActivity implements Create
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ButterKnife.bind(this);
+
+        dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
 
         llmDays = new LinearLayoutManager(this);
         llmDays.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -118,11 +119,20 @@ public class CreateAutomationAcivity extends AppCompatActivity implements Create
         automation = new Automation();
         automation.setAutomation_time("sunrise");
 
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            if (getIntent().hasExtra("automationId")) {
+                createAutomationPresenter.getAutomation(bundle.getInt("automationId"));
+            }
+        }
+
         mTimepicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
             public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
-                automation.setAutomation_time(String.valueOf(hourOfDay) +
-                        ":" + String.valueOf(minute));
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                calendar.set(Calendar.MINUTE, minute);
+                automation.setAutomation_time(dateFormat.format(calendar.getTime()));
             }
         });
 
@@ -142,7 +152,8 @@ public class CreateAutomationAcivity extends AppCompatActivity implements Create
     protected void onStart() {
         super.onStart();
         createAutomationPresenter.attachScreen(this);
-        createAutomationPresenter.fillDays();
+        createAutomationPresenter.getAutomationDays();
+        //createAutomationPresenter.fillDays();
     }
 
     @Override
@@ -200,6 +211,12 @@ public class CreateAutomationAcivity extends AppCompatActivity implements Create
     @Override
     public void backToList() {
         finish();
+    }
+
+    @Override
+    public void fillAutomationData(Automation automation) {
+        Log.i("Automation", automation.getName());
+        mAutomationName.setText(automation.getName());
     }
 
     @OnClick(R.id.selectEveryDay)
@@ -261,9 +278,9 @@ public class CreateAutomationAcivity extends AppCompatActivity implements Create
             automation.setName(mAutomationName.getText().toString());
             automation.setPicked_days(mDayPickerAdapter.getSelectedDays());
             if (isUpperwardsMovement) {
-                automation.setShutter_movement(Enums.ShutterMovement.UP);
+                automation.setShutter_movement(Enums.ShutterMovement.MOVE_UP);
             } else {
-                automation.setShutter_movement(Enums.ShutterMovement.DOWN);
+                automation.setShutter_movement(Enums.ShutterMovement.MOVE_DOWN);
             }
             automation.setGroup(groupAutomationAdapter.getSelectedGroups());
             Log.i("Automation", "Clicked on save - Automation: " +

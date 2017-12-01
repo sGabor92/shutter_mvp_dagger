@@ -125,9 +125,9 @@ public class NewShutterActivity extends AppCompatActivity implements NewShutterS
 
     @Override
     public void hideCopyProgressBar(Enums.ShutterMovement movement) {
-        if (movement == Enums.ShutterMovement.UP) {
+        if (movement == Enums.ShutterMovement.MOVE_UP) {
             mUpProgress.setVisibility(View.GONE);
-        } else if (movement == Enums.ShutterMovement.STOP) {
+        } else if (movement == Enums.ShutterMovement.MOVE_STOP) {
             mStopProgress.setVisibility(View.GONE);
         } else {
             mDownProgress.setVisibility(View.GONE);
@@ -136,9 +136,9 @@ public class NewShutterActivity extends AppCompatActivity implements NewShutterS
 
     @Override
     public void showCopyProgressBar(Enums.ShutterMovement movement) {
-        if (movement == Enums.ShutterMovement.UP) {
+        if (movement == Enums.ShutterMovement.MOVE_UP) {
             mUpProgress.setVisibility(View.VISIBLE);
-        } else if (movement == Enums.ShutterMovement.STOP) {
+        } else if (movement == Enums.ShutterMovement.MOVE_STOP) {
             mStopProgress.setVisibility(View.VISIBLE);
         } else {
             mDownProgress.setVisibility(View.VISIBLE);
@@ -147,9 +147,9 @@ public class NewShutterActivity extends AppCompatActivity implements NewShutterS
 
     @Override
     public void buttonSetBackground(int resId, Enums.ShutterMovement movement) {
-        if (movement == Enums.ShutterMovement.UP) {
+        if (movement == Enums.ShutterMovement.MOVE_UP) {
             mUpBtn.setBackground(ContextCompat.getDrawable(this, resId));
-        } else if (movement == Enums.ShutterMovement.STOP) {
+        } else if (movement == Enums.ShutterMovement.MOVE_STOP) {
             mStopBtn.setBackground(ContextCompat.getDrawable(this, resId));
         } else {
             mDownBtn.setBackground(ContextCompat.getDrawable(this, resId));
@@ -158,38 +158,38 @@ public class NewShutterActivity extends AppCompatActivity implements NewShutterS
 
     @OnClick(R.id.up_btn)
     public void upButtonCopy() {
-        buttonSetBackground(R.drawable.button_rounded_blue, Enums.ShutterMovement.UP);
-        showCopyProgressBar(Enums.ShutterMovement.UP);
-        newShutterPresenter.copyTask(channelID, Enums.ShutterMovement.UP);
+        buttonSetBackground(R.drawable.button_rounded_blue, Enums.ShutterMovement.MOVE_UP);
+        showCopyProgressBar(Enums.ShutterMovement.MOVE_UP);
+        newShutterPresenter.copyTask(channelID, Enums.ShutterMovement.MOVE_UP);
     }
 
     @OnClick(R.id.stop_btn)
     public void stopButtonCopy() {
-        buttonSetBackground(R.drawable.button_rounded_blue, Enums.ShutterMovement.STOP);
-        showCopyProgressBar(Enums.ShutterMovement.STOP);
-        newShutterPresenter.copyTask(channelID, Enums.ShutterMovement.STOP);
+        buttonSetBackground(R.drawable.button_rounded_blue, Enums.ShutterMovement.MOVE_STOP);
+        showCopyProgressBar(Enums.ShutterMovement.MOVE_STOP);
+        newShutterPresenter.copyTask(channelID, Enums.ShutterMovement.MOVE_STOP);
     }
 
     @OnClick(R.id.down_btn)
     public void downButtonCopy() {
-        buttonSetBackground(R.drawable.button_rounded_blue, Enums.ShutterMovement.DOWN);
-        showCopyProgressBar(Enums.ShutterMovement.DOWN);
-        newShutterPresenter.copyTask(channelID, Enums.ShutterMovement.DOWN);
+        buttonSetBackground(R.drawable.button_rounded_blue, Enums.ShutterMovement.MOVE_DOWN);
+        showCopyProgressBar(Enums.ShutterMovement.MOVE_DOWN);
+        newShutterPresenter.copyTask(channelID, Enums.ShutterMovement.MOVE_DOWN);
     }
 
     @OnClick(R.id.up_icon)
     public void tryOutUp() {
-        newShutterPresenter.tryOutShutter(channelID, Enums.ShutterMovement.UP);
+        newShutterPresenter.tryOutShutter(channelID, Enums.ShutterMovement.MOVE_UP);
     }
 
     @OnClick(R.id.stop_icon)
     public void tryOutStop() {
-        newShutterPresenter.tryOutShutter(channelID, Enums.ShutterMovement.STOP);
+        newShutterPresenter.tryOutShutter(channelID, Enums.ShutterMovement.MOVE_STOP);
     }
 
     @OnClick(R.id.down_icon)
     public void tryOutDown() {
-        newShutterPresenter.tryOutShutter(channelID, Enums.ShutterMovement.DOWN);
+        newShutterPresenter.tryOutShutter(channelID, Enums.ShutterMovement.MOVE_DOWN);
     }
 
 }

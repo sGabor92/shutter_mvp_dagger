@@ -67,7 +67,7 @@ public class ShutterAdapter extends RecyclerView.Adapter<ShutterAdapter.ViewHold
             @Override
             public void onClick(View v) {
                 disableChannels();
-                shutterMovementInteractor.moveShutter(holder.channel.getId(), Enums.ShutterMovement.UP);
+                shutterMovementInteractor.moveShutter(holder.channel.getId(), Enums.ShutterMovement.MOVE_UP);
             }
         });
 
@@ -75,7 +75,7 @@ public class ShutterAdapter extends RecyclerView.Adapter<ShutterAdapter.ViewHold
             @Override
             public void onClick(View v) {
                 disableChannels();
-                shutterMovementInteractor.moveShutter(holder.channel.getId(), Enums.ShutterMovement.STOP);
+                shutterMovementInteractor.moveShutter(holder.channel.getId(), Enums.ShutterMovement.MOVE_STOP);
             }
         });
 
@@ -83,7 +83,7 @@ public class ShutterAdapter extends RecyclerView.Adapter<ShutterAdapter.ViewHold
             @Override
             public void onClick(View v) {
                 disableChannels();
-                shutterMovementInteractor.moveShutter(holder.channel.getId(), Enums.ShutterMovement.DOWN);
+                shutterMovementInteractor.moveShutter(holder.channel.getId(), Enums.ShutterMovement.MOVE_DOWN);
             }
         });
 

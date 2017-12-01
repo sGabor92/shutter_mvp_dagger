@@ -75,9 +75,9 @@ public class ShutterInteractor {
 
     public void moveShutter(int shutterId, Enums.ShutterMovement shutterMovement) {
         Call<Void> call;
-        if (shutterMovement == Enums.ShutterMovement.UP) {
+        if (shutterMovement == Enums.ShutterMovement.MOVE_UP) {
             call = shutterService.shutterUp(shutterId);
-        } else if (shutterMovement == Enums.ShutterMovement.STOP) {
+        } else if (shutterMovement == Enums.ShutterMovement.MOVE_STOP) {
             call = shutterService.shutterStop(shutterId);
         } else {
             call = shutterService.shutterDown(shutterId);
@@ -238,9 +238,9 @@ public class ShutterInteractor {
 
     public void copyTask(int channelId, final Enums.ShutterMovement movement){
         Call<Void> call;
-        if (movement == Enums.ShutterMovement.UP) {
+        if (movement == Enums.ShutterMovement.MOVE_UP) {
             call = shutterService.copyUp(channelId);
-        } else if (movement == Enums.ShutterMovement.STOP) {
+        } else if (movement == Enums.ShutterMovement.MOVE_STOP) {
             call = shutterService.copyStop(channelId);
         } else {
             call = shutterService.copyDown(channelId);

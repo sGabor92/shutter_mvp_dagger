@@ -13,6 +13,7 @@ import hu.webandmore.shutter_mvp.api.model.Automation;
 import hu.webandmore.shutter_mvp.api.services.AutomationService;
 import hu.webandmore.shutter_mvp.interactor.events.CreateAutomationEvent;
 import hu.webandmore.shutter_mvp.interactor.events.DeleteAutomationEvent;
+import hu.webandmore.shutter_mvp.interactor.events.GetAutomationEvent;
 import hu.webandmore.shutter_mvp.interactor.events.GetAutomationsEvent;
 import hu.webandmore.shutter_mvp.interactor.events.ModifyAutomationEvent;
 import retrofit2.Call;
@@ -31,7 +32,7 @@ public class AutomationInteractor {
     }
 
     public void getAutomations() {
-        Call<Automation[]> call = automationService.getAutomation();
+        Call<Automation[]> call = automationService.getAutomations();
 
         final GetAutomationsEvent getAutomationsEvent = new GetAutomationsEvent();
 
@@ -65,6 +66,45 @@ public class AutomationInteractor {
                 getAutomationsEvent.setErrorMessage(errorMessage);
                 getAutomationsEvent.setThrowable(t);
                 EventBus.getDefault().post(getAutomationsEvent);
+            }
+        });
+    }
+
+    public void getAutomation(int automationId) {
+        Call<Automation> call = automationService.getAutomation(automationId);
+
+        final GetAutomationEvent getAutomationEvent = new GetAutomationEvent();
+
+        call.enqueue(new Callback<Automation>() {
+            @Override
+            public void onResponse(Call<Automation> call, Response<Automation> result) {
+                if (result.isSuccessful()) {
+                    getAutomationEvent.setAutomation(result.body());
+                    getAutomationEvent.setCode(result.code());
+                    EventBus.getDefault().post(getAutomationEvent);
+                } else {
+                    getAutomationEvent.setCode(result.code());
+                    try {
+                        getAutomationEvent.setErrorMessage(result.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    EventBus.getDefault().post(getAutomationEvent);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Automation> call, Throwable t) {
+
+                String errorMessage = context.getString(R.string.error_during_login);
+                if (t instanceof UnknownHostException) {
+                    errorMessage = context.getString(R.string.network_error);
+                } else if (t instanceof IOException) {
+                    errorMessage = context.getString(R.string.internal_server_error);
+                }
+                getAutomationEvent.setErrorMessage(errorMessage);
+                getAutomationEvent.setThrowable(t);
+                EventBus.getDefault().post(getAutomationEvent);
             }
         });
     }

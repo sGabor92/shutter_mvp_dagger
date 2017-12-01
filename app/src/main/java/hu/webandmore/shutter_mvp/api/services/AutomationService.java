@@ -12,7 +12,10 @@ import retrofit2.http.Path;
 public interface AutomationService {
 
     @GET("automation")
-    Call<Automation[]> getAutomation();
+    Call<Automation[]> getAutomations();
+
+    @GET("automation/{id}")
+    Call<Automation> getAutomation(@Path("id") int automationId);
 
     @POST("automation")
     Call<Automation> createAutomation(@Body Automation automation);

@@ -52,7 +52,7 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.ViewHolder
                 for (Channel channel : holder.group.getChannels()) {
                     Log.i(TAG, "Calling UP to channel: " + channel.getId());
                     shutterMovementInteractor.moveShutter(channel.getId(),
-                            Enums.ShutterMovement.UP);
+                            Enums.ShutterMovement.MOVE_UP);
                 }
             }
         });
@@ -63,7 +63,7 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.ViewHolder
                 for (Channel channel : holder.group.getChannels()) {
                     Log.i(TAG, "Calling STOP to channel: " + channel.getId());
                     shutterMovementInteractor.moveShutter(channel.getId(),
-                            Enums.ShutterMovement.STOP);
+                            Enums.ShutterMovement.MOVE_STOP);
                 }
             }
         });
@@ -74,7 +74,7 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.ViewHolder
                 for (Channel channel : holder.group.getChannels()) {
                     Log.i(TAG, "Calling DOWN to channel: " + channel.getId());
                     shutterMovementInteractor.moveShutter(channel.getId(),
-                            Enums.ShutterMovement.DOWN);
+                            Enums.ShutterMovement.MOVE_DOWN);
                 }
             }
         });

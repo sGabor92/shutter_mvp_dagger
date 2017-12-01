@@ -71,12 +71,12 @@ class NewShutterPresenter extends Presenter<NewShutterScreen> {
     }
 
     void tryOutShutter(int channelId, Enums.ShutterMovement movement) {
-        if (movement == Enums.ShutterMovement.UP) {
-            shutterInteractor.moveShutter(channelId, Enums.ShutterMovement.UP);
-        } else if (movement == Enums.ShutterMovement.STOP) {
-            shutterInteractor.moveShutter(channelId, Enums.ShutterMovement.STOP);
+        if (movement == Enums.ShutterMovement.MOVE_UP) {
+            shutterInteractor.moveShutter(channelId, Enums.ShutterMovement.MOVE_UP);
+        } else if (movement == Enums.ShutterMovement.MOVE_STOP) {
+            shutterInteractor.moveShutter(channelId, Enums.ShutterMovement.MOVE_STOP);
         } else {
-            shutterInteractor.moveShutter(channelId, Enums.ShutterMovement.DOWN);
+            shutterInteractor.moveShutter(channelId, Enums.ShutterMovement.MOVE_DOWN);
         }
     }
 

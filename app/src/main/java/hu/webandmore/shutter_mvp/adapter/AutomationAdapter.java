@@ -1,7 +1,9 @@
 package hu.webandmore.shutter_mvp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,18 +16,23 @@ import java.util.ArrayList;
 import hu.webandmore.shutter_mvp.R;
 import hu.webandmore.shutter_mvp.api.model.Automation;
 import hu.webandmore.shutter_mvp.api.model.Group;
+import hu.webandmore.shutter_mvp.interactor.AutomationInteractor;
+import hu.webandmore.shutter_mvp.ui.automation.CreateAutomationAcivity;
+import hu.webandmore.shutter_mvp.ui.groups.EditGroupActivity;
 
 public class AutomationAdapter extends RecyclerView.Adapter<AutomationAdapter.ViewHolder> {
 
     private static String TAG = "AutomationAdapter";
 
     private final Context context;
+    private AutomationInteractor automationInteractor;
 
     private ArrayList<Automation> automations = new ArrayList<>();
 
     public AutomationAdapter(Context c, ArrayList<Automation> automations) {
         this.context = c;
         this.automations = automations;
+        automationInteractor = new AutomationInteractor(context);
     }
 
     @Override
@@ -38,7 +45,12 @@ public class AutomationAdapter extends RecyclerView.Adapter<AutomationAdapter.Vi
     public void onBindViewHolder(final AutomationAdapter.ViewHolder holder, int position) {
         holder.automation = automations.get(position);
         holder.automationName.setText(holder.automation.getName());
-        holder.automationDays.setText(holder.automation.getPickedDayString());
+        Log.i(TAG, "Size: " + holder.automation.getPicked_days().size());
+        if(holder.automation.isEveryDay()) {
+            holder.automationDays.setText(R.string.every_day);
+        } else {
+            holder.automationDays.setText(holder.automation.getPickedDayString());
+        }
 
         if(holder.automation.isActive()){
             holder.isActive.setChecked(true);
@@ -51,6 +63,17 @@ public class AutomationAdapter extends RecyclerView.Adapter<AutomationAdapter.Vi
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 holder.automation.setActive(isChecked);
                 // TODO - API hívás actívra rakni vagy deaktiválni
+                automationInteractor.modifyAutomation(holder.automation);
+            }
+        });
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO - itt még valami hiba van a szerkesztésnél!
+                Intent intent = new Intent(context, CreateAutomationAcivity.class);
+                intent.putExtra("automationId", holder.automation.getId());
+                context.startActivity(intent);
             }
         });
 

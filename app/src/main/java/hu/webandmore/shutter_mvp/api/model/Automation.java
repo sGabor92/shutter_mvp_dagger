@@ -1,7 +1,11 @@
 package hu.webandmore.shutter_mvp.api.model;
 
-import java.util.ArrayList;
+import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import hu.webandmore.shutter_mvp.R;
 import hu.webandmore.shutter_mvp.app.Enums;
 
 public class Automation {
@@ -73,9 +77,16 @@ public class Automation {
 
     public String getPickedDayString() {
         StringBuilder ret = new StringBuilder();
-        for(PickedDay day: days) {
+        for (PickedDay day : days) {
             ret.append(day.getName()).append(", ");
         }
+        ret.deleteCharAt(ret.length() - 1);
+        ret.deleteCharAt(ret.length() - 1);
+
         return ret.toString();
+    }
+
+    public boolean isEveryDay() {
+        return days.size() == 7;
     }
 }

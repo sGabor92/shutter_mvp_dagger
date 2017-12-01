@@ -11,7 +11,10 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.View;
+
+import com.google.gson.Gson;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -26,9 +29,12 @@ import java.util.concurrent.Executors;
 import hu.webandmore.shutter_mvp.R;
 import hu.webandmore.shutter_mvp.api.model.Automation;
 import hu.webandmore.shutter_mvp.api.model.PickedDay;
+import hu.webandmore.shutter_mvp.interactor.AutomationDayInteractor;
 import hu.webandmore.shutter_mvp.interactor.AutomationInteractor;
 import hu.webandmore.shutter_mvp.interactor.GroupsInteractor;
 import hu.webandmore.shutter_mvp.interactor.events.CreateAutomationEvent;
+import hu.webandmore.shutter_mvp.interactor.events.GetAutomationDaysEvent;
+import hu.webandmore.shutter_mvp.interactor.events.GetAutomationEvent;
 import hu.webandmore.shutter_mvp.interactor.events.GetGroupsEvent;
 import hu.webandmore.shutter_mvp.interactor.events.GetShuttersEvent;
 import hu.webandmore.shutter_mvp.ui.Presenter;
@@ -39,12 +45,14 @@ public class CreateAutomationPresenter extends Presenter<CreateAutomationScreen>
     private Executor networkExecutor;
     private GroupsInteractor groupsInteractor;
     private AutomationInteractor automationInteractor;
+    private AutomationDayInteractor automationDayInteractor;
 
     CreateAutomationPresenter(Context context) {
         this.context = context;
         networkExecutor = Executors.newFixedThreadPool(1);
         groupsInteractor = new GroupsInteractor(context);
         automationInteractor = new AutomationInteractor(context);
+        automationDayInteractor = new AutomationDayInteractor(context);
     }
 
     public void fillDays() {
@@ -78,11 +86,29 @@ public class CreateAutomationPresenter extends Presenter<CreateAutomationScreen>
         });
     }
 
+    void getAutomationDays() {
+        networkExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                automationDayInteractor.getAutomations();
+            }
+        });
+    }
+
     void createAutomation(final Automation automation) {
         networkExecutor.execute(new Runnable() {
             @Override
             public void run() {
                 automationInteractor.createAutomation(automation);
+            }
+        });
+    }
+
+    void getAutomation(final int automationId) {
+        networkExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                automationInteractor.getAutomation(automationId);
             }
         });
     }
@@ -119,6 +145,47 @@ public class CreateAutomationPresenter extends Presenter<CreateAutomationScreen>
             if (screen != null) {
                 if (event.getCode() == 200) {
                     screen.backToList();
+                } else {
+                    screen.showError(event.getErrorMessage());
+                }
+                //screen.hideProgressBar();
+            }
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventMainThread(final GetAutomationEvent event) {
+        if (event.getThrowable() != null) {
+            event.getThrowable().printStackTrace();
+            if (screen != null) {
+                screen.showError(event.getThrowable().getMessage());
+                //screen.hideProgressBar();
+            }
+        } else {
+            if (screen != null) {
+                if (event.getCode() == 200) {
+                    screen.fillAutomationData(event.getAutomation());
+                } else {
+                    screen.showError(event.getErrorMessage());
+                }
+                //screen.hideProgressBar();
+            }
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventMainThread(final GetAutomationDaysEvent event) {
+        if (event.getThrowable() != null) {
+            event.getThrowable().printStackTrace();
+            if (screen != null) {
+                screen.showError(event.getThrowable().getMessage());
+                //screen.hideProgressBar();
+            }
+        } else {
+            if (screen != null) {
+                if (event.getCode() == 200) {
+                    Log.i("DAYS", new Gson().toJson(event.getAutomationDays()));
+                    screen.showDays(event.getAutomationDays());
                 } else {
                     screen.showError(event.getErrorMessage());
                 }

@@ -70,6 +70,7 @@ public class DayPickerAdapter extends RecyclerView.Adapter<DayPickerAdapter.View
         for (PickedDay day : days) {
             if (day.isSelected()) {
                 returnDays.add(day);
+                Log.i("Selected: ", day.getName());
             }
         }
         return returnDays;

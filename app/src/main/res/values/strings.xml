@@ -120,6 +120,7 @@
     <string name="search_device">Search device</string>
 
     <string name="delete_automation_title">Are you sure you want to delete this automation?</string>
+    <string name="every_day">Every day</string>
 
     <string-array name="days_array">
         <item>Mon</item>

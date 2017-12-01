@@ -1,10 +1,8 @@
 package hu.webandmore.shutter_mvp.ui.automation;
 
-
-import android.support.v7.widget.RecyclerView;
-
 import java.util.ArrayList;
 
+import hu.webandmore.shutter_mvp.api.model.Automation;
 import hu.webandmore.shutter_mvp.api.model.Group;
 import hu.webandmore.shutter_mvp.api.model.PickedDay;
 
@@ -15,5 +13,5 @@ interface CreateAutomationScreen {
     void showDays(ArrayList<PickedDay> days);
     void showGroups(ArrayList<Group> groups);
     void backToList();
-
+    void fillAutomationData(Automation automation);
 }
